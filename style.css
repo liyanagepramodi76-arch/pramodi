@@ -55,12 +55,7 @@ body {
 }
 
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
 
     font-family: 'Outfit', sans-serif;
 
@@ -384,6 +379,7 @@ section {
         #22c55e
     );
 
+    background-clip: text;
     -webkit-background-clip: text;
 
     -webkit-text-fill-color: transparent;
@@ -1007,6 +1003,22 @@ section {
 
 }
 
+.how-section h2 {
+
+            font-size: 50px;
+
+            font-weight: 800;
+
+        }
+
+
+.how-section h2 span {
+
+            color: var(--green);
+
+        }
+
+
 
 .how-section p {
 
@@ -1208,6 +1220,21 @@ section {
 
 }
 
+.about-section h2 {
+
+            font-size: 50px;
+
+            font-weight: 800;
+
+        }
+
+
+.about-section h2 span {
+
+            color: var(--green);
+
+        }
+
 
 .about-features {
 
@@ -1399,6 +1426,16 @@ section {
 
 }
 
+.footer a {
+
+            color: #9caea2;
+
+            display: block;
+
+            margin-bottom: 12px;
+
+        }
+
 
 .footer a:hover {
 
@@ -1526,8 +1563,7 @@ section {
     }
 
 
-    .hero-buttons,
-    .hero-stats {
+    .hero-buttons,.hero-stats {
 
         justify-content: center;
 
@@ -1648,6 +1684,17 @@ section {
         flex-direction: column;
 
     }
+
+    .section-heading h2,.how-section h2,.about-section h2 {
+         font-size: 38px;
+
+            }
+
+    .cta-content h2 {
+
+                font-size: 38px;
+
+            }
 
 
 }
