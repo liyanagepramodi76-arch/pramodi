@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>RubberLink | Compare Prices</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <style>
+
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        body {
+
+            font-family: 'DM Sans', sans-serif;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #f0fdf4,
+
+                    #fff7ed
+
+                );
+
+            color: #1f2937;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+
+        .navbar {
+
+            background: white;
+
+            padding: 18px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+
+                0 4px 20px rgba(0, 0, 0, 0.07);
+
+        }
+
+
+        .logo {
+
+            font-family: 'Outfit', sans-serif;
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+            color: #166534;
+
+        }
+
+
+        .logo span {
+
+            color: #f97316;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 25px;
+
+            align-items: center;
+
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #475569;
+
+            font-weight: 600;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: #16a34a;
+
+        }
+
+
+        .home-btn {
+
+            background: #166534;
+
+            color: white !important;
+
+            padding: 10px 18px;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* ================= HERO ================= */
+
+
+        .hero {
+
+            text-align: center;
+
+            padding: 65px 20px 40px;
+
+        }
+
+
+        .hero small {
+
+            color: #16a34a;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .hero h1 {
+
+            font-family: 'Outfit', sans-serif;
+
+            font-size: 48px;
+
+            margin: 15px 0;
+
+            color: #10251a;
+
+        }
+
+
+        .hero h1 span {
+
+            color: #f97316;
+
+        }
+
+
+        .hero p {
+
+            color: #64748b;
+
+            font-size: 18px;
+
+        }
+
+
+        /* ================= SEARCH BOX ================= */
+
+
+        .search-container {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 22px;
+
+            box-shadow:
+
+                0 12px 35px rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .search-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(auto-fit, minmax(190px, 1fr));
+
+            gap: 15px;
+
+        }
+
+
+        .input-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .input-group label {
+
+            font-weight: 700;
+
+            color: #334155;
+
+        }
+
+
+        .input-group input,
+
+        .input-group select {
+
+            padding: 13px;
+
+            border: 1px solid #dbe5dd;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+
+        .input-group input:focus,
+
+        .input-group select:focus {
+
+            border-color: #16a34a;
+
+        }
+
+
+        .search-btn {
+
+            margin-top: 24px;
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #166534;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .search-btn:hover {
+
+            background: #14532d;
+
+        }
+
+
+        /* ================= RESULTS ================= */
+
+
+        .results {
+
+            max-width: 1100px;
+
+            margin: 45px auto;
+
+        }
+
+
+        .results-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .results-header h2 {
+
+            font-family: 'Outfit', sans-serif;
+
+            color: #10251a;
+
+        }
+
+
+        .sort-select {
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            border: 1px solid #dbe5dd;
+
+            background: white;
+
+        }
+
+
+        .price-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 22px;
+
+        }
+
+
+        /* ================= PRICE CARD ================= */
+
+
+        .price-card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+
+                0 10px 30px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+
+            position: relative;
+
+        }
+
+
+        .price-card:hover {
+
+            transform: translateY(-7px);
+
+        }
+
+
+        .best-price {
+
+            position: absolute;
+
+            top: 18px;
+
+            right: 18px;
+
+            background: #fef3c7;
+
+            color: #b45309;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+
+        .user-info {
+
+            display: flex;
+
+            gap: 13px;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .user-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 25px;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #bbf7d0,
+
+                    #fed7aa
+
+                );
+
+        }
+
+
+        .user-info h3 {
+
+            font-size: 18px;
+
+        }
+
+
+        .user-info p {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+        }
+
+
+        .details {
+
+            background: #f8fafc;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .detail-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .detail-row:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .detail-row span {
+
+            color: #64748b;
+
+        }
+
+
+        .detail-row strong {
+
+            color: #166534;
+
+        }
+
+
+        .price {
+
+            font-size: 24px;
+
+            color: #ea580c !important;
+
+        }
+
+
+        .compare-btn {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #f97316;
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .compare-btn:hover {
+
+            background: #ea580c;
+
+        }
+
+
+        /* ================= EMPTY RESULT ================= */
+
+
+        .no-results {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: #64748b;
+
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+
+        @media (max-width: 768px) {
+
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 38px;
+
+            }
+
+
+            .results-header {
+
+                display: block;
+
+            }
+
+
+            .sort-select {
+
+                margin-top: 15px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            🌿 Rubber<span>Link</span>
+
+        </div>
+
+
+        <div class="nav-links">
+
+
+            <a href="index.html"
+                class="home-btn">
+
+                <i class="bi bi-house"></i>
+
+                Home
+
+            </a>
+
+
+            <a href="cus.html">
+
+                Connect & Request
+
+            </a>
+
+
+            <a href="cal.html">
+
+                Calculator
+
+            </a>
+
+
+        </div>
+
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+
+    <section class="hero">
+
+
+        <small>
+
+            SMART RUBBER TRADING
+
+        </small>
+
+
+        <h1>
+
+            Compare
+
+            <span>
+
+                Rubber Prices
+
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Find the best available buying and selling prices easily.
+
+        </p>
+
+
+    </section>
+
+
+    <!-- ================= SEARCH ================= -->
+
+
+    <section class="search-container">
+
+
+        <div class="search-grid">
+
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Rubber Type
+
+                </label>
+
+
+                <select id="rubberType">
+
+
+                    <option value="all">
+
+                        All Rubber Types
+
+                    </option>
+
+
+                    <option value="RSS">
+
+                        RSS
+
+                    </option>
+
+
+                    <option value="Latex">
+
+                        Latex
+
+                    </option>
+
+
+                    <option value="TSR">
+
+                        TSR
+
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Location
+
+                </label>
+
+
+                <input type="text"
+                    id="location"
+                    placeholder="Example: Kegalle">
+
+
+            </div>
+
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Maximum Price (Rs/kg)
+
+                </label>
+
+
+                <input type="number"
+                    id="maxPrice"
+                    placeholder="Example: 850">
+
+
+            </div>
+
+
+        </div>
+
+
+        <button class="search-btn"
+            onclick="searchPrices()">
+
+
+            <i class="bi bi-search"></i>
+
+            Search Available Prices
+
+
+        </button>
+
+
+    </section>
+
+
+    <!-- ================= RESULTS ================= -->
+
+
+    <section class="results">
+
+
+        <div class="results-header">
+
+
+            <div>
+
+
+                <h2>
+
+                    Available Offers
+
+                </h2>
+
+
+                <p>
+
+                    Compare prices and find the best opportunity.
+
+                </p>
+
+
+            </div>
+
+
+            <select class="sort-select"
+                onchange="sortPrices(this.value)">
+
+
+                <option value="low">
+
+                    Price: Low to High
+
+                </option>
+
+
+                <option value="high">
+
+                    Price: High to Low
+
+                </option>
+
+
+            </select>
+
+
+        </div>
+
+
+        <div class="price-grid"
+            id="priceGrid">
+
+
+            <!-- CARD 1 -->
+
+
+            <div class="price-card"
+                data-price="820"
+                data-type="Latex"
+                data-location="Kalutara">
+
+
+                <div class="best-price">
+
+                    BEST PRICE
+
+                </div>
+
+
+                <div class="user-info">
+
+
+                    <div class="user-icon">
+
+                        👨‍🌾
+
+                    </div>
+
+
+                    <div>
+
+
+                        <h3>
+
+                            Sunil Fernando
+
+                        </h3>
+
+
+                        <p>
+
+                            📍 Kalutara
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="details">
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Rubber Type
+
+                        </span>
+
+
+                        <strong>
+
+                            Latex
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Available Quantity
+
+                        </span>
+
+
+                        <strong>
+
+                            750 kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Price
+
+                        </span>
+
+
+                        <strong class="price">
+
+                            Rs. 820/kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button class="compare-btn"
+                    onclick="selectOffer('Sunil Fernando')">
+
+
+                    Select This Offer
+
+                    <i class="bi bi-arrow-right"></i>
+
+
+                </button>
+
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+
+            <div class="price-card"
+                data-price="850"
+                data-type="RSS"
+                data-location="Kegalle">
+
+
+                <div class="user-info">
+
+
+                    <div class="user-icon">
+
+                        👨‍🌾
+
+                    </div>
+
+
+                    <div>
+
+
+                        <h3>
+
+                            Nimal Perera
+
+                        </h3>
+
+
+                        <p>
+
+                            📍 Kegalle
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="details">
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Rubber Type
+
+                        </span>
+
+
+                        <strong>
+
+                            RSS
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Available Quantity
+
+                        </span>
+
+
+                        <strong>
+
+                            500 kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Price
+
+                        </span>
+
+
+                        <strong class="price">
+
+                            Rs. 850/kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button class="compare-btn"
+                    onclick="selectOffer('Nimal Perera')">
+
+
+                    Select This Offer
+
+                    <i class="bi bi-arrow-right"></i>
+
+
+                </button>
+
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+
+            <div class="price-card"
+                data-price="890"
+                data-type="TSR"
+                data-location="Ratnapura">
+
+
+                <div class="user-info">
+
+
+                    <div class="user-icon">
+
+                        👨‍🌾
+
+                    </div>
+
+
+                    <div>
+
+
+                        <h3>
+
+                            Kamal Wijesinghe
+
+                        </h3>
+
+
+                        <p>
+
+                            📍 Ratnapura
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="details">
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Rubber Type
+
+                        </span>
+
+
+                        <strong>
+
+                            TSR
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Available Quantity
+
+                        </span>
+
+
+                        <strong>
+
+                            1000 kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+
+                        <span>
+
+                            Price
+
+                        </span>
+
+
+                        <strong class="price">
+
+                            Rs. 890/kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button class="compare-btn"
+                    onclick="selectOffer('Kamal Wijesinghe')">
+
+
+                    Select This Offer
+
+                    <i class="bi bi-arrow-right"></i>
+
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="no-results"
+            id="noResults">
+
+
+            <i class="bi bi-search"
+                style="font-size: 40px;"></i>
+
+
+            <h3>
+
+                No matching prices found
+
+            </h3>
+
+
+            <p>
+
+                Try changing your search filters.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+
+    <script>
+
+
+        function searchPrices() {
+
+
+            let type =
+
+                document
+
+                    .getElementById("rubberType")
+
+                    .value;
+
+
+            let location =
+
+                document
+
+                    .getElementById("location")
+
+                    .value
+
+                    .toLowerCase();
+
+
+            let maxPrice =
+
+                document
+
+                    .getElementById("maxPrice")
+
+                    .value;
+
+
+            let cards =
+
+                document
+
+                    .querySelectorAll(".price-card");
+
+
+            let found = 0;
+
+
+            cards.forEach(function(card) {
+
+
+                let cardType =
+
+                    card.dataset.type;
+
+
+                let cardLocation =
+
+                    card.dataset.location
+
+                        .toLowerCase();
+
+
+                let cardPrice =
+
+                    Number(card.dataset.price);
+
+
+                let typeMatch =
+
+                    type === "all" ||
+
+                    cardType === type;
+
+
+                let locationMatch =
+
+                    location === "" ||
+
+                    cardLocation.includes(location);
+
+
+                let priceMatch =
+
+                    maxPrice === "" ||
+
+                    cardPrice <= Number(maxPrice);
+
+
+                if (
+
+                    typeMatch &&
+
+                    locationMatch &&
+
+                    priceMatch
+
+                ) {
+
+
+                    card.style.display = "block";
+
+
+                    found++;
+
+
+                }
+
+                else {
+
+
+                    card.style.display = "none";
+
+                }
+
+
+            });
+
+
+            document
+
+                .getElementById("noResults")
+
+                .style.display =
+
+                    found === 0
+
+                        ? "block"
+
+                        : "none";
+
+
+        }
+
+
+        function sortPrices(order) {
+
+
+            let grid =
+
+                document
+
+                    .getElementById("priceGrid");
+
+
+            let cards =
+
+                Array.from(
+
+                    grid.querySelectorAll(
+
+                        ".price-card"
+
+                    )
+
+                );
+
+
+            cards.sort(function(a, b) {
+
+
+                let priceA =
+
+                    Number(a.dataset.price);
+
+
+                let priceB =
+
+                    Number(b.dataset.price);
+
+
+                return order === "low"
+
+                    ? priceA - priceB
+
+                    : priceB - priceA;
+
+
+            });
+
+
+            cards.forEach(function(card) {
+
+
+                grid.appendChild(card);
+
+            });
+
+
+        }
+
+
+        function selectOffer(name) {
+
+
+            alert(
+
+                "You selected the offer from " +
+
+                name +
+
+                ". You can now send a request."
+
+            );
+
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

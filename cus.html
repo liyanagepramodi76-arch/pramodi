@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>RubberLink | Connect & Request</title>
+
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <style>
+
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        body {
+
+            font-family: 'DM Sans', sans-serif;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #f0fdf4,
+                    #fff7ed
+                );
+
+            color: #1f2937;
+
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+
+        .navbar {
+
+            background: white;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+
+                0 4px 20px rgba(0, 0, 0, 0.06);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            font-family: 'Outfit', sans-serif;
+
+            font-size: 26px;
+
+            font-weight: 800;
+
+            color: #166534;
+
+        }
+
+
+        .logo span {
+
+            color: #f97316;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 28px;
+
+            align-items: center;
+
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #4b5563;
+
+            font-weight: 600;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: #16a34a;
+
+        }
+
+
+        .notification {
+
+            position: relative;
+
+            font-size: 22px;
+
+            color: #166534;
+
+            cursor: pointer;
+
+        }
+
+
+        .notification span {
+
+            position: absolute;
+
+            top: -8px;
+
+            right: -10px;
+
+            background: #ef4444;
+
+            color: white;
+
+            width: 18px;
+
+            height: 18px;
+
+            border-radius: 50%;
+
+            font-size: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        /* ================= HERO ================= */
+
+
+        .hero {
+
+            padding: 70px 8% 45px;
+
+            text-align: center;
+
+        }
+
+
+        .hero small {
+
+            color: #16a34a;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .hero h1 {
+
+            font-family: 'Outfit', sans-serif;
+
+            font-size: 50px;
+
+            margin: 15px 0;
+
+            color: #10251a;
+
+        }
+
+
+        .hero h1 span {
+
+            color: #16a34a;
+
+        }
+
+
+        .hero p {
+
+            color: #64748b;
+
+            font-size: 18px;
+
+        }
+
+
+        /* ================= FILTER BAR ================= */
+
+
+        .filter-bar {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 20px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            box-shadow:
+
+                0 10px 35px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .filter-bar input,
+
+        .filter-bar select {
+
+            flex: 1;
+
+            min-width: 180px;
+
+            padding: 14px;
+
+            border: 1px solid #dbe5dd;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 15px;
+
+        }
+
+
+        .filter-bar input:focus,
+
+        .filter-bar select:focus {
+
+            border-color: #16a34a;
+
+        }
+
+
+        .search-btn {
+
+            padding: 14px 25px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #166534;
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .search-btn:hover {
+
+            background: #14532d;
+
+        }
+
+
+        /* ================= LISTINGS ================= */
+
+
+        .listings {
+
+            max-width: 1200px;
+
+            margin: 45px auto;
+
+            padding: 0 20px;
+
+        }
+
+
+        .section-title {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .section-title h2 {
+
+            font-family: 'Outfit', sans-serif;
+
+            color: #10251a;
+
+        }
+
+
+        .section-title p {
+
+            color: #64748b;
+
+        }
+
+
+        .listing-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+
+        }
+
+
+        /* ================= CARD ================= */
+
+
+        .listing-card {
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            box-shadow:
+
+                0 12px 35px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+
+            position: relative;
+
+        }
+
+
+        .listing-card:hover {
+
+            transform: translateY(-8px);
+
+            box-shadow:
+
+                0 20px 45px rgba(0, 0, 0, 0.13);
+
+        }
+
+
+        .status {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 20px;
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        .profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .profile-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 50%;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #bbf7d0,
+
+                    #fde68a
+
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 25px;
+
+        }
+
+
+        .profile h4 {
+
+            margin: 0;
+
+            color: #1f2937;
+
+        }
+
+
+        .profile small {
+
+            color: #64748b;
+
+        }
+
+
+        .rubber-info {
+
+            background: #f8fafc;
+
+            border-radius: 15px;
+
+            padding: 15px;
+
+            margin: 15px 0;
+
+        }
+
+
+        .info-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 10px;
+
+            font-size: 14px;
+
+        }
+
+
+        .info-row:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .info-row span:first-child {
+
+            color: #64748b;
+
+        }
+
+
+        .info-row strong {
+
+            color: #166534;
+
+        }
+
+
+        .price {
+
+            font-size: 22px;
+
+            color: #ea580c;
+
+            font-weight: 800;
+
+        }
+
+
+        .request-btn {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: #166534;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+        }
+
+
+        .request-btn:hover {
+
+            background: #14532d;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* ================= MODAL ================= */
+
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(15, 23, 42, 0.65);
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 200;
+
+        }
+
+
+        .modal-content {
+
+            background: white;
+
+            width: 100%;
+
+            max-width: 500px;
+
+            border-radius: 25px;
+
+            padding: 30px;
+
+            animation: pop 0.3s ease;
+
+        }
+
+
+        @keyframes pop {
+
+            from {
+
+                transform: scale(0.8);
+
+                opacity: 0;
+
+            }
+
+            to {
+
+                transform: scale(1);
+
+                opacity: 1;
+
+            }
+
+        }
+
+
+        .modal-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .modal-header h2 {
+
+            font-family: 'Outfit', sans-serif;
+
+            color: #166534;
+
+        }
+
+
+        .close-btn {
+
+            border: none;
+
+            background: none;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            color: #64748b;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: 600;
+
+        }
+
+
+        .form-group input,
+
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #dbe5dd;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-family: inherit;
+
+        }
+
+
+        .form-group textarea {
+
+            height: 100px;
+
+            resize: none;
+
+        }
+
+
+        .form-group input:focus,
+
+        .form-group textarea:focus {
+
+            border-color: #16a34a;
+
+        }
+
+
+        .send-btn {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #f97316;
+
+            color: white;
+
+            font-weight: 700;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        .send-btn:hover {
+
+            background: #ea580c;
+
+        }
+
+
+        /* ================= SUCCESS MESSAGE ================= */
+
+
+        .success-message {
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            text-align: center;
+
+            font-weight: 600;
+
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+
+        @media (max-width: 768px) {
+
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 38px;
+
+            }
+
+
+            .section-title {
+
+                display: block;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            🌿 Rubber<span>Link</span>
+
+        </div>
+
+
+        <div class="nav-links">
+
+
+            <a href="index.html">
+
+                Home
+
+            </a>
+
+
+            <a href="#listings">
+
+                Listings
+
+            </a>
+
+
+            <a href="#requests">
+
+                My Requests
+
+            </a>
+
+
+            <div class="notification">
+
+
+                <i class="bi bi-bell-fill"></i>
+
+
+                <span>
+
+                    3
+
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+
+    <section class="hero">
+
+
+        <small>
+
+            CONNECT WITH THE RIGHT PARTNER
+
+        </small>
+
+
+        <h1>
+
+            Connect &
+
+            <span>
+
+                Request
+
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Find suitable rubber trading partners,
+            compare offers, and send requests easily.
+
+        </p>
+
+
+    </section>
+
+
+    <!-- ================= SEARCH ================= -->
+
+
+    <div class="filter-bar">
+
+
+        <input type="text"
+            placeholder="Search by location...">
+
+
+        <select>
+
+
+            <option>
+
+                Select Rubber Type
+
+            </option>
+
+
+            <option>
+
+                RSS
+
+            </option>
+
+
+            <option>
+
+                Latex
+
+            </option>
+
+
+            <option>
+
+                TSR
+
+            </option>
+
+
+        </select>
+
+
+        <input type="number"
+            placeholder="Maximum Price">
+
+
+        <button class="search-btn">
+
+            <i class="bi bi-search"></i>
+
+            Search
+
+        </button>
+
+
+    </div>
+
+
+    <!-- ================= LISTINGS ================= -->
+
+
+    <section class="listings"
+        id="listings">
+
+
+        <div class="section-title">
+
+
+            <div>
+
+
+                <h2>
+
+                    Available Rubber Listings
+
+                </h2>
+
+
+                <p>
+
+                    Find suitable farmers and buyers
+
+                </p>
+
+
+            </div>
+
+
+            <span>
+
+                24 Listings Found
+
+            </span>
+
+
+        </div>
+
+
+        <div class="listing-grid">
+
+
+            <!-- CARD 1 -->
+
+
+            <div class="listing-card">
+
+
+                <div class="status">
+
+                    Available
+
+                </div>
+
+
+                <div class="profile">
+
+
+                    <div class="profile-icon">
+
+                        👨‍🌾
+
+                    </div>
+
+
+                    <div>
+
+
+                        <h4>
+
+                            Nimal Perera
+
+                        </h4>
+
+
+                        <small>
+
+                            📍 Kegalle
+
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="rubber-info">
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Rubber Type
+
+                        </span>
+
+
+                        <strong>
+
+                            RSS
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Available Quantity
+
+                        </span>
+
+
+                        <strong>
+
+                            500 kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Selling Price
+
+                        </span>
+
+
+                        <strong class="price">
+
+                            Rs. 850/kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button class="request-btn"
+                    onclick="openRequest('Nimal Perera')">
+
+
+                    <i class="bi bi-send"></i>
+
+                    Send Request
+
+
+                </button>
+
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+
+            <div class="listing-card">
+
+
+                <div class="status">
+
+                    Available
+
+                </div>
+
+
+                <div class="profile">
+
+
+                    <div class="profile-icon">
+
+                        👨‍🌾
+
+                    </div>
+
+
+                    <div>
+
+
+                        <h4>
+
+                            Sunil Fernando
+
+                        </h4>
+
+
+                        <small>
+
+                            📍 Kalutara
+
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="rubber-info">
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Rubber Type
+
+                        </span>
+
+
+                        <strong>
+
+                            Latex
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Available Quantity
+
+                        </span>
+
+
+                        <strong>
+
+                            750 kg
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Selling Price
+
+                        </span>
+
+
+                        <strong class="price">
+
+                            Rs. 820/kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button class="request-btn"
+                    onclick="openRequest('Sunil Fernando')">
+
+
+                    <i class="bi bi-send"></i>
+
+                    Send Request
+
+
+                </button>
+
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+
+            <div class="listing-card">
+
+
+                <div class="status">
+
+                    Available
+
+                </div>
+
+
+                <div class="profile">
+
+
+                    <div class="profile-icon">
+
+                        👨‍🌾
+
+                    </div>
+
+
+                    <div>
+
+
+                        <h4>
+
+                            Kamal Wijesinghe
+
+                        </h4>
+
+
+                        <small>
+
+                            📍 Ratnapura
+
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="rubber-info">
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Rubber Type
+
+                        </span>
+
+
+                        <strong>
+
+                            TSR
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Available Quantity
+
+                        </span>
+
+
+                        <strong>
+
+                            1000 kg
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+
+                        <span>
+
+                            Selling Price
+
+                        </span>
+
+
+                        <strong class="price">
+
+                            Rs. 890/kg
+
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button class="request-btn"
+                    onclick="openRequest('Kamal Wijesinghe')">
+
+
+                    <i class="bi bi-send"></i>
+
+                    Send Request
+
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= REQUEST MODAL ================= -->
+
+
+    <div class="modal"
+        id="requestModal">
+
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+
+                <h2>
+
+                    Send Request
+
+                </h2>
+
+
+                <button class="close-btn"
+                    onclick="closeRequest()">
+
+
+                    &times;
+
+
+                </button>
+
+
+            </div>
+
+
+            <p>
+
+                Send a request to:
+
+                <strong id="farmerName">
+
+                </strong>
+
+            </p>
+
+
+            <br>
+
+
+            <div class="form-group">
+
+
+                <label>
+
+                    Required Quantity (kg)
+
+                </label>
+
+
+                <input type="number"
+                    id="quantity"
+                    placeholder="Example: 300">
+
+
+            </div>
+
+
+            <div class="form-group">
+
+
+                <label>
+
+                    Offered Price (Rs. per kg)
+
+                </label>
+
+
+                <input type="number"
+                    id="price"
+                    placeholder="Example: 840">
+
+
+            </div>
+
+
+            <div class="form-group">
+
+
+                <label>
+
+                    Message
+
+                </label>
+
+
+                <textarea
+                    placeholder="Write your message...">
+
+                </textarea>
+
+
+            </div>
+
+
+            <button class="send-btn"
+                onclick="sendRequest()">
+
+
+                <i class="bi bi-send-fill"></i>
+
+                Send Request
+
+
+            </button>
+
+
+            <div class="success-message"
+                id="successMessage">
+
+
+                ✅ Request sent successfully!
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+
+    <script>
+
+
+        let selectedFarmer = "";
+
+
+        function openRequest(farmer) {
+
+
+            selectedFarmer = farmer;
+
+
+            document
+
+                .getElementById("farmerName")
+
+                .innerText = farmer;
+
+
+            document
+
+                .getElementById("requestModal")
+
+                .style.display = "flex";
+
+
+        }
+
+
+        function closeRequest() {
+
+
+            document
+
+                .getElementById("requestModal")
+
+                .style.display = "none";
+
+
+            document
+
+                .getElementById("successMessage")
+
+                .style.display = "none";
+
+
+        }
+
+
+        function sendRequest() {
+
+
+            let quantity =
+
+                document
+
+                    .getElementById("quantity")
+
+                    .value;
+
+
+            let price =
+
+                document
+
+                    .getElementById("price")
+
+                    .value;
+
+
+            if (
+
+                quantity === "" ||
+
+                price === ""
+
+            ) {
+
+
+                alert(
+
+                    "Please enter quantity and price."
+
+                );
+
+
+                return;
+
+            }
+
+
+            document
+
+                .getElementById("successMessage")
+
+                .style.display = "block";
+
+
+        }
+
+
+        window.onclick = function(event) {
+
+
+            let modal =
+
+                document
+
+                    .getElementById("requestModal");
+
+
+            if (event.target === modal) {
+
+
+                closeRequest();
+
+            }
+
+        };
+
+
+    </script>
+
+
+</body>
+
+</html>
