@@ -61,7 +61,6 @@ h1,h2,h3,h4,h5,h6 {
 
 }
 
-
 a {
 
     text-decoration: none;
@@ -985,6 +984,184 @@ section {
 
 }
 
+.feature-link{
+    text-decoration:none;
+    color:inherit;
+}
+
+.card-teal{
+    background:#e6fffb;
+    border:1px solid #b2f5ea;
+}
+
+.card-teal:hover{
+    transform:translateY(-12px);
+    box-shadow:0 20px 40px rgba(0,128,128,.18);
+}
+
+.card-teal .feature-icon{
+    background:#99f6e4;
+    color:#0f766e;
+}
+
+
+
+/* ================= COMPARE PRICES PAGE ================= */
+
+.price-header{
+
+    padding:140px 0 60px;
+    background:linear-gradient(135deg,#166534,#22c55e);
+    color:white;
+
+}
+
+.price-header h1{
+
+    font-size:55px;
+    font-weight:800;
+
+}
+
+.price-header p{
+
+    font-size:18px;
+    opacity:.9;
+
+}
+
+.price-section{
+
+    padding:80px 0;
+    background:#f8faf9;
+
+}
+
+.buyer-card{
+
+    background:white;
+    border-radius:22px;
+    padding:30px;
+    text-align:center;
+    transition:.35s;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    border:1px solid rgba(0,0,0,.06);
+    overflow:hidden;
+    position:relative;
+}
+
+.buyer-card::before{
+
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:6px;
+    background:linear-gradient(90deg,#1faa59,#34d399);
+
+}
+
+.buyer-card:hover{
+
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+
+}
+
+.company-icon{
+
+    width:75px;
+    height:75px;
+    margin:auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#1faa59,#2ecc71);
+    color:#166534;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    margin-bottom:20px;
+
+}
+
+.buyer-card h4{
+
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:8px;
+
+}
+
+.buyer-card h2{
+
+    color:#198754;
+    font-size:36px;
+    font-weight:800;
+    margin-bottom:18px;
+
+}
+
+.buyer-card p{
+
+    color:#777;
+    margin-bottom:20px;
+
+}
+
+.best-price{
+
+    border:3px solid gold;
+    transform:scale(1.05);
+
+}
+
+.buyer-card .badge{
+
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:14px;
+}
+
+/* ================= feature card inside ================= */
+
+.search-box{
+
+    position:relative;
+
+}
+
+.search-box i{
+
+    position:absolute;
+
+    top:50%;
+
+    left:18px;
+
+    transform:translateY(-50%);
+
+    color:#166534;
+
+}
+
+.search-box input{
+
+    border-radius:40px;
+
+    padding:14px 20px 14px 50px;
+
+    border:2px solid #d1fae5;
+
+}
+
+.search-box input:focus{
+
+    border-color:#16a34a;
+
+    box-shadow:0 0 15px rgba(22,163,74,.15);
+
+}
 
 /* ================= HOW IT WORKS ================= */
 
@@ -1751,5 +1928,687 @@ section {
 
     }
 
+
+}
+
+
+.feature-link{
+
+    text-decoration:none;
+
+    color:inherit;
+
+    display:block;
+
+}
+
+.feature-link:hover{
+
+    color:inherit;
+
+}
+
+.feature-arrow{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:#166534;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+
+.home-icon{
+
+    position:fixed;
+
+    top:25px;
+
+    left:25px;
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#166534;
+
+    color:white;
+
+    font-size:22px;
+
+    text-decoration:none;
+
+    box-shadow:0 10px 25px rgba(22,101,52,.25);
+
+    transition:.3s;
+
+}
+
+
+.home-icon:hover{
+
+    background:#0f4d27;
+
+    transform:translateY(-3px) scale(1.08);
+
+}
+
+/* LEFT SIDE CONTENT */
+
+.calculator-wrapper{
+
+    width:100%;
+    max-width:1150px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+
+}
+
+
+.calculator-info{
+
+    padding:20px;
+
+}
+
+
+.section-label{
+
+    color:#166534;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+}
+
+
+.calculator-info h1{
+
+    font-family:'Outfit',sans-serif;
+
+    font-size:55px;
+
+    line-height:1.1;
+
+    margin:20px 0;
+
+    color:#10251a;
+
+}
+
+
+.calculator-info h1 span{
+
+    color:#16a34a;
+
+}
+
+
+.calculator-info p{
+
+    color:#52645a;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+
+.benefits{
+
+    margin-top:30px;
+
+}
+
+
+.benefit{
+
+    margin-bottom:16px;
+
+    font-weight:600;
+
+    color:#263b2e;
+
+}
+
+
+.benefit i{
+
+    color:#16a34a;
+
+    margin-right:10px;
+
+}
+
+/* Send Request Button */
+
+.request-btn{
+
+    margin-top:22px;
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#166534;
+
+    color:white;
+
+    font-weight:600;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#198754,#28a745);
+
+    transition:.3s;
+
+}
+
+
+.request-btn:hover{
+
+    transform:translateY(-3px);
+    background:linear-gradient(135deg,#157347,#198754);
+    box-shadow:0 10px 25px rgba(25,135,84,.35);
+
+}
+
+.request-btn i{
+
+    margin-right:8px;
+
+}
+
+/* ================= REQUEST MODAL ================= */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    backdrop-filter:blur(8px);
+
+    justify-content:center;
+
+    align-items:center;
+    animation:fadeIn .3s ease;
+    z-index:9999;
+
+}
+
+
+/* Modal Card */
+
+.modal-content{
+
+    width:95%;
+
+    max-width:520px;
+
+    background:rgba(255,255,255,0.95);
+
+    backdrop-filter:blur(20px);
+
+    padding:35px;
+
+    border-radius:22px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+    animation:popup .35s ease;
+
+}
+
+
+/* Entrance Animation */
+
+@keyframes modalShow{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px) scale(.95);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+
+/* Header */
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+
+.modal-header h2{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#198754;
+
+}
+
+
+
+/* Close Button */
+
+.close-btn{
+
+    border:none;
+
+    background:none;
+
+    font-size:34px;
+
+    cursor:pointer;
+
+    color:#999;
+
+    transition:.3s;
+
+}
+
+
+.close-btn:hover{
+
+    color:#dc3545;
+
+    transform:rotate(90deg);
+
+}
+
+
+
+/* Buyer Name */
+
+#buyerName{
+
+    color:#166534;
+
+    font-weight:700;
+
+}
+
+
+
+/* Form Groups */
+
+.form-group{
+
+    margin-top:18px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#263b2e;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+
+/* Inputs */
+
+.form-group input,
+.form-group textarea{
+
+
+    width:100%;
+
+    border:2px solid #e9ecef;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+
+
+.form-group textarea{
+
+    height:120px;
+
+    resize:none;
+
+}
+
+
+
+/* Focus Effect */
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+
+    border-color:#198754;
+
+    outline:none;
+
+    box-shadow:0 0 0 4px rgba(25,135,84,.15);
+
+
+}
+
+
+
+/* Send Button */
+
+.send-btn{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    background:linear-gradient(135deg,#198754,#2ecc71);
+
+    transition:.3s;
+
+}
+
+
+
+.send-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 35px rgba(25,135,84,.35);
+
+}
+
+
+
+/* Success Message */
+
+.success-message{
+
+    display:none;
+
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#198754;
+
+    font-weight:600;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px) scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ================= DARK MODE BUTTON ================= */
+
+.dark-mode-btn{
+
+    width:45px;
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    color:#166534;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+    transition:.3s;
+
+}
+
+.dark-mode-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:#166534;
+
+    color:white;
+
+}
+
+
+/* ================= DARK MODE ================= */
+
+body.dark-mode{
+
+    background:#0f172a;
+    color:white;
+
+}
+
+body.dark-mode .custom-navbar{
+
+    background:#16213e;
+
+}
+
+body.dark-mode .feature-card{
+
+    background:#1e293b;
+    color:white;
+
+}
+
+body.dark-mode .buyer-card{
+
+    background:#1e293b;
+    color:white;
+
+}
+
+body.dark-mode .price-header{
+
+    background:#111827;
+    color:white;
+
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select{
+
+    background:#273549;
+    color:white;
+    border:1px solid #475569;
+
+}
+
+body.dark-mode .form-control::placeholder{
+
+    color:#cbd5e1;
+
+}
+
+body.dark-mode .modal-content{
+
+    background:#1e293b;
+    color:white;
+
+}
+
+body.dark-mode .register-btn{
+
+    background:#22c55e;
+
+}
+
+body.dark-mode .logo{
+
+    color:white;
+
+}
+
+/* =========================================
+   COMPARE PAGE FILTER PANEL
+========================================= */
+
+.filter-box{
+    background:#ffffff;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:40px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    border:1px solid rgba(0,0,0,.05);
+}
+
+.search-input{
+    position:relative;
+}
+
+.search-input i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#198754;
+    font-size:18px;
+    z-index:10;
+}
+
+.search-input input,
+.search-input select{
+    height:56px;
+    border-radius:14px;
+    border:2px solid #e8ecef;
+    padding-left:48px;
+    font-size:15px;
+    transition:.3s;
+    box-shadow:none;
+}
+
+.search-input select{
+    cursor:pointer;
+}
+
+.search-input input:focus,
+.search-input select:focus{
+    border-color:#198754;
+    box-shadow:0 0 0 4px rgba(25,135,84,.15);
+}
+
+.search-input input::placeholder{
+    color:#9aa0a6;
+}
+
+/* ================= BUYER PRICE FORM CARD ================= */
+.price-form-card{
+
+    max-width:700px;
+    margin:auto;
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
 
 }
