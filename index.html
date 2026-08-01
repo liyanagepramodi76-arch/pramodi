@@ -27,7 +27,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    
     <!-- ================= CSS ================= -->
 
     
@@ -53,6 +54,10 @@
             Rubber<span>Link</span>
 
         </a>
+
+        <button id="darkModeToggle" class="dark-mode-btn">
+            <i class="bi bi-moon-stars-fill"></i>
+        </button>
 
 
         <button class="navbar-toggler"
@@ -223,7 +228,7 @@
                 <div class="hero-buttons">
 
 
-                    <a href="register.html"
+                    <a href="login.html"
                        class="btn primary-btn">
 
 
@@ -370,7 +375,7 @@
                         <div class="carousel-item">
 
 
-                            <img src="rubber3.webp"
+                            <img src="rubber5.jpg"
                                  class="d-block w-100"
                                  alt="Rubber Production">
 
@@ -558,8 +563,9 @@
             </div>
 
 
-            <div class="col-lg-3 col-md-6">
 
+            <div class="col-lg-3 col-md-6">
+                    <a href="compare-prices.html" class="feature-link">
 
                 <div class="feature-card card-orange">
 
@@ -573,26 +579,28 @@
 
                     <h4>
 
-                        Compare Prices
+                        Compare Buyer Prices
 
                     </h4>
 
 
                     <p>
 
-                        Find the best available buying
-                        and selling prices easily.
+                        View prices published by registered buyers and
+                        choose the best offer for your rubber.
 
                     </p>
 
 
                 </div>
-
+                    </a>
 
             </div>
 
 
             <div class="col-lg-3 col-md-6">
+
+                <a href="cus.html" class="feature-link">
 
 
                 <div class="feature-card card-purple">
@@ -607,7 +615,7 @@
 
                     <h4>
 
-                        Connect & Request
+                        Request & Connect with Farmers 
 
                     </h4>
 
@@ -621,12 +629,15 @@
 
 
                 </div>
-
+                </a>
 
             </div>
 
 
             <div class="col-lg-3 col-md-6">
+
+
+                <a href="newcal.html" class="feature-link">
 
 
                 <div class="feature-card card-blue">
@@ -654,7 +665,13 @@
                     </p>
 
 
+
+
+
                 </div>
+
+
+                </a>
 
 
             </div>
@@ -713,7 +730,7 @@
                     and buyers to find the right opportunity.
 
                 </p>
-
+<!--
 
                 <a href="register.html"
                    class="btn primary-btn">
@@ -723,7 +740,7 @@
                     <i class="bi bi-arrow-right"></i>
 
                 </a>
-
+-->
 
             </div>
 
@@ -1256,7 +1273,7 @@
 
 </script>
 <script type="module" src="js/firebase-config.js"></script>
-
+<script src="js/darkmode.js"></script>
 </body>
 
 </html>
