@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RubberLink | Register</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* REGISTER PAGE */
+
+.register-page{
+
+min-height:100vh;
+
+padding:150px 0 80px;
+
+background:
+
+radial-gradient(circle at 10% 20%,
+rgba(187,247,208,.7),
+transparent 30%),
+
+radial-gradient(circle at 90% 10%,
+rgba(254,240,138,.35),
+transparent 30%),
+
+linear-gradient(135deg,#f0fdf4,#ffffff);
+
+}
+
+.register-card{
+
+background:rgba(255,255,255,.95);
+
+backdrop-filter:blur(18px);
+
+border-radius:30px;
+
+overflow:hidden;
+
+box-shadow:0 25px 60px rgba(22,101,52,.15);
+
+}
+
+.left-side{
+
+background:linear-gradient(180deg,#166534,#064e3b);
+
+color:white;
+
+padding:50px;
+
+height:100%;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+}
+
+.left-side img{
+
+width:100%;
+
+border-radius:20px;
+
+margin-top:30px;
+
+box-shadow:0 15px 30px rgba(0,0,0,.2);
+
+}
+
+.left-side h2{
+
+font-size:40px;
+
+font-weight:800;
+
+margin-top:20px;
+
+}
+
+.left-side p{
+
+color:#d1fae5;
+
+line-height:1.8;
+
+}
+
+.right-side{
+
+padding:50px;
+
+max-height:90vh;
+
+overflow-y:auto;
+
+}
+
+.right-side::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+.right-side::-webkit-scrollbar-thumb{
+
+background:#166534;
+
+border-radius:20px;
+
+}
+
+.form-title{
+
+font-size:35px;
+
+font-weight:800;
+
+margin-bottom:5px;
+
+}
+
+.form-subtitle{
+
+color:#52645a;
+
+margin-bottom:35px;
+
+}
+
+.input-box{
+
+margin-bottom:20px;
+
+}
+
+.input-box label{
+
+font-weight:600;
+
+margin-bottom:8px;
+
+display:block;
+
+}
+
+.input-box input,
+.input-box select{
+
+width:100%;
+
+padding:14px 16px;
+
+border-radius:14px;
+
+border:1px solid #d9e8dd;
+
+outline:none;
+
+transition:.3s;
+
+font-size:15px;
+
+}
+
+.input-box input:focus,
+.input-box select:focus{
+
+border-color:#166534;
+
+box-shadow:0 0 0 4px rgba(22,101,52,.12);
+
+}
+
+.required{
+
+color:red;
+
+}
+
+.hint{
+
+font-size:12px;
+
+color:#888;
+
+margin-top:5px;
+
+}
+
+.password-strength{
+
+height:5px;
+
+background:#ddd;
+
+margin-top:8px;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+.password-strength-bar{
+
+height:100%;
+
+width:0;
+
+transition:.3s;
+
+}
+
+.primary-register{
+
+width:100%;
+
+background:#166534;
+
+color:white;
+
+padding:15px;
+
+border:none;
+
+border-radius:30px;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.primary-register:hover{
+
+background:#0f4d27;
+
+transform:translateY(-3px);
+
+}
+
+.login-link{
+
+margin-top:20px;
+
+text-align:center;
+
+}
+
+.login-link a{
+
+font-weight:700;
+
+color:#166534;
+
+text-decoration:none;
+
+}
+
+.login-link a:hover{
+
+text-decoration:underline;
+
+}
+
+.conditional-field{
+
+display:none;
+
+}
+
+.conditional-field.show{
+
+display:block;
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+
+<div class="container">
+
+<a class="navbar-brand logo" href="index.html">
+
+🌿 Rubber<span>Link</span>
+
+</a>
+
+<button class="navbar-toggler"
+
+type="button"
+
+data-bs-toggle="collapse"
+
+data-bs-target="#navbarNav">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse"
+
+id="navbarNav">
+
+<ul class="navbar-nav mx-auto">
+
+<li class="nav-item">
+
+<a class="nav-link"
+
+href="index.html">
+
+Home
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link"
+
+href="index.html#features">
+
+Features
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link"
+
+href="index.html#about">
+
+About
+
+</a>
+
+</li>
+
+</ul>
+
+<div class="nav-buttons">
+
+<a href="login.html"
+
+class="btn login-btn">
+
+Login
+
+</a>
+
+<a href="register.html"
+
+class="btn register-btn">
+
+Register
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+<section class="register-page">
+
+<div class="container">
+
+<div class="register-card">
+
+<div class="row g-0">
+
+<!-- LEFT -->
+
+<div class="col-lg-5 d-none d-lg-flex">
+
+<div class="left-side">
+
+<span class="section-label">
+
+SMART RUBBER MARKET PLACE
+
+</span>
+
+<h2>
+
+Create Your
+
+<span style="color:#facc15">
+
+Account
+
+</span>
+
+</h2>
+
+<p>
+
+Join RubberLink and connect directly with rubber farmers and company buyers across Sri Lanka.
+
+</p>
+
+<img src="img/rubber_img.jpg"
+
+alt="Rubber Farmer">
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="col-lg-7">
+
+<div class="right-side">
+
+<h2 class="form-title">
+
+Create Account
+
+</h2>
+
+<p class="form-subtitle">
+
+Fill in your information below.
+
+</p>
+
+<form id="registerForm">
+
+<!-- Full Name -->
+
+<div class="input-box">
+
+<label>
+
+Full Name
+
+<span class="required">*</span>
+
+</label>
+
+<input
+
+type="text"
+
+id="personName"
+
+placeholder="Enter your full name"
+
+required>
+
+</div>
+
+<!-- NIC -->
+
+<div class="input-box">
+
+<label>
+
+NIC Number
+
+<span class="required">*</span>
+
+</label>
+
+<input
+
+type="text"
+
+id="nicNumber"
+
+placeholder="200012345678"
+
+required>
+
+<div class="hint">
+Old or New Sri Lankan NIC
+</div>
+
+<div id="nicMessage" class="hint"></div>
+
+</div>
+
+<!-- Email -->
+
+<div class="input-box">
+
+<label>
+
+Email Address
+
+<span class="required">*</span>
+
+</label>
+
+<input
+
+type="email"
+
+id="email"
+
+placeholder="example@email.com"
+
+required>
+
+<div id="emailMessage" class="hint"></div>
+
+</div>
+
+<!-- Username -->
+
+<div class="input-box">
+
+<label>
+
+Username
+
+<span class="required">*</span>
+
+</label>
+
+<input
+
+type="text"
+
+id="username"
+
+placeholder="Choose a username"
+
+required>
+
+<div class="hint">
+
+4-20 characters
+
+</div>
+
+</div>
+
+<!-- Password -->
+
+<div class="input-box">
+
+<label>
+
+Password
+
+<span class="required">*</span>
+
+</label>
+
+<input
+
+type="password"
+
+id="password"
+
+placeholder="Create password"
+
+required
+
+onkeyup="checkPasswordStrength()">
+
+<div class="password-strength">
+
+<div
+
+class="password-strength-bar"
+
+id="passwordStrengthBar">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Confirm Password -->
+<div class="input-box">
+
+    <label>
+        Confirm Password
+        <span class="required">*</span>
+    </label>
+
+    <input
+type="password"
+id="confirmPassword"
+placeholder="Confirm your password"
+required
+onkeyup="checkConfirmPassword()">
+
+<div id="passwordMessage" class="hint"></div>
+
+</div>
+
+<!-- User Type -->
+<div class="input-box">
+
+    <label>
+        Register As
+        <span class="required">*</span>
+    </label>
+
+    <select id="userType" onchange="toggleFields()" required>
+
+        <option value="">Select User Type</option>
+
+        <option value="farmer">Rubber Farmer</option>
+
+        <option value="buyer">Company Buyer</option>
+
+    </select>
+
+</div>
+
+<!-- ================= FARMER DETAILS ================= -->
+
+<div id="farmerFields" class="conditional-field">
+
+    <h4 class="mt-4 mb-3">
+        Farmer Information
+    </h4>
+
+    <div class="input-box">
+
+        <label>Address</label>
+
+        <input
+            type="text"
+            id="address"
+            placeholder="Enter your address">
+
+    </div>
+
+    <div class="input-box">
+
+        <label>Contact Number</label>
+
+        <input
+            type="tel"
+            id="contact"
+            placeholder="07XXXXXXXX">
+
+    </div>
+
+    <div class="input-box">
+
+        <label>District</label>
+
+        <select id="district">
+
+            <option value="">Select District</option>
+
+            <option>Ampara</option>
+            <option>Anuradhapura</option>
+            <option>Badulla</option>
+            <option>Batticaloa</option>
+            <option>Colombo</option>
+            <option>Galle</option>
+            <option>Gampaha</option>
+            <option>Hambantota</option>
+            <option>Jaffna</option>
+            <option>Kalutara</option>
+            <option>Kandy</option>
+            <option>Kegalle</option>
+            <option>Kilinochchi</option>
+            <option>Kurunegala</option>
+            <option>Mannar</option>
+            <option>Matale</option>
+            <option>Matara</option>
+            <option>Monaragala</option>
+            <option>Mullaitivu</option>
+            <option>Nuwara Eliya</option>
+            <option>Polonnaruwa</option>
+            <option>Puttalam</option>
+            <option>Ratnapura</option>
+            <option>Trincomalee</option>
+            <option>Vavuniya</option>
+
+        </select>
+
+    </div>
+
+</div>
+
+<!-- ================= BUYER DETAILS ================= -->
+
+<div id="buyerFields" class="conditional-field">
+
+    <h4 class="mt-4 mb-3">
+        Company Information
+    </h4>
+
+    <div class="input-box">
+
+        <label>Company Name</label>
+
+        <input
+            type="text"
+            id="companyName"
+            placeholder="Company name">
+
+    </div>
+
+    <div class="input-box">
+
+        <label>Company Address</label>
+
+        <input
+            type="text"
+            id="companyAddress"
+            placeholder="Company address">
+
+    </div>
+
+    <div class="input-box">
+
+        <label>Company Contact</label>
+
+        <input
+            type="tel"
+            id="companyContact"
+            placeholder="07XXXXXXXX">
+
+    </div>
+
+</div>
+
+<button
+type="submit"
+class="primary-register">
+
+<i class="bi bi-person-plus-fill"></i>
+
+Create Account
+
+</button>
+
+<div class="login-link">
+
+Already have an account?
+
+<a href="login.html">
+
+Login Here
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- AOS JS -->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+<script>
+
+
+AOS.init();
+
+
+
+
+// ===============================
+// NIC VALIDATION
+// ===============================
+
+
+document.getElementById("nicNumber")
+.addEventListener("keyup", function(){
+
+
+    let nic = this.value.trim();
+
+    let message = document.getElementById("nicMessage");
+
+let email =
+document.getElementById("email").value.trim();
+
+    let oldNIC = /^[0-9]{9}[vVxX]$/;
+
+    let newNIC = /^[0-9]{12}$/;
+
+
+
+    if(nic === ""){
+
+        message.innerHTML = "";
+
+    }
+
+
+    else if(oldNIC.test(nic) || newNIC.test(nic)){
+
+
+        message.innerHTML = "✓ Valid NIC Number";
+
+        message.style.color = "green";
+
+
+    }
+
+
+    else{
+
+
+        message.innerHTML = "✗ Invalid NIC Number";
+
+        message.style.color = "red";
+
+
+    }
+
+
+});
+
+// ===============================
+// EMAIL VALIDATION
+// ===============================
+
+
+document.getElementById("email")
+.addEventListener("keyup", function(){
+
+
+    let email = this.value.trim();
+
+    let message = document.getElementById("emailMessage");
+
+
+    // Email format checking
+
+    let emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+
+    if(email === ""){
+
+        message.innerHTML = "";
+
+    }
+
+
+    else if(emailPattern.test(email)){
+
+
+        message.innerHTML = "✓ Valid Email Address";
+
+        message.style.color = "green";
+
+
+    }
+
+
+    else{
+
+
+        message.innerHTML = "✗ Invalid Email Address";
+
+        message.style.color = "red";
+
+
+    }
+
+
+});
+
+
+
+// ===============================
+// CONFIRM PASSWORD CHECK
+// ===============================
+
+
+function checkConfirmPassword(){
+
+
+    let password =
+    document.getElementById("password").value;
+
+
+    let confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+
+    let message =
+    document.getElementById("passwordMessage");
+
+
+
+    if(confirmPassword === ""){
+
+        message.innerHTML = "";
+
+        return;
+
+    }
+
+
+
+    if(password === confirmPassword){
+
+
+        message.innerHTML = "✓ Password matched";
+
+        message.style.color = "green";
+
+
+    }
+
+
+    else{
+
+
+        message.innerHTML = "✗ Password does not match";
+
+        message.style.color = "red";
+
+
+    }
+
+
+}
+
+
+// ===============================
+// SHOW FARMER / BUYER FIELDS
+// ===============================
+
+function toggleFields(){
+
+    let userType = document.getElementById("userType").value;
+
+    let farmerFields = document.getElementById("farmerFields");
+
+    let buyerFields = document.getElementById("buyerFields");
+
+
+    farmerFields.classList.remove("show");
+
+    buyerFields.classList.remove("show");
+
+
+
+    if(userType === "farmer"){
+
+        farmerFields.classList.add("show");
+
+    }
+
+
+    else if(userType === "buyer"){
+
+        buyerFields.classList.add("show");
+
+    }
+
+}
+
+
+</script>
+
+<script type="module" src="js/register.js"></script>
+</body>
+
+</html>

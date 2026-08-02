@@ -1,0 +1,1075 @@
+/* =========================================================
+   RUBBERLINK FARMER PROFILE
+========================================================= */
+
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #26382e;
+}
+
+
+/* =========================================================
+   NATURAL BACKGROUND
+========================================================= */
+
+.profile-page {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 50px 20px;
+}
+
+
+/* BLURRED RUBBER PLANTATION */
+
+.profile-page::before {
+    content: "";
+
+    position: fixed;
+
+    inset: -15px;
+
+    background:
+        linear-gradient(
+            rgba(8, 42, 24, 0.48),
+            rgba(7, 48, 27, 0.60)
+        ),
+        url("rubber-background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: blur(3px);
+
+    transform: scale(1.04);
+
+    z-index: -2;
+}
+
+
+/* EXTRA OVERLAY */
+
+.profile-page::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(5, 35, 18, 0.08);
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.profile-card {
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    background: #f8faf7;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.75);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   PROFILE HEADER
+========================================================= */
+
+.profile-header {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 27px;
+
+    min-height: 190px;
+
+    padding: 34px 42px;
+
+    background:
+        linear-gradient(
+            115deg,
+            #f7f9f4,
+            #e6f0e7
+        );
+
+    border-bottom:
+        1px solid #dbe5dc;
+}
+
+
+/* =========================================================
+   PROFILE PHOTO
+========================================================= */
+
+.photo-wrapper {
+    position: relative;
+
+    width: 120px;
+    height: 120px;
+
+    flex-shrink: 0;
+
+    margin-bottom: 10px;
+}
+
+
+/* DEFAULT AVATAR */
+
+.default-avatar {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e4efe6,
+            #bcd7c2
+        );
+
+    border: 5px solid #ffffff;
+
+    box-shadow:
+        0 7px 22px rgba(25, 65, 40, 0.20);
+}
+
+.default-avatar span {
+    font-size: 48px;
+
+    line-height: 1;
+}
+
+
+/* USER UPLOADED PHOTO */
+
+#profileImage {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 5px solid #ffffff;
+
+    box-shadow:
+        0 7px 22px rgba(25, 65, 40, 0.20);
+}
+
+
+/* FILE INPUT */
+
+#photoUpload {
+    display: none;
+}
+
+
+/* CHANGE PHOTO */
+
+.change-photo {
+    position: absolute;
+
+    left: 50%;
+    bottom: -14px;
+
+    transform: translateX(-50%);
+
+    white-space: nowrap;
+
+    padding: 6px 12px;
+
+    background: #ffffff;
+
+    color: #285e3d;
+
+    border:
+        1px solid #d4e1d7;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.12);
+
+    transition: 0.2s ease;
+}
+
+.change-photo:hover {
+    background: #285e3d;
+
+    color: #ffffff;
+
+    border-color: #285e3d;
+}
+
+
+/* =========================================================
+   PROFILE DETAILS
+========================================================= */
+
+.profile-heading {
+    flex: 1;
+}
+
+
+/* FARMER BADGE */
+
+.role-badge {
+    display: inline-block;
+
+    padding: 5px 13px;
+
+    background: #dcecdf;
+
+    color: #28613f;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* NAME */
+
+.profile-heading h1 {
+    color: #173b27;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    margin: 9px 0 5px;
+
+    letter-spacing: -0.5px;
+}
+
+
+/* LOCATION */
+
+.location-text {
+    color: #65756b;
+
+    font-size: 13px;
+
+    margin-bottom: 9px;
+}
+
+.location-dot {
+    color: #507b5d;
+
+    font-size: 9px;
+
+    margin-right: 4px;
+}
+
+
+/* AVAILABILITY */
+
+.availability {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    background: #e5f3e8;
+
+    color: #257044;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* OUT OF STOCK STYLE */
+
+.availability.out-of-stock {
+    background: #f7e5e5;
+
+    color: #a13b3b;
+}
+
+
+/* =========================================================
+   EDIT PROFILE BUTTON
+========================================================= */
+
+.edit-button {
+    position: absolute;
+
+    top: 34px;
+    right: 42px;
+
+    padding: 11px 19px;
+
+    background: #285e3d;
+
+    color: #ffffff;
+
+    border: 1px solid #285e3d;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 12px rgba(25, 70, 40, 0.14);
+
+    transition: 0.2s ease;
+}
+
+.edit-button:hover {
+    background: #1b4c2f;
+
+    border-color: #1b4c2f;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.summary-section {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    padding: 25px 35px 15px;
+}
+
+
+/* SUMMARY CARD */
+
+.summary-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-height: 82px;
+
+    padding: 17px 18px;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e0e7e2;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 4px 13px
+        rgba(25, 65, 40, 0.05);
+
+    transition: 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(25, 65, 40, 0.09);
+}
+
+
+/* SUMMARY ICON */
+
+.summary-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #eaf3eb;
+
+    color: #285e3d;
+
+    border-radius: 50%;
+
+    font-size: 19px;
+}
+
+
+/* RS ICON */
+
+.currency-icon {
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #285e3d;
+}
+
+
+/* SUMMARY TEXT */
+
+.summary-content span {
+    display: block;
+
+    color: #7c8980;
+
+    font-size: 11px;
+
+    margin-bottom: 4px;
+}
+
+.summary-content strong {
+    display: block;
+
+    color: #245438;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   INFORMATION GRID
+========================================================= */
+
+.information-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+
+    padding: 15px 35px 20px;
+}
+
+
+/* =========================================================
+   INFORMATION CARDS
+========================================================= */
+
+.information-card,
+.about-card {
+    background: #ffffff;
+
+    padding: 25px;
+
+    border:
+        1px solid #e0e7e2;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 16px
+        rgba(30, 70, 45, 0.045);
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+    padding-bottom: 14px;
+
+    margin-bottom: 21px;
+
+    border-bottom:
+        1px solid #e7ece8;
+}
+
+.section-heading h2 {
+    color: #245438;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+.section-heading p {
+    color: #8a958d;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+
+/* LABEL */
+
+.form-group label {
+    display: block;
+
+    color: #405047;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+
+/* INPUTS */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 11px 13px;
+
+    background: #ffffff;
+
+    border:
+        1px solid #d3ddd5;
+
+    border-radius: 8px;
+
+    color: #34453a;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+
+/* VIEW MODE */
+
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+    background: #f5f8f5;
+
+    color: #536158;
+
+    border-color: #e0e6e1;
+
+    opacity: 1;
+
+    cursor: default;
+
+    box-shadow: none;
+}
+
+
+/* EDIT MODE */
+
+.form-group input:not(:disabled),
+.form-group select:not(:disabled),
+.form-group textarea:not(:disabled) {
+    background: #ffffff;
+
+    border-color: #8eb39a;
+}
+
+.form-group input:not(:disabled):hover,
+.form-group select:not(:disabled):hover,
+.form-group textarea:not(:disabled):hover {
+    border-color: #638f70;
+}
+
+
+/* FOCUS */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #47775a;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(71, 119, 90, 0.10);
+}
+
+
+/* TEXTAREA */
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 90px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-card {
+    margin: 0 35px;
+}
+
+
+/* =========================================================
+   SAVE + CANCEL
+========================================================= */
+
+.action-area {
+    display: none;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 25px 35px 35px;
+}
+
+
+/* SAVE */
+
+.save-button {
+    min-width: 145px;
+
+    padding: 11px 20px;
+
+    background: #285e3d;
+
+    color: #ffffff;
+
+    border:
+        1px solid #285e3d;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.save-button:hover {
+    background: #1c4c30;
+
+    border-color: #1c4c30;
+
+    transform: translateY(-1px);
+}
+
+
+/* CANCEL */
+
+.cancel-button {
+    min-width: 100px;
+
+    padding: 11px 20px;
+
+    background: #ffffff;
+
+    color: #4d5c52;
+
+    border:
+        1px solid #cbd5cd;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.cancel-button:hover {
+    background: #f0f3f0;
+
+    border-color: #aebdb2;
+}
+
+
+/* =========================================================
+   SUCCESS TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    top: 25px;
+    right: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 14px 20px;
+
+    background: #245e3a;
+
+    color: #ffffff;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.20);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(-15px);
+
+    transition: 0.3s ease;
+
+    z-index: 9999;
+}
+
+
+/* SHOW TOAST */
+
+.toast.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.toast span {
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .profile-header {
+        padding: 30px;
+    }
+
+    .edit-button {
+        right: 30px;
+    }
+
+    .summary-section {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .information-grid {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .about-card {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .action-area {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .profile-page {
+        padding: 18px 10px;
+    }
+
+
+    .profile-card {
+        border-radius: 16px;
+    }
+
+
+    /* HEADER */
+
+    .profile-header {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding:
+            30px 20px 75px;
+    }
+
+
+    .photo-wrapper {
+        width: 110px;
+
+        height: 110px;
+    }
+
+
+    .profile-heading h1 {
+        font-size: 25px;
+    }
+
+
+    /* EDIT BUTTON */
+
+    .edit-button {
+        top: auto;
+
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+
+        width:
+            calc(100% - 40px);
+    }
+
+
+    /* SUMMARY */
+
+    .summary-section {
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+    }
+
+
+    /* INFORMATION */
+
+    .information-grid {
+        grid-template-columns: 1fr;
+
+        padding:
+            0 20px 20px;
+    }
+
+
+    /* ABOUT */
+
+    .about-card {
+        margin: 0 20px;
+    }
+
+
+    /* BUTTONS */
+
+    .action-area {
+        flex-direction: column-reverse;
+
+        padding: 20px;
+    }
+
+    .action-area button {
+        width: 100%;
+    }
+
+
+    /* TOAST */
+
+    .toast {
+        top: 15px;
+
+        left: 15px;
+        right: 15px;
+
+        justify-content: center;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .profile-page {
+        padding: 10px 6px;
+    }
+
+
+    .information-grid {
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+
+    .information-card,
+    .about-card {
+        padding: 20px 16px;
+    }
+
+
+    .about-card {
+        margin-left: 12px;
+
+        margin-right: 12px;
+    }
+
+
+    .summary-section {
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+
+    .profile-heading h1 {
+        font-size: 23px;
+    }
+}
+
+/* ================= TOP NAVBAR ================= */
+
+.top-navbar{
+    width:100%;
+    background:#ffffff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 60px;
+    border-bottom:1px solid #e5e7eb;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    color:#166534;
+    font-family:'Outfit',sans-serif;
+}
+
+.logo span{
+    color:#22c55e;
+}
+
+.top-menu{
+    display:flex;
+    align-items:center;
+    gap:35px;
+}
+
+.top-menu a{
+    text-decoration:none;
+    color:#374151;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.top-menu a:hover{
+    color:#16a34a;
+}
