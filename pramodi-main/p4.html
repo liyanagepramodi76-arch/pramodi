@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publish Rubber Stock | RubberLink</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4fff4;
+}
+
+.navbar{
+    background:#1b5e20;
+}
+
+.navbar-brand{
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.navbar-brand span{
+    color:#FFD54F;
+}
+
+.main-section{
+    padding:60px 20px;
+}
+
+.form-card{
+    max-width:750px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.form-card h2{
+    color:#1b5e20;
+    text-align:center;
+    margin-bottom:30px;
+    font-weight:bold;
+}
+
+.form-label{
+    font-weight:600;
+}
+
+.form-control,
+.form-select,
+textarea{
+    border-radius:12px;
+    border:1px solid #ccc;
+    padding:12px;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus{
+    border-color:#2E7D32;
+    box-shadow:0 0 8px rgba(46,125,50,.3);
+}
+
+.btn-publish{
+    background:#2E7D32;
+    color:white;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-publish:hover{
+    background:#1b5e20;
+}
+
+.note{
+    margin-top:15px;
+    text-align:center;
+    color:gray;
+    font-size:14px;
+}
+
+.footer{
+    margin-top:50px;
+    text-align:center;
+    padding:20px;
+    background:#1b5e20;
+    color:white;
+}
+
+@media(max-width:768px){
+
+.form-card{
+    padding:25px;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+
+<a class="navbar-brand" href="#">
+🌿 Rubber<span>Link</span>
+</a>
+
+</div>
+</nav>
+
+<section class="main-section">
+
+<div class="form-card">
+
+<h2>Publish Your Rubber Stock</h2>
+
+<form>
+
+<div class="mb-3">
+<label class="form-label">Rubber Type</label>
+
+<select class="form-select">
+<option selected>Select Rubber Type</option>
+<option>RSS 1</option>
+<option>RSS 2</option>
+<option>RSS 3</option>
+<option>RSS 4</option>
+<option>RSS 5</option>
+<option>Latex</option>
+<option>Crepe Rubber</option>
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Available Quantity (Kg)
+</label>
+
+<input type="number"
+class="form-control"
+placeholder="Enter Quantity">
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Price per Kg (LKR)
+</label>
+
+<input type="number"
+class="form-control"
+placeholder="Enter Price">
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Harvest Date
+</label>
+
+<input type="date"
+class="form-control">
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Description
+</label>
+
+<textarea
+rows="5"
+class="form-control"
+placeholder="Write additional details..."></textarea>
+
+</div>
+
+<button class="btn-publish">
+Publish Stock
+</button>
+
+<p class="note">
+Your published stock will be visible to buyers.
+</p>
+
+</form>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+© 2026 RubberLink | Connecting Farmers & Buyers
+
+</footer>
+
+</body>
+</html>
