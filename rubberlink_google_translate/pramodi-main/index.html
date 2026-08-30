@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RubberLink | Smart Rubber Marketplace</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    rel="stylesheet">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+
+<!-- =====================================================
+     GOOGLE TRANSLATE HIDDEN CSS
+===================================================== -->
+
+<style>
+
+    /* Hide Google Translate original element */
+
+    #google_translate_element {
+
+        display: none !important;
+
+        visibility: hidden !important;
+
+        width: 0 !important;
+
+        height: 0 !important;
+
+        overflow: hidden !important;
+
+    }
+
+
+    /* Hide Google Translate gadget */
+
+    .goog-te-gadget {
+
+        display: none !important;
+
+    }
+
+
+    /* Hide Google Translate top banner */
+
+    .goog-te-banner-frame,
+    .goog-te-banner-frame.skiptranslate,
+    iframe.goog-te-banner-frame {
+
+        display: none !important;
+
+        visibility: hidden !important;
+
+        height: 0 !important;
+
+        width: 0 !important;
+
+    }
+
+
+    /* Prevent Google Translate from moving website */
+
+    body {
+
+        top: 0 !important;
+
+    }
+
+
+    html {
+
+        margin-top: 0 !important;
+
+    }
+
+
+    /* Hide Google injected top element */
+
+    body > .skiptranslate {
+
+        display: none !important;
+
+    }
+
+
+    /* Hide any Google Translate popup */
+
+    .goog-tooltip,
+    .goog-tooltip:hover {
+
+        display: none !important;
+
+    }
+
+
+    .goog-text-highlight {
+
+        background-color: transparent !important;
+
+        box-shadow: none !important;
+
+    }
+
+
+    /* =====================================================
+       LANGUAGE BUTTONS
+    ===================================================== */
+
+    .language-selector {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+    }
+
+
+    .lang-btn {
+
+        border: none;
+
+        background: transparent;
+
+        color: #166534;
+
+        font-family: 'DM Sans', sans-serif;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        padding: 7px 10px;
+
+        border-radius: 8px;
+
+        cursor: pointer;
+
+        transition: all 0.3s ease;
+
+    }
+
+
+    .lang-btn:hover {
+
+        background: #166534;
+
+        color: white;
+
+    }
+
+
+    .lang-btn.active {
+
+        background: #166534;
+
+        color: white;
+
+    }
+
+
+    .lang-btn:active {
+
+        transform: scale(0.96);
+
+    }
+
+
+    @media (max-width: 768px) {
+
+        .language-selector {
+
+            gap: 2px;
+
+        }
+
+
+        .lang-btn {
+
+            padding: 6px 7px;
+
+            font-size: 11px;
+
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     GOOGLE TRANSLATE ELEMENT
+===================================================== -->
+
+<div id="google_translate_element"></div>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+
+
+<div class="container">
+
+    <!-- Logo -->
+
+    <a class="navbar-brand logo" href="#home">
+
+        <span class="logo-icon">🌿</span>
+
+        Rubber<span>Link</span>
+
+    </a>
+
+
+    <!-- Dark Mode -->
+
+    <button id="darkModeToggle"
+            class="dark-mode-btn"
+            type="button">
+
+        <i class="bi bi-moon-stars-fill"></i>
+
+    </button>
+
+
+    <!-- Mobile Menu -->
+
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+        <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+
+    <!-- Navigation -->
+
+    <div class="collapse navbar-collapse"
+         id="navbarNav">
+
+
+        <ul class="navbar-nav mx-auto">
+
+
+            <li class="nav-item">
+
+                <a class="nav-link active"
+                   href="#home">
+
+                    Home
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a class="nav-link"
+                   href="#features">
+
+                    Features
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a class="nav-link"
+                   href="#how-it-works">
+
+                    How It Works
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a class="nav-link"
+                   href="#about">
+
+                    About
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+
+        <!-- Right Buttons -->
+
+        <div class="nav-buttons">
+
+
+            <!-- Language Selector -->
+
+            <div class="language-selector">
+
+                <button type="button"
+                        class="lang-btn active"
+                        data-lang="en"
+                        onclick="changeLanguage('en', this)">
+
+                    EN
+
+                </button>
+
+
+                <button type="button"
+                        class="lang-btn"
+                        data-lang="si"
+                        onclick="changeLanguage('si', this)">
+
+                    සිං
+
+                </button>
+
+
+                <button type="button"
+                        class="lang-btn"
+                        data-lang="ta"
+                        onclick="changeLanguage('ta', this)">
+
+                    தமிழ்
+
+                </button>
+
+            </div>
+
+
+            <!-- Login -->
+
+            <a href="login.html"
+               class="btn login-btn">
+
+                Login
+
+            </a>
+
+
+            <!-- Register -->
+
+            <a href="register.html"
+               class="btn register-btn">
+
+                <span>
+                    Get Started
+                </span>
+
+                <i class="bi bi-arrow-up-right"></i>
+
+            </a>
+
+
+            <!-- Profile -->
+
+            <a href="#"
+               id="profileBtn"
+               class="profile-btn">
+
+                <i class="bi bi-person-circle"></i>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</nav>
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section id="home"
+         class="hero-section">
+
+<div class="container">
+
+    <div class="row align-items-center">
+
+
+        <!-- Hero Content -->
+
+        <div class="col-lg-6 hero-content"
+             data-aos="fade-right">
+
+
+            <div class="small-badge">
+
+                <span class="pulse-dot"></span>
+
+                Smart Agriculture Marketplace
+
+            </div>
+
+
+            <h1>
+
+                <span>
+                    Connecting
+                </span>
+
+                <span class="gradient-text">
+                    Rubber Farmers
+                </span>
+
+                <span>
+                    with
+                </span>
+
+                <span class="yellow-text">
+                    Better Buyers
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                RubberLink makes rubber trading easier,
+                smarter, and more transparent by connecting
+                farmers directly with company buyers.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+
+                <a href="login.html"
+                   class="btn primary-btn">
+
+                    Start Trading
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+
+                <a href="#how-it-works"
+                   class="btn outline-btn">
+
+                    <i class="bi bi-play-circle"></i>
+
+                    See How It Works
+
+                </a>
+
+
+            </div>
+
+
+            <div class="hero-stats">
+
+
+                <div class="stat-item">
+
+                    <h3>
+                        500+
+                    </h3>
+
+                    <p>
+                        Farmers
+                    </p>
+
+                </div>
+
+
+                <div class="stat-divider"></div>
+
+
+                <div class="stat-item">
+
+                    <h3>
+                        120+
+                    </h3>
+
+                    <p>
+                        Buyers
+                    </p>
+
+                </div>
+
+
+                <div class="stat-divider"></div>
+
+
+                <div class="stat-item">
+
+                    <h3>
+                        25+
+                    </h3>
+
+                    <p>
+                        Districts
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Hero Image -->
+
+        <div class="col-lg-6"
+             data-aos="fade-left">
+
+
+            <div id="rubberCarousel"
+                 class="carousel slide hero-carousel"
+                 data-bs-ride="carousel"
+                 data-bs-interval="4000">
+
+
+                <div class="carousel-indicators">
+
+
+                    <button type="button"
+                            data-bs-target="#rubberCarousel"
+                            data-bs-slide-to="0"
+                            class="active"
+                            aria-label="Slide 1">
+                    </button>
+
+
+                    <button type="button"
+                            data-bs-target="#rubberCarousel"
+                            data-bs-slide-to="1"
+                            aria-label="Slide 2">
+                    </button>
+
+
+                    <button type="button"
+                            data-bs-target="#rubberCarousel"
+                            data-bs-slide-to="2"
+                            aria-label="Slide 3">
+                    </button>
+
+
+                </div>
+
+
+                <div class="carousel-inner">
+
+
+                    <div class="carousel-item active">
+
+                        <img src="img/rubber1.jpg"
+                             class="d-block w-100"
+                             alt="Rubber Plantation">
+
+                    </div>
+
+
+                    <div class="carousel-item">
+
+                        <img src="img/runner2.jpg"
+                             class="d-block w-100"
+                             alt="Rubber Farmer">
+
+                    </div>
+
+
+                    <div class="carousel-item">
+
+                        <img src="img/rubber5.jpg"
+                             class="d-block w-100"
+                             alt="Rubber Production">
+
+                    </div>
+
+
+                </div>
+
+
+                <button class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#rubberCarousel"
+                        data-bs-slide="prev">
+
+                    <span class="carousel-control-prev-icon"></span>
+
+                </button>
+
+
+                <button class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#rubberCarousel"
+                        data-bs-slide="next">
+
+                    <span class="carousel-control-next-icon"></span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- Market Card -->
+
+            <div class="floating-card price-card">
+
+                <div class="floating-icon green-icon">
+
+                    <i class="bi bi-graph-up-arrow"></i>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Today's Market
+                    </small>
+
+                    <strong>
+                        Better Prices
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Farmer Card -->
+
+            <div class="floating-card farmer-card">
+
+                <div class="avatar">
+                    👨‍🌾
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Farmers & Buyers
+                    </strong>
+
+                    <small>
+                        Connected digitally
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+<!-- =====================================================
+     FEATURES SECTION
+===================================================== -->
+
+<section id="features"
+         class="features-section">
+
+<div class="container">
+
+
+    <div class="section-heading"
+         data-aos="fade-up">
+
+
+        <span class="section-label">
+
+            WHAT WE OFFER
+
+        </span>
+
+
+        <h2>
+
+            Everything You Need
+
+            <span>
+                In One Place
+            </span>
+
+        </h2>
+
+
+        <p>
+
+            Powerful tools designed to make
+            rubber trading simple and efficient.
+
+        </p>
+
+
+    </div>
+
+
+
+    <div class="row g-4">
+
+
+        <!-- Publish Stock -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <a href="price.html"
+               class="feature-link">
+
+                <div class="feature-card card-green">
+
+
+                    <div class="feature-icon">
+
+                        <i class="bi bi-box-seam"></i>
+
+                    </div>
+
+
+                    <h4>
+                        Publish Stock
+                    </h4>
+
+
+                    <p>
+
+                        Farmers can publish available
+                        rubber quantity and selling prices.
+
+                    </p>
+
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Compare Prices -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <a href="compare-prices.html"
+               class="feature-link">
+
+                <div class="feature-card card-orange">
+
+
+                    <div class="feature-icon">
+
+                        <i class="bi bi-search"></i>
+
+                    </div>
+
+
+                    <h4>
+                        Compare Buyer Prices
+                    </h4>
+
+
+                    <p>
+
+                        View prices published by registered
+                        buyers and choose the best offer
+                        for your rubber.
+
+                    </p>
+
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Connect -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <a href="cus.html"
+               class="feature-link">
+
+                <div class="feature-card card-purple">
+
+
+                    <div class="feature-icon">
+
+                        <i class="bi bi-chat-dots"></i>
+
+                    </div>
+
+
+                    <h4>
+                        Request & Connect with Farmers
+                    </h4>
+
+
+                    <p>
+
+                        Send requests and communicate
+                        with suitable trading partners.
+
+                    </p>
+
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Calculator -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <a href="newcal.html"
+               class="feature-link">
+
+                <div class="feature-card card-blue">
+
+
+                    <div class="feature-icon">
+
+                        <i class="bi bi-calculator"></i>
+
+                    </div>
+
+
+                    <h4>
+                        Dry Rubber Calculator
+                    </h4>
+
+
+                    <p>
+
+                        Estimate dry rubber weight
+                        quickly and easily.
+
+                    </p>
+
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section id="how-it-works"
+         class="how-section">
+
+
+<div class="container">
+
+    <div class="row align-items-center">
+
+
+        <div class="col-lg-5">
+
+
+            <span class="section-label">
+
+                SIMPLE PROCESS
+
+            </span>
+
+
+            <h2>
+
+                From Farm
+
+                <span>
+                    To Connection
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                RubberLink makes it easy for farmers
+                and buyers to find the right opportunity.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="col-lg-7">
+
+
+            <div class="timeline">
+
+
+                <div class="timeline-item">
+
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+                            Create Your Account
+                        </h4>
+
+
+                        <p>
+
+                            Register as a rubber farmer
+                            or company buyer.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="timeline-item">
+
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+                            Publish Your Details
+                        </h4>
+
+
+                        <p>
+
+                            Add your available rubber stock
+                            or buying requirements.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="timeline-item">
+
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+                            Search & Compare
+                        </h4>
+
+
+                        <p>
+
+                            Find suitable prices and
+                            trading partners.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="timeline-item">
+
+
+                    <div class="step-number">
+                        04
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+                            Send Request & Connect
+                        </h4>
+
+
+                        <p>
+
+                            Confirm the request and
+                            communicate directly.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     ABOUT SECTION
+===================================================== -->
+
+<section id="about"
+         class="about-section">
+
+
+<div class="container">
+
+    <div class="about-box">
+
+        <div class="row align-items-center">
+
+
+            <div class="col-lg-6">
+
+                <img src="img/rubber4.jpg"
+                     class="about-image"
+                     alt="Rubber Farmer">
+
+            </div>
+
+
+
+            <div class="col-lg-6">
+
+
+                <span class="section-label">
+
+                    ABOUT RUBBERLINK
+
+                </span>
+
+
+                <h2>
+
+                    Growing Together
+
+                    <span>
+                        Through Technology
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    RubberLink is a web-based platform
+                    created to connect rubber farmers
+                    and company buyers.
+
+                </p>
+
+
+                <p>
+
+                    Our platform helps users publish rubber
+                    information, compare prices, send requests,
+                    receive notifications, and communicate
+                    with potential trading partners.
+
+                </p>
+
+
+
+                <div class="about-features">
+
+
+                    <div>
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Easy to use
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Price transparency
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Direct connection
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        No online payment required
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+<div class="container text-center">
+
+    <div class="cta-content">
+
+
+        <span>
+            READY TO GET STARTED?
+        </span>
+
+
+        <h2>
+
+            Build Better Connections.
+
+            <br>
+
+            Grow Your Rubber Business.
+
+        </h2>
+
+
+        <p>
+
+            Join farmers and buyers building
+            a smarter rubber trading community.
+
+        </p>
+
+
+        <a href="register.html"
+           class="btn cta-btn">
+
+            Create Your Account
+
+            <i class="bi bi-arrow-right"></i>
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+<div class="container">
+
+    <div class="row">
+
+
+        <div class="col-lg-5">
+
+
+            <div class="footer-logo">
+
+                🌿 Rubber<span>Link</span>
+
+            </div>
+
+
+            <p>
+
+                Connecting Sri Lankan rubber farmers
+                and company buyers through technology.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="col-lg-2">
+
+
+            <h5>
+                Platform
+            </h5>
+
+
+            <a href="#features">
+                Features
+            </a>
+
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+
+        </div>
+
+
+
+        <div class="col-lg-2">
+
+
+            <h5>
+                Company
+            </h5>
+
+
+            <a href="#about">
+                About
+            </a>
+
+
+        </div>
+
+
+
+        <div class="col-lg-3">
+
+
+            <h5>
+                Follow Us
+            </h5>
+
+
+            <div class="social-icons">
+
+
+                <a href="#">
+
+                    <i class="bi bi-facebook"></i>
+
+                </a>
+
+
+                <a href="#">
+
+                    <i class="bi bi-instagram"></i>
+
+                </a>
+
+
+                <a href="#">
+
+                    <i class="bi bi-linkedin"></i>
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <hr>
+
+
+    <div class="footer-bottom">
+
+
+        <p>
+
+            © 2026 RubberLink. All Rights Reserved.
+
+        </p>
+
+
+        <p>
+
+            Smart Rubber Marketplace
+
+        </p>
+
+
+    </div>
+
+</div>
+
+</footer>
+
+<!-- =====================================================
+     BOOTSTRAP JS
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- =====================================================
+     AOS JS
+===================================================== -->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+</script>
+
+<script>
+
+    AOS.init({
+        duration: 900,
+        once: true
+    });
+
+</script>
+
+<!-- =====================================================
+     FIREBASE / PROFILE / DARK MODE
+===================================================== -->
+
+<script type="module"
+        src="js/firebase-config.js">
+</script>
+
+<script type="module"
+        src="js/profile-redirect.js">
+</script>
+
+<script src="js/darkmode.js">
+</script>
+
+<!-- =====================================================
+     GOOGLE TRANSLATE
+===================================================== -->
+
+<script>
+
+    function googleTranslateElementInit() {
+
+        new google.translate.TranslateElement({
+
+            pageLanguage: 'en',
+
+            includedLanguages: 'en,si,ta',
+
+            autoDisplay: false
+
+        }, 'google_translate_element');
+
+    }
+
+
+    /* =====================================================
+       CHANGE LANGUAGE
+    ===================================================== */
+
+    function changeLanguage(language, button) {
+
+
+        /* Update active button */
+
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+
+            btn.classList.remove('active');
+
+        });
+
+
+        if (button) {
+
+            button.classList.add('active');
+
+        }
+
+
+        /* English */
+
+        if (language === 'en') {
+
+            setEnglish();
+
+            return;
+
+        }
+
+
+        /* Sinhala / Tamil */
+
+        translatePage(language);
+
+    }
+
+
+
+    /* =====================================================
+       TRANSLATE PAGE
+    ===================================================== */
+
+    function translatePage(language) {
+
+
+        var select = document.querySelector('.goog-te-combo');
+
+
+        if (select) {
+
+            select.value = language;
+
+            select.dispatchEvent(new Event('change'));
+
+
+            setTimeout(hideGoogleTranslateBar, 100);
+
+            setTimeout(hideGoogleTranslateBar, 500);
+
+            setTimeout(hideGoogleTranslateBar, 1000);
+
+            return;
+
+        }
+
+
+        /*
+         * Google Translate may not have loaded yet.
+         * Wait and try again.
+         */
+
+        setTimeout(function() {
+
+            var translateSelect =
+                document.querySelector('.goog-te-combo');
+
+
+            if (translateSelect) {
+
+                translateSelect.value = language;
+
+                translateSelect.dispatchEvent(
+                    new Event('change')
+                );
+
+            }
+
+            hideGoogleTranslateBar();
+
+        }, 1000);
+
+    }
+
+
+
+    /* =====================================================
+       SET ENGLISH
+    ===================================================== */
+
+    function setEnglish() {
+
+
+        var select =
+            document.querySelector('.goog-te-combo');
+
+
+        if (select) {
+
+            select.value = 'en';
+
+            select.dispatchEvent(
+                new Event('change')
+            );
+
+        }
+
+
+        /*
+         * Remove Google Translate cookies
+         */
+
+        deleteCookie('googtrans', '/');
+        deleteCookie('googtrans', window.location.hostname);
+
+
+        hideGoogleTranslateBar();
+
+    }
+
+
+
+    /* =====================================================
+       DELETE COOKIE
+    ===================================================== */
+
+    function deleteCookie(name, path) {
+
+        document.cookie =
+            name +
+            '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' +
+            path;
+
+    }
+
+
+
+    /* =====================================================
+       HIDE GOOGLE TRANSLATE BAR
+    ===================================================== */
+
+    function hideGoogleTranslateBar() {
+
+
+        /* Google banner */
+
+        document.querySelectorAll(
+
+            '.goog-te-banner-frame, ' +
+            '.goog-te-banner-frame.skiptranslate, ' +
+            'iframe.goog-te-banner-frame'
+
+        ).forEach(function(element) {
+
+            element.style.display = 'none';
+
+            element.style.visibility = 'hidden';
+
+            element.style.height = '0';
+
+            element.style.width = '0';
+
+        });
+
+
+        /* Google injected top container */
+
+        document.querySelectorAll(
+
+            'body > .skiptranslate'
+
+        ).forEach(function(element) {
+
+            element.style.display = 'none';
+
+            element.style.visibility = 'hidden';
+
+            element.style.height = '0';
+
+        });
+
+
+        /* Reset page position */
+
+        document.body.style.top = '0px';
+
+        document.body.style.position = '';
+
+        document.documentElement.style.marginTop = '0px';
+
+
+        /* Hide tooltip */
+
+        document.querySelectorAll(
+
+            '.goog-tooltip, .goog-text-highlight'
+
+        ).forEach(function(element) {
+
+            element.style.display = 'none';
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       KEEP GOOGLE BAR HIDDEN
+    ===================================================== */
+
+    setInterval(
+
+        hideGoogleTranslateBar,
+
+        100
+
+    );
+
+
+
+    /* =====================================================
+       UPDATE ACTIVE LANGUAGE BUTTON
+    ===================================================== */
+
+    function updateLanguageButton(language) {
+
+
+        document.querySelectorAll('.lang-btn')
+            .forEach(function(button) {
+
+                button.classList.remove('active');
+
+            });
+
+
+        var activeButton =
+            document.querySelector(
+                '.lang-btn[data-lang="' +
+                language +
+                '"]'
+            );
+
+
+        if (activeButton) {
+
+            activeButton.classList.add('active');
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       GOOGLE TRANSLATE READY
+    ===================================================== */
+
+    window.addEventListener(
+        'load',
+        function() {
+
+            hideGoogleTranslateBar();
+
+            updateLanguageButton('en');
+
+        }
+    );
+
+</script>
+
+<!-- =====================================================
+     GOOGLE TRANSLATE API
+===================================================== -->
+
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</body>
+
+</html>

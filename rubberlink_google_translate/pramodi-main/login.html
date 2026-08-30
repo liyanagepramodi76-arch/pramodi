@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login Page</title>
+
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/login.css">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+<!-- =====================================================
+     GOOGLE TRANSLATE HIDDEN CSS
+===================================================== -->
+
+<style>
+
+    /* Hide Google Translate original element */
+
+    #google_translate_element {
+
+        display: none !important;
+
+        visibility: hidden !important;
+
+        width: 0 !important;
+
+        height: 0 !important;
+
+        overflow: hidden !important;
+
+    }
+
+
+    /* Hide Google Translate gadget */
+
+    .goog-te-gadget {
+
+        display: none !important;
+
+    }
+
+
+    /* Hide Google Translate top banner */
+
+    .goog-te-banner-frame,
+    .goog-te-banner-frame.skiptranslate,
+    iframe.goog-te-banner-frame {
+
+        display: none !important;
+
+        visibility: hidden !important;
+
+        height: 0 !important;
+
+    }
+
+
+    /* Prevent Google Translate from moving website */
+
+    body {
+
+        top: 0 !important;
+
+    }
+
+
+    html {
+
+        margin-top: 0 !important;
+
+    }
+
+
+    body > .skiptranslate {
+
+        display: none !important;
+
+    }
+
+
+
+    /* =====================================================
+       LANGUAGE BUTTONS
+    ===================================================== */
+
+    .language-selector {
+
+        position: fixed;
+
+        top: 20px;
+
+        right: 20px;
+
+        z-index: 99999;
+
+        display: flex !important;
+
+        gap: 6px;
+
+    }
+
+
+    .language-selector button {
+
+        border: none;
+
+        background: #ffffff;
+
+        color: #166534;
+
+        font-family: Arial, sans-serif;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        padding: 8px 12px;
+
+        border-radius: 8px;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 3px 10px rgba(0, 0, 0, 0.12);
+
+        transition: all 0.3s ease;
+
+    }
+
+
+    .language-selector button:hover {
+
+        background: #166534;
+
+        color: #ffffff;
+
+    }
+
+
+    .language-selector button:active {
+
+        transform: scale(0.96);
+
+    }
+
+
+    @media (max-width: 768px) {
+
+        .language-selector {
+
+            top: 12px;
+
+            right: 12px;
+
+        }
+
+
+        .language-selector button {
+
+            padding: 7px 9px;
+
+            font-size: 12px;
+
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<!-- =====================================================
+     GOOGLE TRANSLATE ELEMENT
+===================================================== -->
+
+<div id="google_translate_element"></div>
+
+
+
+<!-- =====================================================
+     LANGUAGE SELECTOR
+===================================================== -->
+
+<div class="language-selector">
+
+
+    <button
+        type="button"
+        onclick="changeLanguage('en')">
+
+        EN
+
+    </button>
+
+
+    <button
+        type="button"
+        onclick="changeLanguage('si')">
+
+        සිං
+
+    </button>
+
+
+    <button
+        type="button"
+        onclick="changeLanguage('ta')">
+
+        த
+
+    </button>
+
+
+</div>
+
+
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <div class="logo">
+
+            🌿 Rubber<span>Link</span>
+
+        </div>
+
+        <h2>Welcome Back</h2>
+
+        <p class="subtitle">
+
+            Sign in to continue to your account
+
+        </p>
+
+        <form>
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-user left-icon"></i>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-lock left-icon"></i>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required>
+
+                <i
+                    class="fa-solid fa-eye right-icon"
+                    id="togglePassword">
+                </i>
+
+            </div>
+
+
+            <div class="login-options">
+
+                <label>
+
+                    <input type="checkbox">
+
+                    Remember me
+
+                </label>
+
+
+                <a href="forgot_password.html">
+
+                    Forgot Password?
+
+                </a>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-btn">
+
+                Sign In
+
+            </button>
+
+        </form>
+
+
+        <p class="register-link">
+
+            Don't have an account?
+
+
+            <a href="register.html">
+
+                Create Account
+
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     YOUR ORIGINAL LOGIN JAVASCRIPT
+===================================================== -->
+
+<script
+    type="module"
+    src="js/login.js">
+</script>
+
+
+
+<!-- =====================================================
+     GOOGLE TRANSLATE JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    function googleTranslateElementInit() {
+
+        new google.translate.TranslateElement(
+
+            {
+
+                pageLanguage: 'en',
+
+                includedLanguages: 'en,si,ta',
+
+                autoDisplay: false
+
+            },
+
+            'google_translate_element'
+
+        );
+
+    }
+
+
+
+    /* =====================================================
+       CHANGE LANGUAGE
+    ===================================================== */
+
+    function changeLanguage(lang) {
+
+        const select =
+            document.querySelector('.goog-te-combo');
+
+
+        if (select) {
+
+            select.value = lang;
+
+            select.dispatchEvent(
+                new Event('change')
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       HIDE GOOGLE TRANSLATE BAR
+    ===================================================== */
+
+    function hideGoogleTranslateBar() {
+
+        document.querySelectorAll(
+
+            '.goog-te-banner-frame, ' +
+            '.goog-te-banner-frame.skiptranslate'
+
+        ).forEach(function(element) {
+
+            element.style.display = 'none';
+
+            element.style.visibility = 'hidden';
+
+            element.style.height = '0';
+
+        });
+
+
+        document.body.style.top = '0px';
+
+
+        document.documentElement.style.marginTop = '0px';
+
+
+
+        document.querySelectorAll(
+
+            'body > .skiptranslate'
+
+        ).forEach(function(element) {
+
+            element.style.display = 'none';
+
+        });
+
+    }
+
+
+
+    /* Google Translate can inject
+       the banner after page loading */
+
+    setInterval(
+
+        hideGoogleTranslateBar,
+
+        100
+
+    );
+
+</script>
+
+
+
+<!-- =====================================================
+     GOOGLE TRANSLATE API
+===================================================== -->
+
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+</body>
+
+</html>
+
