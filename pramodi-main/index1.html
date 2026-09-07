@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RubberLink | Smart Rubber Marketplace</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- ================= CSS ================= -->
+
+    
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+ 
+
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+
+    <div class="container">
+
+
+        <a class="navbar-brand logo"
+           href="#home">
+
+            <span class="logo-icon"></span>
+
+            Rubber<span>Link</span>
+
+        </a>
+
+        <button id="darkModeToggle" class="dark-mode-btn">
+            <i class="bi bi-moon-stars-fill"></i>
+            <style>
+/* DARK MODE */
+
+body.dark-mode {
+
+    background: #111827;
+
+    color: #e5e7eb;
+
+}
+
+body.dark-mode .top-members-section,
+body.dark-mode section {
+
+    background: #111827;
+
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode .nav-link {
+
+    color: #e5e7eb;
+
+}
+
+body.dark-mode .member-card {
+
+    background: #1f2937;
+
+    border-color: #374151;
+
+}
+
+body.dark-mode .member-card h3 {
+
+    color: #f3f4f6;
+
+}
+
+body.dark-mode .member-location,
+body.dark-mode .rating span,
+body.dark-mode .member-details small {
+
+    color: #a7b0bd;
+
+}
+
+body.dark-mode .rating {
+
+    border-color: #374151;
+
+}
+
+body.dark-mode .showcase-tabs {
+
+    background: #253329;
+
+}
+
+body.dark-mode .member-avatar {
+
+    background: #263a2b;
+
+}
+
+body.dark-mode footer {
+
+    background: #111827 !important;
+
+}
+
+
+/* ==============================
+   ABOUT SECTION - DARK MODE
+   ============================== */
+
+body.dark-mode .about-section {
+
+    background: #1f2937 !important;
+
+}
+
+body.dark-mode .about-section h1,
+body.dark-mode .about-section h2,
+body.dark-mode .about-section h3,
+body.dark-mode .about-section h4 {
+
+    color: #f3f4f6 !important;
+
+}
+
+body.dark-mode .about-section p {
+
+    color: #d1d5db !important;
+
+}
+
+body.dark-mode .about-section .section-title {
+
+    color: #22c55e !important;
+
+}
+</style>
+        </button>
+
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+
+            <ul class="navbar-nav mx-auto">
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link active"
+                       href="#home">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#features">
+
+                        Features
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#how-it-works">
+
+                        How It Works
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#about">
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+
+            <div class="nav-buttons">
+
+                <a href="login.html" class="btn login-btn">
+                    Login
+                </a>
+
+                <a href="register.html" class="btn register-btn">
+                    Get Started
+                    <i class="bi bi-arrow-up-right"></i>
+                </a>
+
+                <a href="#" id="profileBtn" class="profile-btn">
+                    <i class="bi bi-person-circle"></i>
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section id="home"
+         class="hero-section">
+
+
+    <div class="container">
+
+
+        <div class="row align-items-center">
+
+
+            <div class="col-lg-6 hero-content"
+                 data-aos="fade-right">
+
+
+                <div class="small-badge">
+
+
+                    <span class="pulse-dot"></span>
+
+
+                    Smart Agriculture Marketplace
+
+
+                </div>
+
+
+                <h1>
+
+
+                    Connecting
+
+
+                    <span class="gradient-text">
+
+                        Rubber Farmers
+
+                    </span>
+
+
+                    with
+
+
+                    <span class="yellow-text">
+
+                        Better Buyers
+
+                    </span>
+
+
+                </h1>
+
+
+                <p class="hero-description">
+
+
+                    RubberLink makes rubber trading easier,
+                    smarter, and more transparent by connecting
+                    farmers directly with company buyers.
+
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+
+                    <a href="login.html"
+                       class="btn primary-btn">
+
+
+                        Start Trading
+
+                        <i class="bi bi-arrow-right"></i>
+
+
+                    </a>
+
+
+                    <a href="#how-it-works"
+                       class="btn outline-btn">
+
+
+                        <i class="bi bi-play-circle"></i>
+
+
+                        See How It Works
+
+
+                    </a>
+
+
+                </div>
+
+
+                <div class="hero-stats">
+
+
+                    <div class="stat-item">
+
+
+                        <h3>500+</h3>
+
+
+                        <p>Farmers</p>
+
+
+                    </div>
+
+
+                    <div class="stat-divider"></div>
+
+
+                    <div class="stat-item">
+
+
+                        <h3>120+</h3>
+
+
+                        <p>Buyers</p>
+
+
+                    </div>
+
+
+                    <div class="stat-divider"></div>
+
+
+                    <div class="stat-item">
+
+
+                        <h3>25+</h3>
+
+
+                        <p>Districts</p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SLIDESHOW -->
+
+            <div class="col-lg-6"
+                 data-aos="fade-left">
+
+
+                <div id="rubberCarousel"
+                     class="carousel slide hero-carousel"
+                     data-bs-ride="carousel"
+                     data-bs-interval="4000">
+
+
+                    <div class="carousel-indicators">
+
+
+                        <button type="button"
+                                data-bs-target="#rubberCarousel"
+                                data-bs-slide-to="0"
+                                class="active">
+
+                        </button>
+
+
+                        <button type="button"
+                                data-bs-target="#rubberCarousel"
+                                data-bs-slide-to="1">
+
+                        </button>
+
+
+                        <button type="button"
+                                data-bs-target="#rubberCarousel"
+                                data-bs-slide-to="2">
+
+                        </button>
+
+
+                    </div>
+
+
+                    <div class="carousel-inner">
+
+
+                        <div class="carousel-item active">
+
+
+                            <img src="img/rubber1.jpg"
+                                 class="d-block w-100"
+                                 alt="Rubber Plantation">
+
+
+                        </div>
+
+
+                        <div class="carousel-item">
+
+
+                            <img src="img/runner2.jpg"
+                                 class="d-block w-100"
+                                 alt="Rubber Farmer">
+
+
+                        </div>
+
+
+                        <div class="carousel-item">
+
+
+                            <img src="img/rubber5.jpg"
+                                 class="d-block w-100"
+                                 alt="Rubber Production">
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <button class="carousel-control-prev"
+                            type="button"
+                            data-bs-target="#rubberCarousel"
+                            data-bs-slide="prev">
+
+
+                        <span class="carousel-control-prev-icon"></span>
+
+
+                    </button>
+
+
+                    <button class="carousel-control-next"
+                            type="button"
+                            data-bs-target="#rubberCarousel"
+                            data-bs-slide="next">
+
+
+                        <span class="carousel-control-next-icon"></span>
+
+
+                    </button>
+
+
+                </div>
+
+
+                <div class="floating-card price-card">
+
+
+                    <div class="floating-icon green-icon">
+
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+
+                    </div>
+
+
+                    <div>
+
+
+                        <small>Today's Market</small>
+
+
+                        <strong>Better Prices</strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="floating-card farmer-card">
+
+
+                    <div class="avatar">
+
+                        👨‍🌾
+
+                    </div>
+
+
+                    <div>
+
+
+                        <strong>Farmers & Buyers</strong>
+
+
+                        <small>Connected digitally</small>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section id="features"
+         class="features-section">
+
+
+    <div class="container">
+
+
+        <div class="section-heading"
+             data-aos="fade-up">
+
+
+            <span class="section-label">
+
+                WHAT WE OFFER
+
+            </span>
+
+
+            <h2>
+
+
+                Everything You Need
+
+
+                <span>
+
+                    In One Place
+
+                </span>
+
+
+            </h2>
+
+
+            <p>
+
+
+                Powerful tools designed to make
+                rubber trading simple and efficient.
+
+
+            </p>
+
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-lg-3 col-md-6">
+                    <a href="price.html" class="feature-link">
+
+                <div class="feature-card card-green">
+
+
+                    <div class="feature-icon">
+
+                        <i class="bi bi-box-seam"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        Publish Stock
+
+                    </h4>
+
+
+                    <p>
+
+                        Farmers can publish available
+                        rubber quantity and selling prices.
+
+                    </p>
+
+
+                </div>
+                
+                    </a>
+
+            </div>
+
+
+
+            <div class="col-lg-3 col-md-6">
+                    <a href="compare-prices.html" class="feature-link">
+
+                <div class="feature-card card-orange">
+
+
+                    <div class="feature-icon">
+
+                        <i class="bi bi-search"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        Compare Buyer Prices
+
+                    </h4>
+
+
+                    <p>
+
+                        View prices published by registered buyers and
+                        choose the best offer for your rubber.
+
+                    </p>
+
+
+                </div>
+                    </a>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <a href="cus.html" class="feature-link">
+
+
+                <div class="feature-card card-purple">
+
+
+                    <div class="feature-icon">
+
+                        <i class="bi bi-chat-dots"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        Request & Connect with Farmers 
+
+                    </h4>
+
+
+                    <p>
+
+                        Send requests and communicate
+                        with suitable trading partners.
+
+                    </p>
+
+
+                </div>
+                </a>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+
+                <a href="newcal.html" class="feature-link">
+
+
+                <div class="feature-card card-blue">
+
+
+                    <div class="feature-icon">
+
+                        <i class="bi bi-calculator"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        Dry Rubber Calculator
+
+                    </h4>
+
+
+                    <p>
+
+                        Estimate dry rubber weight
+                        quickly and easily.
+
+                    </p>
+
+
+
+
+
+                </div>
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RubberLink - Best Farmers & Buyers</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- ================= CSS ================= -->
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #292d32;
+        }
+
+
+        /* ================= TOP MEMBERS SECTION ================= */
+
+        .top-members-section {
+
+            position: relative;
+
+            padding: 70px 0 100px;
+
+            background: #ffffff;
+
+            overflow: hidden;
+        }
+
+
+        /* Green background circle */
+
+        .top-members-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 330px;
+            height: 330px;
+
+            background: #eef7ee;
+
+            border-radius: 50%;
+
+            top: -190px;
+            left: -70px;
+        }
+
+
+        /* Yellow background circle */
+
+        .top-members-section::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            background: #fff8df;
+
+            border-radius: 50%;
+
+            bottom: -140px;
+            right: -70px;
+        }
+
+
+        .top-members-section .container {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* ================= HEADING ================= */
+
+        .top-heading {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+
+        .top-heading .label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 18px;
+
+            color: #333;
+
+            letter-spacing: .2px;
+        }
+
+
+        .top-heading h2 {
+
+            margin: 0;
+
+            font-size: 40px;
+
+            font-weight: 700;
+
+            color: #272b2f;
+        }
+
+
+        .top-heading p {
+
+            margin-top: 12px;
+
+            font-size: 18px;
+
+            color: #3e4347;
+        }
+
+
+        /* ================= TOGGLE ================= */
+
+        .showcase-tabs {
+
+            width: 490px;
+
+            max-width: 100%;
+
+            margin: 0 auto 68px;
+
+            padding: 10px;
+
+            display: flex;
+
+            background: #edf4ed;
+
+            border-radius: 55px;
+
+            box-shadow:
+                0 8px 25px rgba(42, 83, 45, 0.08);
+        }
+
+
+        .showcase-tab {
+
+            flex: 1;
+
+            border: none;
+
+            padding: 15px 25px;
+
+            background: transparent;
+
+            border-radius: 45px;
+
+            color: #38513b;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all .3s ease;
+        }
+
+
+        .showcase-tab i {
+
+            margin-right: 9px;
+
+            font-size: 18px;
+        }
+
+
+        .showcase-tab.active {
+
+            background: #2f8435;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 10px 25px rgba(47, 132, 53, .25);
+        }
+
+
+        .showcase-tab:hover:not(.active) {
+
+            color: #2f8435;
+        }
+
+
+        /* ================= MEMBER CARD ================= */
+
+        .member-card {
+
+            position: relative;
+
+            min-height: 460px;
+
+            padding: 48px 38px 32px;
+
+            background: #ffffff;
+
+            border: 1px solid #e2e8e2;
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 12px 35px rgba(43, 72, 48, .08);
+
+            transition: all .3s ease;
+        }
+
+
+        .member-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 20px 45px rgba(43, 72, 48, .13);
+        }
+
+
+        /* ================= RANK ================= */
+
+        .rank-badge {
+
+            position: absolute;
+
+            top: 27px;
+            right: 28px;
+
+            width: 68px;
+            height: 68px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #fff5d4;
+
+            color: #9a7100;
+
+            border-radius: 50%;
+
+            font-size: 19px;
+
+            font-weight: 800;
+        }
+
+
+        /* ================= AVATAR ================= */
+
+        .member-avatar {
+
+            width: 100px;
+            height: 100px;
+
+            margin-bottom: 28px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #edf7ed;
+
+            border: 8px solid #f5faf5;
+
+            border-radius: 50%;
+
+            font-size: 48px;
+        }
+
+
+        .buyer-avatar {
+
+            background: #fff4df;
+        }
+
+
+        /* ================= BADGE ================= */
+
+        .member-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 22px;
+
+            padding: 9px 15px;
+
+            background: #edf8ef;
+
+            color: #2f8435;
+
+            border-radius: 30px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        .member-badge i {
+
+            font-size: 14px;
+        }
+
+
+        .buyer-badge {
+
+            background: #fff5e3;
+
+            color: #a46d00;
+        }
+
+
+        /* ================= NAME ================= */
+
+        .member-card h3 {
+
+            margin: 0 0 7px;
+
+            color: #203b24;
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            line-height: 1.2;
+        }
+
+
+        /* ================= LOCATION ================= */
+
+        .member-location {
+
+            margin-bottom: 27px;
+
+            color: #738073;
+
+            font-size: 17px;
+        }
+
+
+        /* ================= RATING ================= */
+
+        .rating {
+
+            padding-bottom: 22px;
+
+            border-bottom: 1px solid #e7ebe7;
+
+            color: #f3ae00;
+
+            font-size: 20px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .rating span {
+
+            margin-left: 10px;
+
+            color: #738073;
+
+            font-size: 16px;
+
+            letter-spacing: 0;
+        }
+
+
+        /* ================= DETAILS ================= */
+
+        .member-details {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding-top: 23px;
+        }
+
+
+        .member-details div:last-child {
+
+            text-align: right;
+        }
+
+
+        .member-details strong {
+
+            display: block;
+
+            color: #2f8435;
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        .member-details small {
+
+            display: block;
+
+            margin-top: 6px;
+
+            color: #738073;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            .top-members-section {
+
+                padding: 55px 0 70px;
+            }
+
+
+            .top-heading h2 {
+
+                font-size: 30px;
+            }
+
+
+            .top-heading p {
+
+                font-size: 15px;
+            }
+
+
+            .showcase-tabs {
+
+                margin-bottom: 45px;
+            }
+
+
+            .showcase-tab {
+
+                padding: 13px 10px;
+
+                font-size: 14px;
+            }
+
+
+            .member-card {
+
+                min-height: auto;
+
+                padding: 35px 25px;
+            }
+
+
+            .member-card h3 {
+
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BEST FARMERS & BEST BUYERS
+====================================================== -->
+
+<section id="top-members" class="top-members-section">
+
+    <div class="container">
+
+
+        <!-- ================= HEADING ================= -->
+
+        <div class="top-heading">
+
+            <span class="label">
+                TOP PERFORMERS
+            </span>
+
+            <h2>
+                Meet Our Best Farmers &amp; Buyers
+            </h2>
+
+            <p>
+                Discover trusted and highly rated members of the RubberLink marketplace.
+            </p>
+
+        </div>
+
+
+        <!-- ================= TABS ================= -->
+
+        <div class="showcase-tabs">
+
+            <button
+                type="button"
+                class="showcase-tab active"
+                onclick="showMembers('farmers', this)">
+
+                <i class="bi bi-person-fill"></i>
+
+                Best Farmers
+
+            </button>
+
+
+            <button
+                type="button"
+                class="showcase-tab"
+                onclick="showMembers('buyers', this)">
+
+                <i class="bi bi-building"></i>
+
+                Best Buyers
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             BEST FARMERS
+        ================================================== -->
+
+        <div id="farmers">
+
+            <div class="row g-4">
+
+
+                <!-- ================= FARMER 1 ================= -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="member-card">
+
+
+                        <div class="rank-badge">
+                            #1
+                        </div>
+
+
+                        <div class="member-avatar">
+                            👨‍🌾
+                        </div>
+
+
+                        <div class="member-badge">
+
+                            <i class="bi bi-patch-check-fill"></i>
+
+                            Top Rated Farmer
+
+                        </div>
+
+
+                        <h3>
+                            Kasun Perera
+                        </h3>
+
+
+                        <p class="member-location">
+                            Rubber Farmer • Kalutara
+                        </p>
+
+
+                        <div class="rating">
+
+                            ★★★★★
+
+                            <span>
+                                4.9 / 5
+                            </span>
+
+                        </div>
+
+
+                        <div class="member-details">
+
+
+                            <div>
+
+                                <strong>
+                                    2,500 kg
+                                </strong>
+
+                                <small>
+                                    Monthly Supply
+                                </small>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    98%
+                                </strong>
+
+                                <small>
+                                    Reliability
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= FARMER 2 ================= -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="member-card">
+
+
+                        <div class="rank-badge">
+                            #2
+                        </div>
+
+
+                        <div class="member-avatar">
+                            👨‍🌾
+                        </div>
+
+
+                        <div class="member-badge">
+
+                            <i class="bi bi-patch-check-fill"></i>
+
+                            Trusted Farmer
+
+                        </div>
+
+
+                        <h3>
+                            Nimal Fernando
+                        </h3>
+
+
+                        <p class="member-location">
+                            Rubber Farmer • Ratnapura
+                        </p>
+
+
+                        <div class="rating">
+
+                            ★★★★★
+
+                            <span>
+                                4.8 / 5
+                            </span>
+
+                        </div>
+
+
+                        <div class="member-details">
+
+
+                            <div>
+
+                                <strong>
+                                    2,100 kg
+                                </strong>
+
+                                <small>
+                                    Monthly Supply
+                                </small>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    96%
+                                </strong>
+
+                                <small>
+                                    Reliability
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= FARMER 3 ================= -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="member-card">
+
+
+                        <div class="rank-badge">
+                            #3
+                        </div>
+
+
+                        <div class="member-avatar">
+                            👩‍🌾
+                        </div>
+
+
+                        <div class="member-badge">
+
+                            <i class="bi bi-patch-check-fill"></i>
+
+                            Trusted Farmer
+
+                        </div>
+
+
+                        <h3>
+                            Sanduni Wijesinghe
+                        </h3>
+
+
+                        <p class="member-location">
+                            Rubber Farmer • Galle
+                        </p>
+
+
+                        <div class="rating">
+
+                            ★★★★★
+
+                            <span>
+                                4.7 / 5
+                            </span>
+
+                        </div>
+
+
+                        <div class="member-details">
+
+
+                            <div>
+
+                                <strong>
+                                    1,850 kg
+                                </strong>
+
+                                <small>
+                                    Monthly Supply
+                                </small>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    95%
+                                </strong>
+
+                                <small>
+                                    Reliability
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             BEST BUYERS
+        ================================================== -->
+
+        <div
+            id="buyers"
+            style="display: none;">
+
+            <div class="row g-4">
+
+
+                <!-- ================= BUYER 1 ================= -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="member-card">
+
+
+                        <div class="rank-badge">
+                            #1
+                        </div>
+
+
+                        <div class="member-avatar buyer-avatar">
+                            🏢
+                        </div>
+
+
+                        <div class="member-badge buyer-badge">
+
+                            <i class="bi bi-patch-check-fill"></i>
+
+                            Top Buyer
+
+                        </div>
+
+
+                        <h3>
+                            GreenRubber Industries
+                        </h3>
+
+
+                        <p class="member-location">
+                            Rubber Buyer • Colombo
+                        </p>
+
+
+                        <div class="rating">
+
+                            ★★★★★
+
+                            <span>
+                                4.9 / 5
+                            </span>
+
+                        </div>
+
+
+                        <div class="member-details">
+
+
+                            <div>
+
+                                <strong>
+                                    5,000 kg
+                                </strong>
+
+                                <small>
+                                    Monthly Demand
+                                </small>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    99%
+                                </strong>
+
+                                <small>
+                                    Response Rate
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= BUYER 2 ================= -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="member-card">
+
+
+                        <div class="rank-badge">
+                            #2
+                        </div>
+
+
+                        <div class="member-avatar buyer-avatar">
+                            🏢
+                        </div>
+
+
+                        <div class="member-badge buyer-badge">
+
+                            <i class="bi bi-patch-check-fill"></i>
+
+                            Trusted Buyer
+
+                        </div>
+
+
+                        <h3>
+                            Lanka Rubber Traders
+                        </h3>
+
+
+                        <p class="member-location">
+                            Rubber Buyer • Horana
+                        </p>
+
+
+                        <div class="rating">
+
+                            ★★★★★
+
+                            <span>
+                                4.8 / 5
+                            </span>
+
+                        </div>
+
+
+                        <div class="member-details">
+
+
+                            <div>
+
+                                <strong>
+                                    4,200 kg
+                                </strong>
+
+                                <small>
+                                    Monthly Demand
+                                </small>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    97%
+                                </strong>
+
+                                <small>
+                                    Response Rate
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= BUYER 3 ================= -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="member-card">
+
+
+                        <div class="rank-badge">
+                            #3
+                        </div>
+
+
+                        <div class="member-avatar buyer-avatar">
+                            🏢
+                        </div>
+
+
+                        <div class="member-badge buyer-badge">
+
+                            <i class="bi bi-patch-check-fill"></i>
+
+                            Trusted Buyer
+
+                        </div>
+
+
+                        <h3>
+                            Prime Latex Solutions
+                        </h3>
+
+
+                        <p class="member-location">
+                            Rubber Buyer • Ratnapura
+                        </p>
+
+
+                        <div class="rating">
+
+                            ★★★★★
+
+                            <span>
+                                4.7 / 5
+                            </span>
+
+                        </div>
+
+
+                        <div class="member-details">
+
+
+                            <div>
+
+                                <strong>
+                                    3,800 kg
+                                </strong>
+
+                                <small>
+                                    Monthly Demand
+                                </small>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    96%
+                                </strong>
+
+                                <small>
+                                    Response Rate
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+    function showMembers(type, button) {
+
+        const farmers =
+            document.getElementById("farmers");
+
+        const buyers =
+            document.getElementById("buyers");
+
+        const tabs =
+            document.querySelectorAll(".showcase-tab");
+
+
+        /* Remove active */
+
+        tabs.forEach(function(tab) {
+
+            tab.classList.remove("active");
+
+        });
+
+
+        /* Add active */
+
+        button.classList.add("active");
+
+
+        /* Show farmers */
+
+        if (type === "farmers") {
+
+            farmers.style.display = "block";
+
+            buyers.style.display = "none";
+
+        }
+
+
+        /* Show buyers */
+
+        else {
+
+            farmers.style.display = "none";
+
+            buyers.style.display = "block";
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section id="how-it-works"
+         class="how-section">
+
+
+    <div class="container">
+
+
+        <div class="row align-items-center">
+
+
+            <div class="col-lg-5">
+
+
+                <span class="section-label">
+
+                    SIMPLE PROCESS
+
+                </span>
+
+
+                <h2>
+
+
+                    From Farm
+
+
+                    <span>
+
+                        To Connection
+
+                    </span>
+
+
+                </h2>
+
+
+                <p>
+
+                    RubberLink makes it easy for farmers
+                    and buyers to find the right opportunity.
+
+                </p>
+<!--
+
+                <a href="register.html"
+                   class="btn primary-btn">
+
+                    Join RubberLink
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+-->
+
+            </div>
+
+
+            <div class="col-lg-7">
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item">
+
+
+                        <div class="step-number">
+
+                            01
+
+                        </div>
+
+
+                        <div>
+
+
+                            
+
+
+                            <p>
+
+                                Register as a rubber farmer
+                                or company buyer.
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+
+                        <div class="step-number">
+
+                            02
+
+                        </div>
+
+
+                        <div>
+
+
+                            <h4>
+
+                                Publish Your Details
+
+                            </h4>
+
+
+                            <p>
+
+                                Add your available rubber stock
+                                or buying requirements.
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+
+                        <div class="step-number">
+
+                            03
+
+                        </div>
+
+
+                        <div>
+
+
+                            <h4>
+
+                                Search & Compare
+
+                            </h4>
+
+
+                            <p>
+
+                                Find suitable prices and
+                                trading partners.
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+
+                        <div class="step-number">
+
+                            04
+
+                        </div>
+
+
+                        <div>
+
+
+                            <h4>
+
+                                Send Request & Connect
+
+                            </h4>
+
+
+                            <p>
+
+                                Confirm the request and
+                                communicate directly.
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about"
+         class="about-section">
+
+
+    <div class="container">
+
+
+        <div class="about-box">
+
+
+            <div class="row align-items-center">
+
+
+                <div class="col-lg-6">
+
+
+                    <img src="img/rubber4.jpg"
+                         class="about-image"
+                         alt="Rubber Farmer">
+
+
+                </div>
+
+
+                <div class="col-lg-6">
+
+
+                    <span class="section-label">
+
+                        ABOUT RUBBERLINK
+
+                    </span>
+
+
+                    <h2>
+
+
+                        Growing Together
+
+
+                        <span>
+
+                            Through Technology
+
+                        </span>
+
+
+                    </h2>
+
+
+                    <p>
+
+
+                        RubberLink is a web-based platform
+                        created to connect rubber farmers
+                        and company buyers.
+
+
+                    </p>
+
+
+                    <p>
+
+
+                        Our platform helps users publish rubber
+                        information, compare prices, send requests,
+                        receive notifications, and communicate
+                        with potential trading partners.
+
+
+                    </p>
+
+
+                    <div class="about-features">
+
+
+                        <div>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Easy to use
+
+                        </div>
+
+
+                        <div>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Price transparency
+
+                        </div>
+
+
+                        <div>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Direct connection
+
+                        </div>
+
+
+                        <div>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            No online payment required
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section">
+
+
+    <div class="container text-center">
+
+
+        <div class="cta-content">
+
+
+            <span>
+
+                READY TO GET STARTED?
+
+            </span>
+
+
+            <h2>
+
+
+                Build Better Connections.
+
+
+                <br>
+
+
+                Grow Your Rubber Business.
+
+
+            </h2>
+
+
+            <p>
+
+
+                Join farmers and buyers building
+                a smarter rubber trading community.
+
+
+            </p>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+
+    <div class="container">
+
+
+        <div class="row">
+
+
+            <div class="col-lg-5">
+
+
+                <div class="footer-logo">
+
+                    🌿 Rubber<span>Link</span>
+
+                </div>
+
+
+                <p>
+
+                    Connecting Sri Lankan rubber farmers
+                    and company buyers through technology.
+
+                </p>
+
+
+            </div>
+
+
+            <div class="col-lg-2">
+
+
+                <h5>
+
+                    Platform
+
+                </h5>
+
+
+                <a href="#features">
+
+                    Features
+
+                </a>
+
+
+                <a href="#how-it-works">
+
+                    How It Works
+
+                </a>
+
+
+            </div>
+
+
+            <div class="col-lg-2">
+
+
+                <h5>
+
+                    Company
+
+                </h5>
+
+
+                <a href="#about">
+
+                    About
+
+                </a>
+
+
+            </div>
+
+
+            <div class="col-lg-3">
+
+
+                <h5>
+
+                    Follow Us
+
+                </h5>
+
+
+                <div class="social-icons">
+
+
+                    <a href="#">
+
+                        <i class="bi bi-facebook"></i>
+
+                    </a>
+
+
+                    <a href="#">
+
+                        <i class="bi bi-instagram"></i>
+
+                    </a>
+
+
+                    <a href="#">
+
+                        <i class="bi bi-linkedin"></i>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <hr>
+
+
+        <div class="footer-bottom">
+
+
+            <p>
+
+                © 2026 RubberLink. All Rights Reserved.
+
+            </p>
+
+
+            <p>
+
+                Smart Rubber Marketplace
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- AOS JS -->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+</script>
+
+
+<script>
+
+    AOS.init({
+
+        duration: 900,
+
+        once: true
+
+    });
+
+</script>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/profile-redirect.js"></script>
+    <script src="js/darkmode.js"></script>
+
+</body>
+
+</html>
