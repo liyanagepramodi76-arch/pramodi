@@ -83,6 +83,23 @@ section {
     color: var(--dark);
 }
 
+/* ================= RUBORA LOGO ================= */
+
+.navbar-brand .brand-name {
+    color: #166534;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+}
+
+body.dark-mode .navbar-brand .brand-name {
+    color: #ffffff !important;
+}
+
+body.dark-mode .navbar-brand .site-logo {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
 .brand-name span {
     color: var(--primary-green);
 }
