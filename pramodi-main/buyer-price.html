@@ -24,66 +24,12 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-/* Hide Google Translate UI */
-#google_translate_element {
-    display: none !important;
-}
-
-.goog-te-banner-frame.skiptranslate {
-    display: none !important;
-}
-
-body {
-    top: 0 !important;
-}
-
-.goog-te-gadget {
-    display: none !important;
-}
-
-/* Language buttons */
-.language-selector {
-    position: fixed;
-    top: 20px;
-    right: 85px;
-    z-index: 9999;
-    display: flex;
-    gap: 6px;
-}
-
-.language-selector button {
-    border: none;
-    background: #ffffff;
-    color: #166534;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 700;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-    transition: 0.3s;
-}
-
-.language-selector button:hover {
-    background: #166534;
-    color: #ffffff;
-}
-</style>
+  
 
 </head>
 
 <body>
-        <!-- GOOGLE TRANSLATE -->
-<div id="google_translate_element"></div>
-
-<div class="language-selector">
-    <button onclick="changeLanguage('en')">EN</button>
-    <button onclick="changeLanguage('si')">සිං</button>
-    <button onclick="changeLanguage('ta')">த</button>
-</div>
+      
 
     <!-- TOP BUTTONS -->
 
@@ -347,34 +293,8 @@ body {
     <script type="module" src="js/buyer-price.js">
     </script>
 
-    <!-- Google Translate -->
-<script>
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-        {
-            pageLanguage: 'en',
-            includedLanguages: 'en,si,ta',
-            autoDisplay: false
-        },
-        'google_translate_element'
-    );
-}
-
-function changeLanguage(lang) {
-
-    const select = document.querySelector('.goog-te-combo');
-
-    if (!select) {
-        console.log("Google Translate is still loading...");
-        return;
-    }
-
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-}
+    
 </script>
-
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
 
