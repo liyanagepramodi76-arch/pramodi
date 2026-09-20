@@ -100,7 +100,7 @@ if (buyerPriceForm) {
 
             // Go to Compare Prices page
             window.location.href =
-                "compare-prices.html";
+                "compare-buyer-prices.html";
 
 
         } catch (error) {
