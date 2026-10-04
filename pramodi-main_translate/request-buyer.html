@@ -136,6 +136,8 @@
         }
 
 
+        /* ================= NOTIFICATION BELL ================= */
+
         .notification {
 
             position: relative;
@@ -146,34 +148,316 @@
 
             cursor: pointer;
 
+            padding: 6px;
+
         }
 
 
-        .notification span {
+        .notification .badge {
 
             position: absolute;
 
-            top: -8px;
+            top: -4px;
 
-            right: -10px;
+            right: -6px;
 
             background: #ef4444;
 
             color: white;
 
-            width: 18px;
+            min-width: 20px;
 
-            height: 18px;
+            height: 20px;
 
-            border-radius: 50%;
+            padding: 0 5px;
+
+            border-radius: 20px;
 
             font-size: 11px;
+
+            font-weight: 700;
 
             display: flex;
 
             align-items: center;
 
             justify-content: center;
+
+            border: 2px solid white;
+
+            transition: transform .2s ease;
+
+        }
+
+
+        .notification .badge.hidden {
+
+            display: none;
+
+        }
+
+
+        .notification .badge.pop {
+
+            animation: badgePop .4s ease;
+
+        }
+
+
+        @keyframes badgePop {
+
+            0%   { transform: scale(1); }
+
+            50%  { transform: scale(1.5); }
+
+            100% { transform: scale(1); }
+
+        }
+
+
+        /* ================= NOTIFICATION DROPDOWN ================= */
+
+        .notif-dropdown {
+
+            position: absolute;
+
+            top: 68px;
+
+            right: 7%;
+
+            width: 340px;
+
+            background: white;
+
+            border-radius: 16px;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+            padding: 0;
+
+            z-index: 150;
+
+            display: none;
+
+            overflow: hidden;
+
+            animation: dropIn .25s ease;
+
+        }
+
+
+        .notif-dropdown.show {
+
+            display: block;
+
+        }
+
+
+        @keyframes dropIn {
+
+            from { opacity: 0; transform: translateY(-10px); }
+
+            to   { opacity: 1; transform: translateY(0); }
+
+        }
+
+
+        .notif-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 16px 20px;
+
+            border-bottom: 1px solid #e2e8f0;
+
+        }
+
+
+        .notif-header h4 {
+
+            font-family: 'Outfit', sans-serif;
+
+            font-size: 16px;
+
+            color: #166534;
+
+        }
+
+
+        .notif-header button {
+
+            border: none;
+
+            background: none;
+
+            color: #16a34a;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        .notif-header button:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        .notif-list {
+
+            max-height: 340px;
+
+            overflow-y: auto;
+
+        }
+
+
+        .notif-item {
+
+            display: flex;
+
+            gap: 12px;
+
+            padding: 14px 20px;
+
+            border-bottom: 1px solid #f1f5f9;
+
+            font-size: 14px;
+
+        }
+
+
+        .notif-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .notif-item .notif-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            font-size: 18px;
+
+        }
+
+
+        .notif-item .notif-text strong {
+
+            display: block;
+
+            color: #1f2937;
+
+            margin-bottom: 2px;
+
+        }
+
+
+        .notif-item .notif-text small {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+        }
+
+
+        .notif-empty {
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            color: #94a3b8;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ================= TOAST ================= */
+
+        .toast {
+
+            position: fixed;
+
+            top: 90px;
+
+            right: 24px;
+
+            background: white;
+
+            color: #166534;
+
+            padding: 16px 22px;
+
+            border-radius: 14px;
+
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            font-weight: 600;
+
+            z-index: 300;
+
+            opacity: 0;
+
+            transform: translateX(120%);
+
+            transition: all .4s cubic-bezier(.68, -.55, .27, 1.55);
+
+            border-left: 5px solid #16a34a;
+
+            max-width: 360px;
+
+        }
+
+
+        .toast.show {
+
+            opacity: 1;
+
+            transform: translateX(0);
+
+        }
+
+
+        .toast i {
+
+            font-size: 22px;
+
+            color: #16a34a;
 
         }
 
@@ -777,6 +1061,37 @@
         }
 
 
+        /* ================= NO RESULTS ================= */
+
+
+        .no-results {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #64748b;
+
+            font-size: 18px;
+
+        }
+
+
+        .no-results i {
+
+            font-size: 40px;
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #cbd5e1;
+
+        }
+
+
         /* ================= RESPONSIVE ================= */
 
 
@@ -800,6 +1115,26 @@
             .section-title {
 
                 display: block;
+
+            }
+
+
+            .notif-dropdown {
+
+                width: calc(100% - 40px);
+
+                right: 20px;
+
+            }
+
+
+            .toast {
+
+                right: 16px;
+
+                left: 16px;
+
+                max-width: none;
 
             }
 
@@ -1119,6 +1454,53 @@
             color: #4ade80;
         }
 
+        body.dark-mode .notification .badge {
+            border-color: #16213e;
+        }
+
+        /* Notification dropdown */
+        body.dark-mode .notif-dropdown {
+            background: #1e293b;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        body.dark-mode .notif-header {
+            border-bottom-color: #334155;
+        }
+
+        body.dark-mode .notif-header h4 {
+            color: #4ade80;
+        }
+
+        body.dark-mode .notif-item {
+            border-bottom-color: #334155;
+        }
+
+        body.dark-mode .notif-item .notif-text strong {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .notif-item .notif-icon {
+            background: #14532d;
+            color: #86efac;
+        }
+
+        body.dark-mode .notif-empty {
+            color: #64748b;
+        }
+
+        /* Toast */
+        body.dark-mode .toast {
+            background: #1e293b;
+            color: #bbf7d0;
+            border-left-color: #22c55e;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+        }
+
+        body.dark-mode .toast i {
+            color: #4ade80;
+        }
+
         /* Dark mode button */
         body.dark-mode .dark-mode-btn {
             background: #273549;
@@ -1128,6 +1510,15 @@
         body.dark-mode .dark-mode-btn:hover {
             background: #166534;
             color: #ffffff;
+        }
+
+        /* No results */
+        body.dark-mode .no-results {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .no-results i {
+            color: #475569;
         }
 
 
@@ -1177,18 +1568,11 @@
             </a>
 
 
-            <div class="notification">
-
+            <div class="notification" id="notifBell">
 
                 <i class="bi bi-bell-fill"></i>
 
-
-                <span>
-
-                    3
-
-                </span>
-
+                <span class="badge" id="notifBadge">3</span>
 
             </div>
 
@@ -1197,6 +1581,38 @@
 
 
     </nav>
+
+
+    <!-- ================= NOTIFICATION DROPDOWN ================= -->
+
+    <div class="notif-dropdown" id="notifDropdown">
+
+        <div class="notif-header">
+
+            <h4>Notifications</h4>
+
+            <button onclick="clearNotifications()">Mark all read</button>
+
+        </div>
+
+        <div class="notif-list" id="notifList">
+
+            <!-- Notifications will be injected here -->
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div class="toast" id="toast">
+
+        <i class="bi bi-check-circle-fill"></i>
+
+        <span id="toastText">Offer sent successfully!</span>
+
+    </div>
 
 
     <!-- ================= HERO ================= -->
@@ -1243,34 +1659,35 @@
 
 
         <input type="text"
+            id="locationSearch"
             placeholder="Search by buyer location...">
 
 
-        <select>
+        <select id="typeFilter">
 
 
-            <option>
+            <option value="">
 
                 Select Rubber Type
 
             </option>
 
 
-            <option>
+            <option value="RSS">
 
                 RSS
 
             </option>
 
 
-            <option>
+            <option value="Latex">
 
                 Latex
 
             </option>
 
 
-            <option>
+            <option value="TSR">
 
                 TSR
 
@@ -1281,10 +1698,12 @@
 
 
         <input type="number"
+            id="priceFilter"
             placeholder="Minimum Price">
 
 
-        <button class="search-btn">
+        <button class="search-btn"
+            onclick="filterListings()">
 
             <i class="bi bi-search"></i>
 
@@ -1326,9 +1745,9 @@
             </div>
 
 
-            <span>
+            <span id="resultCount">
 
-                18 Requests Found
+                3 Requests Found
 
             </span>
 
@@ -1336,12 +1755,16 @@
         </div>
 
 
-        <div class="listing-grid">
+        <div class="listing-grid"
+            id="listingGrid">
 
 
             <!-- CARD 1 — BUYER REQUEST -->
 
-            <div class="listing-card">
+            <div class="listing-card"
+                data-location="Colombo"
+                data-type="RSS"
+                data-price="870">
 
 
                 <div class="status">
@@ -1466,7 +1889,10 @@
 
             <!-- CARD 2 — BUYER REQUEST -->
 
-            <div class="listing-card">
+            <div class="listing-card"
+                data-location="Gampaha"
+                data-type="Latex"
+                data-price="840">
 
 
                 <div class="status">
@@ -1591,7 +2017,10 @@
 
             <!-- CARD 3 — BUYER REQUEST -->
 
-            <div class="listing-card">
+            <div class="listing-card"
+                data-location="Kurunegala"
+                data-type="TSR"
+                data-price="910">
 
 
                 <div class="status">
@@ -1717,6 +2146,18 @@
         </div>
 
 
+        <!-- ================= NO RESULTS ================= -->
+
+        <div class="no-results"
+            id="noResults">
+
+            <i class="bi bi-search"></i>
+
+            No buyers match your search. Try a different location or filter.
+
+        </div>
+
+
     </section>
 
 
@@ -1814,6 +2255,7 @@
 
 
                 <textarea
+                    id="message"
                     placeholder="Write your message...">
 
                 </textarea>
@@ -1858,6 +2300,208 @@
         let selectedBuyer = "";
 
 
+        /* ================= NOTIFICATIONS ================= */
+
+        let notifications = [];
+
+        try {
+
+            notifications = JSON.parse(
+                localStorage.getItem("rubora_notifications") || "[]"
+            );
+
+        } catch (e) {
+
+            notifications = [];
+
+        }
+
+
+        function saveNotifications() {
+
+            localStorage.setItem(
+                "rubora_notifications",
+                JSON.stringify(notifications)
+            );
+
+        }
+
+
+        function renderNotifications() {
+
+            let list = document.getElementById("notifList");
+
+            let badge = document.getElementById("notifBadge");
+
+            /* Count unread */
+
+            let unread = notifications.filter(n => !n.read).length;
+
+
+            /* Badge */
+
+            if (unread > 0) {
+
+                badge.innerText = unread;
+
+                badge.classList.remove("hidden");
+
+            } else {
+
+                badge.classList.add("hidden");
+
+            }
+
+
+            /* List */
+
+            if (notifications.length === 0) {
+
+                list.innerHTML =
+                    '<div class="notif-empty">No notifications yet</div>';
+
+                return;
+
+            }
+
+
+            list.innerHTML = notifications.map(function (n, i) {
+
+                return `
+
+                    <div class="notif-item">
+
+                        <div class="notif-icon">
+
+                            <i class="bi bi-send-check-fill"></i>
+
+                        </div>
+
+                        <div class="notif-text">
+
+                            <strong>${n.title}</strong>
+
+                            <small>${n.time}</small>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+        }
+
+
+        function addNotification(title) {
+
+            let now = new Date();
+
+            let time = now.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+
+            notifications.unshift({
+                title: title,
+                time: "Today, " + time,
+                read: false
+            });
+
+
+            saveNotifications();
+
+            renderNotifications();
+
+            popBadge();
+
+        }
+
+
+        function popBadge() {
+
+            let badge = document.getElementById("notifBadge");
+
+            badge.classList.remove("pop");
+
+            void badge.offsetWidth;
+
+            badge.classList.add("pop");
+
+        }
+
+
+        function clearNotifications() {
+
+            notifications = notifications.map(function (n) {
+
+                n.read = true;
+
+                return n;
+
+            });
+
+            saveNotifications();
+
+            renderNotifications();
+
+        }
+
+
+        /* ================= TOAST ================= */
+
+        function showToast(message) {
+
+            let toast = document.getElementById("toast");
+
+            document.getElementById("toastText").innerText = message;
+
+            toast.classList.add("show");
+
+
+            setTimeout(function () {
+
+                toast.classList.remove("show");
+
+            }, 3500);
+
+        }
+
+
+        /* ================= NOTIFICATION BELL TOGGLE ================= */
+
+        document.getElementById("notifBell")
+            .addEventListener("click", function (e) {
+
+                e.stopPropagation();
+
+                document.getElementById("notifDropdown")
+                    .classList.toggle("show");
+
+            });
+
+
+        /* Close dropdown when clicking outside */
+
+        document.addEventListener("click", function (e) {
+
+            let dropdown = document.getElementById("notifDropdown");
+
+            let bell = document.getElementById("notifBell");
+
+            if (!dropdown.contains(e.target) && !bell.contains(e.target)) {
+
+                dropdown.classList.remove("show");
+
+            }
+
+        });
+
+
+        /* ================= OPEN OFFER MODAL ================= */
+
         function openOffer(buyer) {
 
 
@@ -1901,6 +2545,8 @@
         }
 
 
+        /* ================= SEND REQUEST ================= */
+
         function sendRequest() {
 
 
@@ -1943,6 +2589,8 @@
             }
 
 
+            /* Show success inside modal */
+
             document
 
                 .getElementById("successMessage")
@@ -1950,8 +2598,40 @@
                 .style.display = "block";
 
 
+            /* ===== ADD NOTIFICATION ===== */
+
+            addNotification(
+                `Your offer of ${quantity} kg @ Rs. ${price}/kg was sent to ${selectedBuyer}`
+            );
+
+
+            /* ===== SHOW TOAST ===== */
+
+            showToast(`Offer sent to ${selectedBuyer}!`);
+
+
+            /* ===== RESET FIELDS ===== */
+
+            document.getElementById("quantity").value = "";
+
+            document.getElementById("price").value = "";
+
+            document.getElementById("message").value = "";
+
+
+            /* ===== AUTO CLOSE MODAL AFTER 1.8s ===== */
+
+            setTimeout(function () {
+
+                closeRequest();
+
+            }, 1800);
+
+
         }
 
+
+        /* ================= MODAL OUTSIDE CLICK ================= */
 
         window.onclick = function(event) {
 
@@ -1971,6 +2651,89 @@
             }
 
         };
+
+
+        /* ================= LIVE FILTER ================= */
+
+        function filterListings() {
+
+            let locationValue = document
+                .getElementById("locationSearch")
+                .value
+                .trim()
+                .toLowerCase();
+
+            let typeValue = document
+                .getElementById("typeFilter")
+                .value
+                .trim()
+                .toLowerCase();
+
+            let priceValue = document
+                .getElementById("priceFilter")
+                .value
+                .trim();
+
+            let cards = document.querySelectorAll(".listing-card");
+
+            let visibleCount = 0;
+
+            cards.forEach(function (card) {
+
+                let cardLocation = (card.dataset.location || "").toLowerCase();
+                let cardType     = (card.dataset.type || "").toLowerCase();
+                let cardPrice    = parseFloat(card.dataset.price || "0");
+
+                let matchLocation = locationValue === "" ||
+                                    cardLocation.includes(locationValue);
+
+                let matchType     = typeValue === "" ||
+                                    cardType === typeValue;
+
+                let matchPrice    = priceValue === "" ||
+                                    cardPrice >= parseFloat(priceValue);
+
+                if (matchLocation && matchType && matchPrice) {
+
+                    card.style.display = "";
+                    visibleCount++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            /* Update the counter text */
+            document.getElementById("resultCount").innerText =
+                visibleCount + (visibleCount === 1
+                    ? " Request Found"
+                    : " Requests Found");
+
+            /* Show / hide the "no results" message */
+            document.getElementById("noResults").style.display =
+                visibleCount === 0 ? "block" : "none";
+
+        }
+
+
+        /* Live search — filter as the user types */
+
+        document.getElementById("locationSearch")
+            .addEventListener("input", filterListings);
+
+        document.getElementById("typeFilter")
+            .addEventListener("change", filterListings);
+
+        document.getElementById("priceFilter")
+            .addEventListener("input", filterListings);
+
+
+        /* ================= INIT ================= */
+
+        renderNotifications();
 
 
     </script>
