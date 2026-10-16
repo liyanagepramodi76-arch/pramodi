@@ -1,553 +1,513 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Profile | RubberLink</title>
 
-    <title>Farmer Profile | Rubora</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <link rel="stylesheet" href="css/farmer-profile.css">
-    <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f7f0;
+      color: #26352a;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #176b3a;
+      color: white;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h1 {
+      font-size: 27px;
+    }
+
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .page {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    .profile-card,
+    .info-card,
+    .incoming-requests {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .photo-wrapper {
+      text-align: center;
+    }
+
+    #profileImage,
+    #defaultAvatar {
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #d9eadb;
+    }
+
+    #defaultAvatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e1f1e3;
+      font-size: 55px;
+      margin: auto;
+    }
+
+    #photoUpload {
+      display: none;
+    }
+
+    .change-photo {
+      display: inline-block;
+      margin-top: 8px;
+      color: #176b3a;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .profile-heading h2 {
+      font-size: 28px;
+      color: #176b3a;
+      margin-bottom: 5px;
+    }
+
+    .profile-heading p {
+      color: #68756b;
+    }
+
+    .availability {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: #e3f5e6;
+      color: #176b3a;
+      font-size: 13px;
+    }
+
+    h3 {
+      color: #176b3a;
+      margin-bottom: 16px;
+      font-size: 21px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #d4dfd5;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f8faf8;
+      color: #26352a;
+    }
+
+    .field input:disabled,
+    .field select:disabled,
+    .field textarea:disabled {
+      background: #f4f6f4;
+      color: #59635b;
+      cursor: default;
+    }
+
+    .field textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 11px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: #176b3a;
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background: #10542c;
+    }
+
+    .secondary-btn {
+      background: #e8eee8;
+      color: #26352a;
+    }
+
+    .danger-btn {
+      background: #fde8e7;
+      color: #b42318;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #toast {
+      display: none;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background: #e3f5e6;
+      color: #176b3a;
+    }
+
+    .incoming-requests h2 {
+      color: #176b3a;
+      margin-bottom: 5px;
+    }
+
+    .section-description {
+      color: #68756b;
+      margin-bottom: 20px;
+    }
+
+    .request-card {
+      border: 1px solid #dce8dd;
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 14px;
+      background: #fbfdfb;
+    }
+
+    .request-card h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .request-card p {
+      margin: 5px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .request-status {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-top: 8px;
+      border-radius: 20px;
+      background: #fff2cc;
+      color: #805b00;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .empty-message {
+      background: #f5f8f5;
+      padding: 18px;
+      border-radius: 10px;
+      color: #68756b;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px;
+      color: #68756b;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 18px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full-width {
+        grid-column: auto;
+      }
+
+      .profile-card,
+      .info-card,
+      .incoming-requests {
+        padding: 18px;
+      }
+
+      .profile-heading h2 {
+        font-size: 23px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    
 
-   
+  <header>
+    <div>
+      <h1>🌱 RubberLink</h1>
+      <p>Connecting Rubber Farmers and Buyers</p>
+    </div>
+    <div>Farmer Profile</div>
+  </header>
 
-    <header class="top-navbar">
+  <main class="page">
 
-        <div class="logo notranslate" translate="no">
-    <img src="img/Ruboralogo.png" alt="Rubora Logo" class="site-logo">
-    <span class="brand-name notranslate" translate="no">Rubora</span>
-</div>
+    <div id="toast" role="status"></div>
 
-        <nav class="top-menu">
+    <section class="profile-card">
+      <div class="profile-top">
 
-            <a href="index.html">Home</a>
+        <div class="photo-wrapper">
+          <img id="profileImage" alt="Farmer profile photo"
+               src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+               style="display:none;">
 
-            <a class="nav-link"
+          <div id="defaultAvatar">👩‍🌾</div>
 
-                href="index.html#features">
+          <label for="photoUpload" class="change-photo">
+            📷 Change Photo
+          </label>
 
-                Features
-
-            </a>
-
-            <a href="index.html" id="logoutBtn">Logout</a>
-
-        </nav>
-
-    </header>
-
-    <div class="profile-page">
-
-        <!-- SUCCESS MESSAGE -->
-        <div id="toast" class="toast">
-            <span>✓</span>
-            Profile updated successfully!
+          <input type="file" id="photoUpload"
+                 accept="image/*" disabled>
         </div>
 
+        <div class="profile-heading">
+          <h2 id="displayName">Farmer</h2>
+          <p>📍 <span id="displayLocation">Sri Lanka</span></p>
+          <p class="availability" id="displayAvailability">
+            Available for Selling
+          </p>
+        </div>
+
+      </div>
+
+      <div class="info-grid">
+        <div class="field">
+          <label>Rubber Type</label>
+          <input id="summaryType" value="Latex" disabled>
+        </div>
+
+        <div class="field">
+          <label>Available Stock</label>
+          <input id="summaryStock" value="0 kg" disabled>
+        </div>
+
+        <div class="field full-width">
+          <label>Selling Price</label>
+          <input id="summaryPrice" value="Rs. 0/kg" disabled>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="button" id="editBtn" class="primary-btn">
+          Edit Profile
+        </button>
+
+        <button type="button" id="saveBtn" class="primary-btn"
+                style="display:none;">
+          Save Changes
+        </button>
+
+        <button type="button" id="cancelBtn" class="secondary-btn"
+                style="display:none;">
+          Cancel
+        </button>
+      </div>
+
+      <div id="actionArea"></div>
+    </section>
+
+    <section class="info-card">
+      <h3>Personal Information</h3>
+      <p class="section-description">
+        Your contact and location details
+      </p>
+
+      <div class="info-grid">
+
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input id="fullName" type="text" disabled>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" disabled>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input id="phone" type="tel" disabled>
+        </div>
+
+        <div class="field">
+          <label for="district">District</label>
+          <select id="district" disabled>
+            <option value="">Select District</option>
+            <option>Ampara</option>
+            <option>Anuradhapura</option>
+            <option>Badulla</option>
+            <option>Batticaloa</option>
+            <option>Colombo</option>
+            <option>Galle</option>
+            <option>Gampaha</option>
+            <option>Hambantota</option>
+            <option>Jaffna</option>
+            <option>Kalutara</option>
+            <option>Kandy</option>
+            <option>Kegalle</option>
+            <option>Kilinochchi</option>
+            <option>Kurunegala</option>
+            <option>Mannar</option>
+            <option>Matale</option>
+            <option>Matara</option>
+            <option>Monaragala</option>
+            <option>Mullaitivu</option>
+            <option>Nuwara Eliya</option>
+            <option>Polonnaruwa</option>
+            <option>Puttalam</option>
+            <option>Ratnapura</option>
+            <option>Trincomalee</option>
+            <option>Vavuniya</option>
+          </select>
+        </div>
+
+        <div class="field full-width">
+          <label for="address">Address</label>
+          <input id="address" type="text" disabled>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="info-card">
+      <h3>Rubber Information</h3>
+      <p class="section-description">
+        Your current rubber selling details
+      </p>
+
+      <div class="info-grid">
+
+        <div class="field">
+          <label for="rubberType">Rubber Type</label>
+          <select id="rubberType" disabled>
+            <option value="Latex">Latex</option>
+            <option value="RSS">RSS</option>
+            <option value="Crepe Rubber">Crepe Rubber</option>
+            <option value="Scrap Rubber">Scrap Rubber</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="quality">Rubber Quality</label>
+          <select id="quality" disabled>
+            <option value="Grade A">Grade A</option>
+            <option value="Grade B">Grade B</option>
+            <option value="Grade C">Grade C</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="stock">Available Stock (kg)</label>
+          <input id="stock" type="number" min="0" disabled>
+        </div>
+
+        <div class="field">
+          <label for="price">Selling Price (Rs./kg)</label>
+          <input id="price" type="number" min="0" disabled>
+        </div>
+
+        <div class="field">
+          <label for="status">Availability</label>
+          <select id="status" disabled>
+            <option value="Available">Available for Selling</option>
+            <option value="Unavailable">Currently Unavailable</option>
+          </select>
+        </div>
+
+        <div class="field full-width">
+          <label for="about">About Me</label>
+          <textarea id="about" disabled
+                    placeholder="Tell buyers about your rubber business"></textarea>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="incoming-requests" id="incomingRequests">
+      <h2>📩 Incoming Buyer Requests</h2>
+      <p class="section-description">
+        View buyer requests and accept or reject them.
+      </p>
+
+      <div id="incomingRequestsList">
+        Loading requests...
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 RubberLink | Supporting Sri Lankan Rubber Farmers
+  </footer>
+
+  <script type="module" src="js/farmer-profile.js"></script>
 
-        <main class="profile-card">
-
-            <!-- =========================
-                 PROFILE HEADER
-            ========================== -->
-
-            <section class="profile-header">
-
-                <!-- PROFILE PHOTO -->
-                <div class="photo-wrapper">
-
-                    <!-- Default Avatar -->
-                    <div class="default-avatar" id="defaultAvatar">
-                        <span>👤</span>
-                    </div>
-
-                    <!-- Uploaded Photo -->
-                    <img
-                        id="profileImage"
-                        alt="Farmer Profile"
-                        style="display: none;"
-                    >
-
-                    <!-- Change Photo -->
-                    <label
-                        for="photoUpload"
-                        class="change-photo"
-                        id="changePhotoBtn"
-                    >
-                        Change Photo
-                    </label>
-
-                    <input
-                        type="file"
-                        id="photoUpload"
-                        accept="image/*"
-                    >
-
-                </div>
-
-
-                <!-- PROFILE DETAILS -->
-                <div class="profile-heading">
-
-                    <span class="role-badge">
-                        Farmer
-                    </span>
-
-                    <h1 id="displayName">
-                        Kamal Perera
-                    </h1>
-
-                    <p class="location-text">
-                        <span class="location-dot">●</span>
-
-                        <span id="displayLocation">
-                            Kegalle, Sri Lanka
-                        </span>
-                    </p>
-
-                    <span
-                        class="availability"
-                        id="displayAvailability"
-                    >
-                        ● Available for Selling
-                    </span>
-
-                </div>
-
-                
-                <!-- EDIT BUTTON -->
-                <button
-                    type="button"
-                    id="editBtn"
-                    class="edit-button">
-                    Edit Profile
-                </button>
-
-            </section>
-
-
-
-            <!-- =========================
-                 SUMMARY CARDS
-            ========================== -->
-
-            <section class="summary-section">
-
-                <!-- RUBBER TYPE -->
-                <div class="summary-card">
-
-                    <div class="summary-icon">
-                        🌿
-                    </div>
-
-                    <div class="summary-content">
-
-                        <span>
-                            Rubber Type
-                        </span>
-
-                        <strong id="summaryType">
-                            Latex
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <!-- STOCK -->
-                <div class="summary-card">
-
-                    <div class="summary-icon">
-                        ⚖
-                    </div>
-
-                    <div class="summary-content">
-
-                        <span>
-                            Available Stock
-                        </span>
-
-                        <strong id="summaryStock">
-                            500 kg
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PRICE -->
-                <div class="summary-card">
-
-                    <div class="summary-icon currency-icon">
-                        Rs.
-                    </div>
-
-                    <div class="summary-content">
-
-                        <span>
-                            Selling Price
-                        </span>
-
-                        <strong id="summaryPrice">
-                            Rs. 350/kg
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =========================
-                 MAIN INFORMATION
-            ========================== -->
-
-            <section class="information-grid">
-
-
-                <!-- PERSONAL INFORMATION -->
-
-                <div class="information-card">
-
-                    <div class="section-heading">
-
-                        <div>
-                            <h2>
-                                Personal Information
-                            </h2>
-
-                            <p>
-                                Your contact and location details
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="fullName">
-                            Full Name
-                        </label>
-
-                        <input
-                            type="text"
-                            id="fullName"
-                            value="Kamal Perera"
-                            disabled
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="email">
-                            Email Address
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            value="kamal@example.com"
-                            disabled
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="phone">
-                            Phone Number
-                        </label>
-
-                        <input
-                            type="tel"
-                            id="phone"
-                            value="0712345678"
-                            disabled
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="district">
-                            District
-                        </label>
-
-                        <select id="district" disabled>
-
-                            <option value="Ampara">Ampara</option>
-                            <option value="Anuradhapura">Anuradhapura</option>
-                            <option value="Badulla">Badulla</option>
-                            <option value="Batticaloa">Batticaloa</option>
-                            <option value="Colombo">Colombo</option>
-                            <option value="Galle">Galle</option>
-                            <option value="Gampaha">Gampaha</option>
-                            <option value="Hambantota">Hambantota</option>
-                            <option value="Jaffna">Jaffna</option>
-                            <option value="Kalutara">Kalutara</option>
-                            <option value="Kandy">Kandy</option>
-
-                            <option value="Kegalle" selected>
-                                Kegalle
-                            </option>
-
-                            <option value="Kilinochchi">Kilinochchi</option>
-                            <option value="Kurunegala">Kurunegala</option>
-                            <option value="Mannar">Mannar</option>
-                            <option value="Matale">Matale</option>
-                            <option value="Matara">Matara</option>
-                            <option value="Monaragala">Monaragala</option>
-                            <option value="Mullaitivu">Mullaitivu</option>
-                            <option value="Nuwara Eliya">Nuwara Eliya</option>
-                            <option value="Polonnaruwa">Polonnaruwa</option>
-                            <option value="Puttalam">Puttalam</option>
-                            <option value="Ratnapura">Ratnapura</option>
-                            <option value="Trincomalee">Trincomalee</option>
-                            <option value="Vavuniya">Vavuniya</option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="address">
-                            Address
-                        </label>
-
-                        <input
-                            type="text"
-                            id="address"
-                            value="Kegalle, Sri Lanka"
-                            disabled
-                        >
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- RUBBER INFORMATION -->
-
-                <div class="information-card">
-
-                    <div class="section-heading">
-
-                        <div>
-                            <h2>
-                                Rubber Information
-                            </h2>
-
-                            <p>
-                                Your current rubber selling details
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="rubberType">
-                            Rubber Type
-                        </label>
-
-                        <select id="rubberType" disabled>
-
-                            <option value="Latex">
-                                Latex
-                            </option>
-
-                            <option value="Sheet Rubber">
-                                Sheet Rubber
-                            </option>
-
-                            <option value="Crepe Rubber">
-                                Crepe Rubber
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="quality">
-                            Rubber Quality
-                        </label>
-
-                        <select id="quality" disabled>
-
-                            <option value="Grade A">
-                                Grade A
-                            </option>
-
-                            <option value="Grade B">
-                                Grade B
-                            </option>
-
-                            <option value="Grade C">
-                                Grade C
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="stock">
-                            Available Stock (kg)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="stock"
-                            value="500"
-                            min="0"
-                            disabled
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="price">
-                            Selling Price (Rs/kg)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="price"
-                            value="350"
-                            min="0"
-                            disabled
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="status">
-                            Availability Status
-                        </label>
-
-                        <select id="status" disabled>
-
-                            <option value="Available">
-                                Available
-                            </option>
-
-                            <option value="Out of Stock">
-                                Out of Stock
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =========================
-                 ABOUT ME
-            ========================== -->
-
-            <section class="about-card">
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <h2>
-                            About Me
-                        </h2>
-
-                        <p>
-                            A short introduction for buyers
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <textarea
-                        id="about"
-                        rows="3"
-                        disabled
-                    >Rubber farmer with experience in producing quality rubber.</textarea>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =========================
-                 SAVE + CANCEL
-            ========================== -->
-
-            <div
-                class="action-area"
-                id="actionArea"
-            >
-
-                <button
-                    type="button"
-                    id="cancelBtn"
-                    class="cancel-button"
-                >
-                    Cancel
-                </button>
-
-
-                <button
-                    type="button"
-                    id="saveBtn"
-                    class="save-button"
-                >
-                    ✓ Save Changes
-                </button>
-
-            </div>
-
-
-        </main>
-
-    </div>
-
-
-    <script type="module" src="js/farmer-profile.js"></script>
-    <script src="js/darkmode.js"></script>
-    <script type="module" src="js/logout.js"></script>
-    <script src="js/google-translate.js"></script>
 </body>
-
 </html>
