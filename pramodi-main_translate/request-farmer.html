@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubberLink | Farmer Requests</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4, #fff7ed);
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 4px 20px #0000000c;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            color: #166534;
+        }
+
+        .logo span {
+            color: #f97316;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #16a34a;
+        }
+
+        .hero {
+            padding: 55px 20px 35px;
+            text-align: center;
+        }
+
+        .hero small {
+            color: #16a34a;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(32px, 5vw, 48px);
+            margin: 15px 0;
+            color: #10251a;
+        }
+
+        .hero h1 span {
+            color: #16a34a;
+        }
+
+        .hero p,
+        .section-heading p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-heading {
+            margin: 20px 0;
+        }
+
+        .section-heading h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .listing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 30px #0000000b;
+            min-width: 0;
+        }
+
+        .listing-card h3 {
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        .listing-card p {
+            color: #64748b;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .farmer-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #dcfce7;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .rubber-info {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row span {
+            color: #64748b;
+        }
+
+        .info-row strong {
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .primary-btn {
+            background: #166534;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 18px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background .2s;
+        }
+
+        .primary-btn:hover {
+            background: #14532d;
+        }
+
+        .primary-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .history-section {
+            margin-top: 55px;
+            padding-bottom: 50px;
+        }
+
+        .request-status {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: capitalize;
+        }
+
+        .message {
+            padding: 14px;
+            border-radius: 10px;
+            margin: 15px 0;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .success-message {
+            background: #dcfce7;
+            color: #166534;
+            display: none;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #991b1b;
+            display: none;
+        }
+
+        .empty-message {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #0009;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 28px;
+            border-radius: 20px;
+            margin: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .close-btn {
+            border: none;
+            background: transparent;
+            font-size: 27px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: 2px solid #bbf7d0;
+            border-color: #16a34a;
+        }
+
+        footer {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .hero {
+                padding-top: 35px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Rubber<span>Link</span></div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="farmer-profile.html">Farmer Profile</a>
+            <a href="#farmers">Find Farmers</a>
+            <a href="#requests">My Requests</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <small>RUBBER FARMER CONNECTION</small>
+        <h1>Find Your <span>Rubber Farmers</span></h1>
+        <p>Connect with farmers, compare available stock and send your buying requests.</p>
+    </header>
+
+    <main class="container">
+
+        <section id="farmers">
+            <div class="section-heading">
+                <h2>Available Farmers</h2>
+                <p>Select a farmer and send a request with your quantity and offered price.</p>
+            </div>
+
+            <div class="listing-grid">
+
+                <article class="listing-card">
+                    <div class="farmer-icon"><i class="bi bi-person-fill"></i></div>
+                    <h3>Nimal Perera</h3>
+                    <p>Rubber farmer</p>
+
+                    <div class="rubber-info">
+                        <div class="info-row">
+                            <span>Rubber Type</span>
+                            <strong>Raw Rubber</strong>
+                        </div>
+                        <div class="info-row">
+                            <span>Available Stock</span>
+                            <strong>500 kg</strong>
+                        </div>
+                    </div>
+
+                    <button type="button" class="primary-btn"
+                        onclick="openRequest('Nimal Perera','farmer_nimal_001')">
+                        <i class="bi bi-send"></i> Send Request
+                    </button>
+                </article>
+
+                <article class="listing-card">
+                    <div class="farmer-icon"><i class="bi bi-person-fill"></i></div>
+                    <h3>Sunil Fernando</h3>
+                    <p>Rubber farmer</p>
+
+                    <div class="rubber-info">
+                        <div class="info-row">
+                            <span>Rubber Type</span>
+                            <strong>Raw Rubber</strong>
+                        </div>
+                        <div class="info-row">
+                            <span>Available Stock</span>
+                            <strong>350 kg</strong>
+                        </div>
+                    </div>
+
+                    <button type="button" class="primary-btn"
+                        onclick="openRequest('Sunil Fernando','farmer_sunil_001')">
+                        <i class="bi bi-send"></i> Send Request
+                    </button>
+                </article>
+
+                <article class="listing-card">
+                    <div class="farmer-icon"><i class="bi bi-person-fill"></i></div>
+                    <h3>Kamal Wijesinghe</h3>
+                    <p>Rubber farmer</p>
+
+                    <div class="rubber-info">
+                        <div class="info-row">
+                            <span>Rubber Type</span>
+                            <strong>Raw Rubber</strong>
+                        </div>
+                        <div class="info-row">
+                            <span>Available Stock</span>
+                            <strong>400 kg</strong>
+                        </div>
+                    </div>
+
+                    <button type="button" class="primary-btn"
+                        onclick="openRequest('Kamal Wijesinghe','farmer_kamal_001')">
+                        <i class="bi bi-send"></i> Send Request
+                    </button>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="requests" class="history-section">
+            <div class="section-heading">
+                <h2>My Requests</h2>
+                <p>View the requests you have sent to farmers.</p>
+            </div>
+
+            <div id="requestHistory">
+                <div class="empty-message">Checking your login...</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        RubberLink — Connecting rubber farmers and buyers.
+    </footer>
+
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Send Request</h2>
+                <button type="button" class="close-btn"
+                    onclick="closeRequest()" aria-label="Close">&times;</button>
+            </div>
+
+            <p>Farmer: <strong id="farmerName"></strong></p>
+
+            <div id="successMessage" class="message success-message" role="status"></div>
+            <div id="errorMessage" class="message error-message" role="alert"></div>
+
+            <form id="requestForm">
+                <div class="form-group">
+                    <label for="quantity">Required Quantity (kg)</label>
+                    <input type="number" id="quantity" min="1" step="any" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Offered Price (Rs. per kg)</label>
+                    <input type="number" id="price" min="1" step="any" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="requestMessage">Message (optional)</label>
+                    <textarea id="requestMessage"
+                        placeholder="Write a message to the farmer..."></textarea>
+                </div>
+
+                <button type="submit" id="sendButton" class="primary-btn">
+                    <i class="bi bi-send-fill"></i> Send Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db } from "./js/firebase-config.js";
+
+        import {
+            collection,
+            addDoc,
+            serverTimestamp,
+            query,
+            where,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+        import {
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+        const historyElement = document.getElementById("requestHistory");
+        const modal = document.getElementById("requestModal");
+        const form = document.getElementById("requestForm");
+        const sendButton = document.getElementById("sendButton");
+
+        let currentUser = null;
+        let selectedFarmer = "";
+        let selectedFarmerId = "";
+
+        // Expose functions for HTML onclick handlers.
+        // Module functions are not global unless attached to window.
+        window.openRequest = function (farmerName, farmerId) {
+            selectedFarmer = farmerName;
+            selectedFarmerId = farmerId;
+
+            document.getElementById("farmerName").textContent = farmerName;
+            document.getElementById("successMessage").style.display = "none";
+            document.getElementById("errorMessage").style.display = "none";
+
+            form.reset();
+            modal.style.display = "flex";
+        };
+
+        window.closeRequest = function () {
+            modal.style.display = "none";
+        };
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                window.closeRequest();
+            }
+        });
+
+        function showError(message) {
+            const errorElement = document.getElementById("errorMessage");
+            errorElement.textContent = message;
+            errorElement.style.display = "block";
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            currentUser = user;
+
+            if (!user) {
+                historyElement.innerHTML =
+                    '<div class="empty-message">Please log in to see your request history. Log in to your RubberLink account and return to this page.</div>';
+                return;
+            }
+
+            await loadRequestHistory(user.uid);
+        });
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            document.getElementById("successMessage").style.display = "none";
+            document.getElementById("errorMessage").style.display = "none";
+
+            if (!currentUser) {
+                showError("Please log in before sending a request.");
+                return;
+            }
+
+            const quantity = Number(document.getElementById("quantity").value);
+            const offeredPrice = Number(document.getElementById("price").value);
+            const message = document.getElementById("requestMessage").value.trim();
+
+            if (!Number.isFinite(quantity) || quantity <= 0 ||
+                !Number.isFinite(offeredPrice) || offeredPrice <= 0) {
+                showError("Enter a valid quantity and offered price.");
+                return;
+            }
+
+            if (!selectedFarmerId || !selectedFarmer) {
+                showError("Please select a farmer first.");
+                return;
+            }
+
+            sendButton.disabled = true;
+            sendButton.textContent = "Sending...";
+
+            try {
+                await addDoc(collection(db, "requests"), {
+                    buyerId: currentUser.uid,
+                    buyerEmail: currentUser.email || "",
+                    farmerId: selectedFarmerId,
+                    farmerName: selectedFarmer,
+                    quantity: quantity,
+                    offeredPrice: offeredPrice,
+                    message: message,
+                    status: "pending",
+                    createdAt: serverTimestamp()
+                });
+
+                const successElement = document.getElementById("successMessage");
+                successElement.textContent = "Request saved successfully!";
+                successElement.style.display = "block";
+
+                form.reset();
+                await loadRequestHistory(currentUser.uid);
+
+            } catch (error) {
+                console.error("Request save error:", error);
+                showError("Could not save request: " + error.message);
+            } finally {
+                sendButton.disabled = false;
+                sendButton.innerHTML = '<i class="bi bi-send-fill"></i> Send Request';
+            }
+        });
+
+        async function loadRequestHistory(userId) {
+            historyElement.innerHTML =
+                '<div class="empty-message">Loading your requests...</div>';
+
+            try {
+                const requestsQuery = query(
+                    collection(db, "requests"),
+                    where("buyerId", "==", userId)
+                );
+
+                const snapshot = await getDocs(requestsQuery);
+
+                if (snapshot.empty) {
+                    historyElement.innerHTML =
+                        '<div class="empty-message">You have not sent any requests yet.</div>';
+                    return;
+                }
+
+                const requests = snapshot.docs.map((document) => document.data());
+
+                requests.sort((a, b) => {
+                    const timeA = a.createdAt?.toMillis?.() || 0;
+                    const timeB = b.createdAt?.toMillis?.() || 0;
+                    return timeB - timeA;
+                });
+
+                historyElement.innerHTML = "";
+
+                requests.forEach((request) => {
+                    const card = document.createElement("article");
+                    card.className = "listing-card";
+
+                    const status = document.createElement("span");
+                    status.className = "request-status";
+                    status.textContent = request.status || "pending";
+                    card.appendChild(status);
+
+                    const heading = document.createElement("h3");
+                    heading.textContent = request.farmerName || "Farmer";
+                    card.appendChild(heading);
+
+                    const details = document.createElement("div");
+                    details.className = "rubber-info";
+
+                    addDetail(details, "Quantity", `${Number(request.quantity) || 0} kg`);
+                    addDetail(details, "Offered Price", `Rs. ${Number(request.offeredPrice) || 0}/kg`);
+
+                    const dateText = request.createdAt?.toDate
+                        ? request.createdAt.toDate().toLocaleString()
+                        : "Just now";
+
+                    addDetail(details, "Date", dateText);
+                    card.appendChild(details);
+
+                    const message = document.createElement("p");
+                    message.textContent = request.message || "No message added.";
+                    card.appendChild(message);
+
+                    historyElement.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("History loading error:", error);
+                historyElement.innerHTML =
+                    '<div class="empty-message">Could not load history. Check Firebase authentication and Firestore rules.</div>';
+            }
+        }
+
+        function addDetail(container, label, value) {
+            const row = document.createElement("div");
+            row.className = "info-row";
+
+            const labelElement = document.createElement("span");
+            labelElement.textContent = label;
+
+            const valueElement = document.createElement("strong");
+            valueElement.textContent = value;
+
+            row.append(labelElement, valueElement);
+            container.appendChild(row);
+        }
+    </script>
+
+</body>
+</html>

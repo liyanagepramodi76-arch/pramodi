@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubora | Buyer Requests</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4, #fff7ed);
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 20px #0000000f;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            color: #166534;
+        }
+
+        .site-logo { width: 52px; height: 52px; object-fit: contain; }
+        .logo span { color: #f97316; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover { color: #16a34a; }
+
+        .hero {
+            padding: 65px 20px 35px;
+            text-align: center;
+        }
+
+        .hero small {
+            color: #16a34a;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(34px, 5vw, 50px);
+            margin: 15px 0;
+            color: #10251a;
+        }
+
+        .hero h1 span { color: #16a34a; }
+        .hero p { color: #64748b; font-size: 17px; }
+
+        .filter-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px #0000000d;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .filter-bar input, .filter-bar select {
+            flex: 1;
+            min-width: 170px;
+            padding: 13px;
+            border: 1px solid #dbe5dd;
+            border-radius: 10px;
+            font-size: 15px;
+            background: white;
+        }
+
+        button { font-family: inherit; cursor: pointer; }
+
+        .search-btn, .request-btn, .send-btn {
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            padding: 13px 20px;
+            background: #166534;
+        }
+
+        .search-btn:hover, .request-btn:hover { background: #14532d; }
+
+        .listings {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px 50px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 24px;
+        }
+
+        .section-title h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #10251a;
+        }
+
+        .section-title p { color: #64748b; margin-top: 5px; }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .listing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 12px 35px #0000000d;
+            transition: .2s;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px #00000016;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 18px;
+        }
+
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #bbf7d0, #fde68a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .profile h3 { font-size: 18px; overflow-wrap: anywhere; }
+        .profile small { color: #64748b; }
+
+        .rubber-info {
+            background: #f8fafc;
+            border-radius: 13px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .info-row:last-child { margin-bottom: 0; }
+        .info-row span { color: #64748b; }
+        .info-row strong { color: #166534; text-align: right; }
+        .price { color: #ea580c !important; }
+
+        .request-btn { width: 100%; margin-top: 5px; }
+
+        .message {
+            padding: 18px;
+            border-radius: 12px;
+            background: white;
+            color: #64748b;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #0f172aab;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #166534;
+        }
+
+        .close-btn {
+            border: none;
+            background: none;
+            font-size: 28px;
+            color: #64748b;
+        }
+
+        .form-group { margin-bottom: 17px; }
+        .form-group label { display: block; margin-bottom: 7px; font-weight: 600; }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #dbe5dd;
+            border-radius: 10px;
+            font: inherit;
+        }
+
+        .form-group textarea { min-height: 90px; resize: vertical; }
+        .send-btn { width: 100%; background: #f97316; }
+        .send-btn:hover { background: #ea580c; }
+        .send-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+        .success-message {
+            display: none;
+            margin-top: 15px;
+            padding: 13px;
+            border-radius: 10px;
+            background: #dcfce7;
+            color: #166534;
+            text-align: center;
+        }
+
+        .notification {
+            position: relative;
+            border: none;
+            background: none;
+            color: #166534;
+            font-size: 23px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #ef4444;
+            color: white;
+            border-radius: 20px;
+            font-size: 11px;
+            padding: 3px 6px;
+        }
+
+        .hidden { display: none !important; }
+
+        .toast {
+            display: none;
+            position: fixed;
+            right: 20px;
+            top: 85px;
+            background: white;
+            color: #166534;
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px #0002;
+            z-index: 200;
+        }
+
+        .toast.show { display: block; }
+
+        body.dark-mode { background: #0f172a; color: #f8fafc; }
+        body.dark-mode .navbar,
+        body.dark-mode .filter-bar,
+        body.dark-mode .listing-card,
+        body.dark-mode .modal-content,
+        body.dark-mode .toast { background: #1e293b; color: #f8fafc; }
+        body.dark-mode .hero h1,
+        body.dark-mode .section-title h2 { color: #f8fafc; }
+        body.dark-mode .profile h3 { color: #f8fafc; }
+        body.dark-mode .rubber-info { background: #273549; }
+        body.dark-mode .info-row span,
+        body.dark-mode .profile small,
+        body.dark-mode .section-title p { color: #cbd5e1; }
+        body.dark-mode .filter-bar input,
+        body.dark-mode .filter-bar select,
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea {
+            background: #273549;
+            color: white;
+            border-color: #475569;
+        }
+
+        @media (max-width: 700px) {
+            .navbar { padding: 12px 18px; }
+            .nav-links { gap: 12px; }
+            .nav-links a { display: none; }
+            .site-logo { width: 42px; height: 42px; }
+            .logo { font-size: 23px; }
+            .filter-bar { margin: 0 15px; }
+            .section-title { align-items: flex-start; flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="img/Ruboralogo.png" alt="Rubora Logo" class="site-logo">
+            <span>Rubora</span>
+        </div>
+
+        <div class="nav-links">
+            <button id="darkModeToggle" class="search-btn" type="button" title="Toggle dark mode">
+                <i class="bi bi-moon-stars-fill"></i>
+            </button>
+            <a href="index.html">Home</a>
+            <a href="#listings">Buyer Requests</a>
+            <button class="notification" id="notifBell" type="button" title="Notifications">
+                <i class="bi bi-bell-fill"></i>
+                <span class="badge hidden" id="notifBadge">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="toast" id="toast"></div>
+
+    <section class="hero">
+        <small>CONNECT WITH BUYERS</small>
+        <h1>Buyer <span>Requests</span></h1>
+        <p>Browse registered buyers and send your rubber offer directly.</p>
+    </section>
+
+    <div class="filter-bar">
+        <input type="text" id="locationSearch" placeholder="Search by buyer location...">
+
+        <select id="typeFilter">
+            <option value="">All Rubber Types</option>
+            <option value="RSS">RSS</option>
+            <option value="Latex">Latex</option>
+            <option value="TSR">TSR</option>
+        </select>
+
+        <input type="number" id="priceFilter" min="0" placeholder="Minimum buying price">
+
+        <button class="search-btn" id="searchBtn" type="button">
+            <i class="bi bi-search"></i> Search
+        </button>
+    </div>
+
+    <section class="listings" id="listings">
+        <div class="section-title">
+            <div>
+                <h2>Registered Buyers</h2>
+                <p>Choose a buyer and send your offer.</p>
+            </div>
+            <span id="resultCount">Loading buyers...</span>
+        </div>
+
+        <div class="listing-grid" id="listingGrid">
+            <div class="message">Loading buyers from Firebase...</div>
+        </div>
+    </section>
+
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Send Offer</h2>
+                <button class="close-btn" id="closeModalBtn" type="button">&times;</button>
+            </div>
+
+            <p>Send your offer to: <strong id="buyerName"></strong></p>
+            <br>
+
+            <div class="form-group">
+                <label for="quantity">Your Available Quantity (kg)</label>
+                <input type="number" id="quantity" min="1" placeholder="Example: 600">
+            </div>
+
+            <div class="form-group">
+                <label for="price">Your Asking Price (Rs. per kg)</label>
+                <input type="number" id="price" min="1" placeholder="Example: 860">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Write your message..."></textarea>
+            </div>
+
+            <button class="send-btn" id="sendOfferBtn" type="button">
+                <i class="bi bi-send-fill"></i> Send Offer
+            </button>
+
+            <div class="success-message" id="successMessage">
+                Offer sent successfully!
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db } from "./js/firebase-config.js";
+
+        import {
+            collection,
+            getDocs,
+            addDoc,
+            doc,
+            getDoc,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+        import {
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+        const $ = (id) => document.getElementById(id);
+
+        let currentUser = null;
+        let selectedBuyerId = "";
+        let selectedBuyerName = "";
+        let buyers = [];
+
+        const grid = $("listingGrid");
+        const modal = $("requestModal");
+        const sendButton = $("sendOfferBtn");
+
+        function showToast(message) {
+            const toast = $("toast");
+            toast.textContent = message;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 3500);
+        }
+
+        function openOffer(buyerId, buyerName) {
+            if (!currentUser) {
+                alert("Please log in before sending an offer.");
+                return;
+            }
+
+            selectedBuyerId = buyerId;
+            selectedBuyerName = buyerName;
+            $("buyerName").textContent = buyerName;
+            $("quantity").value = "";
+            $("price").value = "";
+            $("message").value = "";
+            $("successMessage").style.display = "none";
+            modal.style.display = "flex";
+        }
+
+        function closeRequest() {
+            modal.style.display = "none";
+        }
+
+        $("closeModalBtn").addEventListener("click", closeRequest);
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) closeRequest();
+        });
+
+        function makeInfoRow(label, value, extraClass = "") {
+            const row = document.createElement("div");
+            row.className = "info-row";
+
+            const left = document.createElement("span");
+            left.textContent = label;
+
+            const right = document.createElement("strong");
+            right.textContent = value;
+            if (extraClass) right.className = extraClass;
+
+            row.append(left, right);
+            return row;
+        }
+
+        function renderBuyers(list) {
+            grid.innerHTML = "";
+
+            if (list.length === 0) {
+                grid.innerHTML = '<div class="message">No registered buyers match your search.</div>';
+                $("resultCount").textContent = "0 Buyers Found";
+                return;
+            }
+
+            $("resultCount").textContent =
+                list.length + (list.length === 1 ? " Buyer Found" : " Buyers Found");
+
+            list.forEach((buyer) => {
+                const card = document.createElement("article");
+                card.className = "listing-card";
+
+                const status = document.createElement("span");
+                status.className = "status";
+                status.textContent = buyer.status || "Buyer";
+
+                const profile = document.createElement("div");
+                profile.className = "profile";
+
+                const icon = document.createElement("div");
+                icon.className = "profile-icon";
+                icon.textContent = "🏭";
+
+                const identity = document.createElement("div");
+                const title = document.createElement("h3");
+                title.textContent = buyer.companyName || buyer.name || "Registered Buyer";
+
+                const location = document.createElement("small");
+                location.textContent = "📍 " + (buyer.district || "Sri Lanka");
+
+                identity.append(title, location);
+                profile.append(icon, identity);
+
+                const info = document.createElement("div");
+                info.className = "rubber-info";
+                info.append(
+                    makeInfoRow("Rubber Type Needed", buyer.rubberType || "Not specified"),
+                    makeInfoRow(
+                        "Required Quantity",
+                        (buyer.quantity ?? 0) + " kg"
+                    ),
+                    makeInfoRow(
+                        "Buying Price",
+                        "Rs. " + (buyer.price ?? 0) + "/kg",
+                        "price"
+                    )
+                );
+
+                const button = document.createElement("button");
+                button.className = "request-btn";
+                button.type = "button";
+                button.innerHTML = '<i class="bi bi-send"></i> Send Offer';
+                button.addEventListener("click", () => {
+                    openOffer(buyer.id, buyer.companyName || buyer.name || "Registered Buyer");
+                });
+
+                card.append(status, profile, info, button);
+                grid.appendChild(card);
+            });
+        }
+
+        async function loadBuyers() {
+            grid.innerHTML = '<div class="message">Loading registered buyers...</div>';
+
+            try {
+                const snapshot = await getDocs(collection(db, "users"));
+                buyers = [];
+
+                snapshot.forEach((item) => {
+                    const data = item.data();
+
+                    if (data.userType !== "buyer") return;
+                    if (currentUser && item.id === currentUser.uid) return;
+
+                    if (
+                        data.status === "Not Buying" ||
+                        Number(data.quantity) === 0
+                    ) return;
+
+                    buyers.push({
+                        id: item.id,
+                        ...data
+                    });
+                });
+
+                applyFilters();
+            } catch (error) {
+                console.error("Could not load buyers:", error);
+                grid.innerHTML =
+                    '<div class="message">Could not load buyers. Check your Firebase Firestore rules and browser Console. Error: ' +
+                    error.message.replace(/</g, "&lt;") + '</div>';
+                $("resultCount").textContent = "Could not load buyers";
+            }
+        }
+
+        function applyFilters() {
+            const locationValue = $("locationSearch").value.trim().toLowerCase();
+            const typeValue = $("typeFilter").value.trim().toLowerCase();
+            const minimumPrice = Number($("priceFilter").value || 0);
+
+            const filtered = buyers.filter((buyer) => {
+                const location = (buyer.district || "").toLowerCase();
+                const type = (buyer.rubberType || "").toLowerCase();
+                const price = Number(buyer.price || 0);
+
+                return (
+                    location.includes(locationValue) &&
+                    (!typeValue || type === typeValue) &&
+                    price >= minimumPrice
+                );
+            });
+
+            renderBuyers(filtered);
+        }
+
+        $("searchBtn").addEventListener("click", applyFilters);
+        $("locationSearch").addEventListener("input", applyFilters);
+        $("typeFilter").addEventListener("change", applyFilters);
+        $("priceFilter").addEventListener("input", applyFilters);
+
+        async function sendRequest() {
+            if (!currentUser) {
+                alert("Please log in again.");
+                return;
+            }
+
+            if (!selectedBuyerId) {
+                alert("Please select a buyer.");
+                return;
+            }
+
+            const quantityText = $("quantity").value.trim();
+            const priceText = $("price").value.trim();
+            const message = $("message").value.trim();
+
+            const quantity = Number(quantityText);
+            const price = Number(priceText);
+
+            if (
+                quantityText === "" ||
+                priceText === "" ||
+                !Number.isFinite(quantity) ||
+                !Number.isFinite(price) ||
+                quantity <= 0 ||
+                price <= 0
+            ) {
+                alert("Please enter a valid quantity and price greater than zero.");
+                return;
+            }
+
+            sendButton.disabled = true;
+            sendButton.textContent = "Sending Offer...";
+
+            try {
+                const farmerSnap = await getDoc(doc(db, "users", currentUser.uid));
+                const farmerData = farmerSnap.exists() ? farmerSnap.data() : {};
+
+                await addDoc(collection(db, "requests"), {
+                    type: "farmer_offer",
+                    farmerId: currentUser.uid,
+                    farmerName:
+                        farmerData.fullName ||
+                        farmerData.name ||
+                        farmerData.contactPerson ||
+                        currentUser.displayName ||
+                        "Farmer",
+                    farmerEmail: currentUser.email || "",
+                    buyerId: selectedBuyerId,
+                    buyerName: selectedBuyerName,
+                    quantity,
+                    offeredPrice: price,
+                    message,
+                    status: "pending",
+                    createdAt: serverTimestamp()
+                });
+
+                $("successMessage").style.display = "block";
+                showToast("Offer sent successfully to " + selectedBuyerName + "!");
+                $("quantity").value = "";
+                $("price").value = "";
+                $("message").value = "";
+
+                setTimeout(closeRequest, 1500);
+            } catch (error) {
+                console.error("Offer could not be saved:", error);
+                alert(
+                    "Offer could not be saved. Check Firestore permissions.\n\n" +
+                    error.message
+                );
+            } finally {
+                sendButton.disabled = false;
+                sendButton.innerHTML = '<i class="bi bi-send-fill"></i> Send Offer';
+            }
+        }
+
+        sendButton.addEventListener("click", sendRequest);
+
+        $("notifBell").addEventListener("click", () => {
+            showToast("Notifications for offers will be connected to Firebase separately.");
+        });
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            currentUser = user;
+            await loadBuyers();
+        });
+    </script>
+
+    <script src="js/darkmode.js"></script>
+    <script src="js/google-translate.js"></script>
+</body>
+</html>
