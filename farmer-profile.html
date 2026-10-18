@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Profile | Rubora</title>
+
+    <link rel="stylesheet" href="css/farmer-profile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        .farmer-requests-section {
+            margin: 25px 35px;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e0e7e2;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        }
+
+        .farmer-requests-section h2 {
+            margin: 0 0 8px;
+            color: #173b27;
+            font-size: 20px;
+        }
+
+        .farmer-requests-section > p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        #incomingRequestsList,
+        #farmerSentRequests {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .farmer-request-card {
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            background: #f8fafc;
+            overflow-wrap: anywhere;
+            transition: 0.2s;
+        }
+
+        .farmer-request-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .farmer-request-card h3 {
+            margin: 0 0 12px;
+            color: #176638;
+            font-size: 18px;
+        }
+
+        .farmer-request-card p {
+            margin: 8px 0;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        .request-status {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: capitalize;
+            margin-top: 6px;
+        }
+
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-accepted { background: #dcfce7; color: #166534; }
+        .status-rejected { background: #fee2e2; color: #991b1b; }
+
+        .request-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .accept-btn,
+        .reject-btn {
+            flex: 1;
+            padding: 10px 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+            color: white;
+        }
+
+        .accept-btn { background: #16a34a; }
+        .accept-btn:hover { background: #15803d; }
+        .reject-btn { background: #dc2626; }
+        .reject-btn:hover { background: #b91c1c; }
+
+        body.dark-mode .farmer-requests-section { background: #1e293b; border-color: #334155; }
+        body.dark-mode .farmer-requests-section h2 { color: #4ade80; }
+        body.dark-mode .farmer-request-card { background: #273549; border-color: #475569; }
+        body.dark-mode .farmer-request-card h3 { color: #f8fafc; }
+        body.dark-mode .farmer-request-card p { color: #cbd5e1; }
+    </style>
+</head>
+
+<body>
+    <header class="top-navbar">
+        <div class="logo notranslate" translate="no">
+            <img src="img/Ruboralogo.png" alt="Rubora Logo" class="site-logo">
+            <span class="brand-name notranslate" translate="no">Rubora</span>
+        </div>
+
+        <nav class="top-menu">
+            <a href="index.html">Home</a>
+            <a href="request-buyer.html">Connect & Request</a>
+            <a href="index.html" id="logoutBtn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="profile-page">
+        <div id="toast" class="toast"><span>✓</span><div id="toastMessage">Profile updated successfully!</div></div>
+
+        <main class="profile-card">
+            <section class="profile-header">
+                <div class="photo-wrapper">
+                    <div class="default-avatar" id="defaultAvatar"><span>👩‍🌾</span></div>
+                    <img id="profileImage" alt="Farmer Profile" style="display: none;">
+                    <label for="photoUpload" class="change-photo" id="changePhotoLabel">Change Photo</label>
+                    <input type="file" id="photoUpload" accept="image/*" disabled>
+                </div>
+
+                <div class="profile-heading">
+                    <span class="role-badge">Farmer</span>
+                    <h1 id="displayName">Farmer Name</h1>
+                    <p class="location-text"><span class="location-dot">●</span><span id="displayLocation">Sri Lanka</span></p>
+                    <span class="availability" id="displayAvailability">● Available for Selling</span>
+                </div>
+
+                <button type="button" id="editBtn" class="edit-button">Edit Profile</button>
+            </section>
+
+            <section class="summary-section">
+                <div class="summary-card">
+                    <div class="summary-icon">🌿</div>
+                    <div class="summary-content"><span>Rubber Type</span><strong id="summaryType">Latex</strong></div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">⚖</div>
+                    <div class="summary-content"><span>Available Stock</span><strong id="summaryStock">0 kg</strong></div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon currency-icon">Rs.</div>
+                    <div class="summary-content"><span>Selling Price</span><strong id="summaryPrice">Rs. 0/kg</strong></div>
+                </div>
+            </section>
+
+            <section class="information-grid">
+                <div class="information-card">
+                    <div class="section-heading"><h2>Personal Information</h2><p>Your contact and location details</p></div>
+                    <div class="form-group"><label for="fullName">Full Name</label><input type="text" id="fullName" disabled></div>
+                    <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" disabled></div>
+                    <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" disabled></div>
+                    <div class="form-group"><label for="district">District</label>
+                        <select id="district" disabled>
+                            <option value="">Select District</option>
+                            <option>Ampara</option><option>Anuradhapura</option><option>Badulla</option><option>Batticaloa</option><option>Colombo</option><option>Galle</option><option>Gampaha</option><option>Hambantota</option><option>Jaffna</option><option>Kalutara</option><option>Kandy</option><option>Kegalle</option><option>Kilinochchi</option><option>Kurunegala</option><option>Mannar</option><option>Matale</option><option>Matara</option><option>Monaragala</option><option>Mullaitivu</option><option>Nuwara Eliya</option><option>Polonnaruwa</option><option>Puttalam</option><option>Ratnapura</option><option>Trincomalee</option><option>Vavuniya</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="address">Address</label><input type="text" id="address" disabled></div>
+                </div>
+
+                <div class="information-card">
+                    <div class="section-heading"><h2>Rubber Information</h2><p>Your current rubber selling details</p></div>
+                    <div class="form-group"><label for="rubberType">Rubber Type</label>
+                        <select id="rubberType" disabled><option>Latex</option><option>RSS</option><option>Sheet Rubber</option><option>Crepe Rubber</option><option>Scrap Rubber</option></select>
+                    </div>
+                    <div class="form-group"><label for="quality">Rubber Quality</label>
+                        <select id="quality" disabled><option>Grade A</option><option>Grade B</option><option>Grade C</option></select>
+                    </div>
+                    <div class="form-group"><label for="stock">Available Stock (kg)</label><input type="number" id="stock" disabled></div>
+                    <div class="form-group"><label for="price">Selling Price (Rs/kg)</label><input type="number" id="price" disabled></div>
+                    <div class="form-group"><label for="status">Availability Status</label>
+                        <select id="status" disabled><option value="Available">Available</option><option value="Out of Stock">Out of Stock</option></select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-card">
+                <div class="section-heading"><h2>About Me</h2><p>A short introduction for buyers</p></div>
+                <div class="form-group"><textarea id="about" rows="3" disabled></textarea></div>
+            </section>
+
+            <div class="action-area" id="actionArea">
+                <button type="button" id="cancelBtn" class="cancel-button">Cancel</button>
+                <button type="button" id="saveBtn" class="save-button">✓ Save Changes</button>
+            </div>
+
+            <!-- INCOMING BUYER REQUESTS (Buyer -> Farmer) [WITH ACCEPT/REJECT] -->
+            <section class="farmer-requests-section" id="incomingRequests">
+                <h2>📩 Incoming Buyer Requests</h2>
+                <p>Requests sent to you by rubber buyers (Accept / Reject).</p>
+                <div id="incomingRequestsList"><p>Loading buyer requests...</p></div>
+            </section>
+
+            <!-- MY SENT REQUESTS (Farmer -> Buyer) -->
+            <section class="farmer-requests-section">
+                <h2>📤 My Sent Requests (To Buyers)</h2>
+                <p>Requests and offers you have sent to company buyers.</p>
+                <div id="farmerSentRequests"><p>Loading your sent requests...</p></div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="js/farmer-profile.js"></script>
+    <script type="module" src="js/logout.js"></script>
+    <script src="js/darkmode.js"></script>
+    <script src="js/google-translate.js"></script>
+</body>
+</html>

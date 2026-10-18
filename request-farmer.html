@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubora | Connect with Farmers</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4, #fff7ed);
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #166534;
+        }
+
+        .logo span { color: #f97316; }
+        .site-logo { width: 48px; height: 48px; object-fit: contain; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover { color: #16a34a; }
+
+        .dark-mode-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid #dbe5dd;
+            background: white;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .hero {
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+
+        .hero small {
+            color: #16a34a;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(32px, 5vw, 46px);
+            margin: 12px 0;
+            color: #10251a;
+        }
+
+        .hero h1 span { color: #16a34a; }
+        .hero p { color: #64748b; font-size: 16px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            color: #10251a;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            margin-bottom: 50px;
+        }
+
+        .listing-card, .history-card {
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: 0.3s ease;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.1);
+        }
+
+        .farmer-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: #dcfce7;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .rubber-info {
+            background: #f8fafc;
+            padding: 14px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .info-row:last-child { margin-bottom: 0; }
+        .info-row span { color: #64748b; }
+        .info-row strong { color: #166534; }
+
+        .primary-btn {
+            background: #166534;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .primary-btn:hover { background: #14532d; }
+
+        .history-section {
+            border-top: 2px dashed #dbe5dd;
+            padding-top: 40px;
+        }
+
+        .request-status {
+            display: inline-block;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: capitalize;
+        }
+
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-accepted { background: #dcfce7; color: #166534; }
+        .status-rejected { background: #fee2e2; color: #991b1b; }
+
+        .empty-message {
+            background: white;
+            border-radius: 14px;
+            padding: 35px;
+            color: #64748b;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            padding: 28px;
+            border-radius: 20px;
+            margin: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .modal-header h2 { font-size: 22px; color: #166534; }
+
+        .close-btn {
+            border: none;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 14px; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-group textarea { min-height: 85px; resize: vertical; }
+
+        footer {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            color: #64748b;
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        body.dark-mode { background: #0f172a; color: #f8fafc; }
+        body.dark-mode .navbar,
+        body.dark-mode .listing-card,
+        body.dark-mode .history-card,
+        body.dark-mode .empty-message,
+        body.dark-mode .modal-content,
+        body.dark-mode footer { background: #1e293b; color: #f8fafc; }
+        body.dark-mode .hero h1, body.dark-mode .section-header h2, body.dark-mode h3 { color: #f8fafc; }
+        body.dark-mode .rubber-info { background: #273549; }
+        body.dark-mode .info-row span { color: #94a3b8; }
+        body.dark-mode input, body.dark-mode textarea, body.dark-mode select {
+            background: #273549; color: white; border-color: #475569;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo notranslate" translate="no">
+            <img src="img/Ruboralogo.png" alt="Rubora Logo" class="site-logo">
+            Rub<span>ora</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="buyer-profile.html">Buyer Profile</a>
+            <a href="#requests">My Requests</a>
+            <button id="darkModeToggle" class="dark-mode-btn" type="button">
+                <i class="bi bi-moon-stars-fill"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <small>CONNECT WITH FARMERS</small>
+        <h1>Find Your <span>Rubber Farmers</span></h1>
+        <p>Send buying requests to farmers and track current request statuses.</p>
+    </header>
+
+    <main class="container">
+
+        <section id="farmers">
+            <div class="section-header">
+                <h2>Available Rubber Farmers</h2>
+                <span id="farmerCount" style="color: #64748b;">Loading farmers...</span>
+            </div>
+
+            <div class="listing-grid" id="farmersGrid">
+                <div class="empty-message">Loading farmers from Firebase...</div>
+            </div>
+        </section>
+
+        <!-- Sent Requests (History) Section -->
+        <section id="requests" class="history-section">
+            <div class="section-header">
+                <h2>My Sent Requests (History)</h2>
+                <span id="historyCount" style="color: #64748b;">Loading history...</span>
+            </div>
+
+            <div class="listing-grid" id="requestHistory">
+                <div class="empty-message">Checking your login...</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 Rubora — Connecting Sri Lankan Rubber Farmers and Buyers.
+    </footer>
+
+    <!-- Request Modal -->
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Send Request to Farmer</h2>
+                <button type="button" class="close-btn" onclick="closeRequest()" aria-label="Close">&times;</button>
+            </div>
+
+            <p style="margin-bottom: 16px; color: #64748b;">
+                Farmer: <strong id="farmerName" style="color: #166534;"></strong>
+            </p>
+
+            <form id="requestForm">
+                <div class="form-group">
+                    <label for="reqRubberType">Rubber Type *</label>
+                    <select id="reqRubberType" required>
+                        <option value="Latex">Latex</option>
+                        <option value="RSS">RSS</option>
+                        <option value="Crepe Rubber">Crepe Rubber</option>
+                        <option value="Raw Rubber">Raw Rubber</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Required Quantity (kg) *</label>
+                    <input type="number" id="quantity" min="1" step="any" placeholder="e.g. 500" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Offered Price (Rs. per kg) *</label>
+                    <input type="number" id="price" min="1" step="any" placeholder="e.g. 850" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="requestMessage">Message (optional)</label>
+                    <textarea id="requestMessage" placeholder="Write a message to the farmer..."></textarea>
+                </div>
+
+                <button type="submit" id="sendButton" class="primary-btn">
+                    <i class="bi bi-send-fill"></i> Send Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db } from "./js/firebase-config.js";
+        import {
+            collection,
+            addDoc,
+            serverTimestamp,
+            query,
+            where,
+            getDocs,
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+        import {
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+        const farmersGrid = document.getElementById("farmersGrid");
+        const historyElement = document.getElementById("requestHistory");
+        const modal = document.getElementById("requestModal");
+        const form = document.getElementById("requestForm");
+        const sendButton = document.getElementById("sendButton");
+
+        let currentUser = null;
+        let buyerData = {};
+        let selectedFarmer = "";
+        let selectedFarmerId = "";
+
+        window.openRequest = function (farmerName, farmerId, defaultType, defaultPrice) {
+            if (!currentUser) {
+                alert("Please log in first to send a request.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            selectedFarmer = farmerName;
+            selectedFarmerId = farmerId;
+
+            document.getElementById("farmerName").textContent = farmerName;
+            if (defaultType) document.getElementById("reqRubberType").value = defaultType;
+            if (defaultPrice) document.getElementById("price").value = defaultPrice;
+
+            form.reset();
+            modal.style.display = "flex";
+        };
+
+        window.closeRequest = function () {
+            modal.style.display = "none";
+        };
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) window.closeRequest();
+        });
+
+        // Load Farmers from Firebase Users
+        async function loadFarmers() {
+            try {
+                const snapshot = await getDocs(collection(db, "users"));
+                const farmers = [];
+
+                snapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    if (data.userType === "farmer") {
+                        farmers.push({ id: docSnap.id, ...data });
+                    }
+                });
+
+                document.getElementById("farmerCount").textContent = `${farmers.length} Farmers Available`;
+                farmersGrid.innerHTML = "";
+
+                if (farmers.length === 0) {
+                    farmersGrid.innerHTML = '<div class="empty-message">No registered farmers found at the moment.</div>';
+                    return;
+                }
+
+                farmers.forEach(f => {
+                    const name = f.name || f.fullName || "Rubber Farmer";
+                    const district = f.district || "Sri Lanka";
+                    const type = f.rubberType || "Latex";
+                    const stock = f.stock || 0;
+                    const price = f.price || 0;
+
+                    const card = document.createElement("article");
+                    card.className = "listing-card";
+                    card.innerHTML = `
+                        <div class="farmer-icon"><i class="bi bi-person-fill"></i></div>
+                        <h3>${name}</h3>
+                        <p style="color:#64748b; font-size:14px;"><i class="bi bi-geo-alt"></i> ${district}</p>
+
+                        <div class="rubber-info">
+                            <div class="info-row">
+                                <span>Rubber Type:</span>
+                                <strong>${type}</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Available Stock:</span>
+                                <strong>${stock} kg</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Expected Price:</span>
+                                <strong>Rs. ${price}/kg</strong>
+                            </div>
+                        </div>
+
+                        <button type="button" class="primary-btn"
+                            onclick="openRequest('${name}', '${f.id}', '${type}', '${price}')">
+                            <i class="bi bi-send"></i> Send Request
+                        </button>
+                    `;
+                    farmersGrid.appendChild(card);
+                });
+
+            } catch (err) {
+                console.error("Error loading farmers:", err);
+                farmersGrid.innerHTML = `<div class="empty-message">Failed to load farmers: ${err.message}</div>`;
+            }
+        }
+
+        // Send Request to Farmer
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            if (!currentUser || !selectedFarmerId) return;
+
+            const rubberType = document.getElementById("reqRubberType").value;
+            const quantity = Number(document.getElementById("quantity").value);
+            const offeredPrice = Number(document.getElementById("price").value);
+            const message = document.getElementById("requestMessage").value.trim();
+
+            sendButton.disabled = true;
+            sendButton.textContent = "Sending...";
+
+            try {
+                await addDoc(collection(db, "requests"), {
+                    type: "buyer_to_farmer",
+                    senderRole: "buyer",
+                    buyerId: currentUser.uid,
+                    buyerName: buyerData.companyName || buyerData.name || currentUser.email.split("@")[0],
+                    buyerEmail: currentUser.email || "",
+                    farmerId: selectedFarmerId,
+                    farmerName: selectedFarmer,
+                    rubberType: rubberType,
+                    quantity: quantity,
+                    offeredPrice: offeredPrice,
+                    message: message,
+                    status: "pending",
+                    createdAt: serverTimestamp()
+                });
+
+                alert("✅ Request sent to " + selectedFarmer + " successfully!");
+                form.reset();
+                window.closeRequest();
+                await loadRequestHistory(currentUser.uid);
+
+            } catch (error) {
+                console.error("Request save error:", error);
+                alert("Could not save request: " + error.message);
+            } finally {
+                sendButton.disabled = false;
+                sendButton.innerHTML = '<i class="bi bi-send-fill"></i> Send Request';
+            }
+        });
+
+        // Load History
+        async function loadRequestHistory(userId) {
+            historyElement.innerHTML = '<div class="empty-message">Loading your requests...</div>';
+
+            try {
+                const requestsQuery = query(
+                    collection(db, "requests"),
+                    where("buyerId", "==", userId),
+                    where("type", "==", "buyer_to_farmer")
+                );
+
+                const snapshot = await getDocs(requestsQuery);
+                document.getElementById("historyCount").textContent = `${snapshot.size} Requests Sent`;
+
+                if (snapshot.empty) {
+                    historyElement.innerHTML = '<div class="empty-message">You have not sent any requests yet.</div>';
+                    return;
+                }
+
+                const requests = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+
+                requests.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+
+                historyElement.innerHTML = "";
+                requests.forEach((req) => {
+                    const statusClass = req.status === "accepted" ? "status-accepted" : 
+                                        req.status === "rejected" ? "status-rejected" : "status-pending";
+
+                    const dateText = req.createdAt?.toDate ? req.createdAt.toDate().toLocaleDateString() : "Just now";
+
+                    const card = document.createElement("article");
+                    card.className = "history-card";
+                    card.innerHTML = `
+                        <span class="request-status ${statusClass}">${req.status || "pending"}</span>
+                        <h3>To: ${req.farmerName || "Farmer"}</h3>
+                        <p style="color:#64748b; font-size:14px;"><i class="bi bi-calendar3"></i> Sent: ${dateText}</p>
+                        <div class="rubber-info">
+                            <div class="info-row">
+                                <span>Rubber Type:</span>
+                                <strong>${req.rubberType || "N/A"}</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Quantity:</span>
+                                <strong>${req.quantity} kg</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Offered Price:</span>
+                                <strong style="color:#ea580c;">Rs. ${req.offeredPrice}/kg</strong>
+                            </div>
+                        </div>
+                        ${req.message ? `<p style="font-size:13px; color:#64748b;"><strong>Note:</strong> \${req.message}</p>` : ''}
+                    `;
+                    historyElement.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("History loading error:", error);
+                historyElement.innerHTML = '<div class="empty-message">Could not load history: ' + error.message + '</div>';
+            }
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                const bSnap = await getDoc(doc(db, "users", user.uid));
+                if (bSnap.exists()) buyerData = bSnap.data();
+
+                await loadFarmers();
+                await loadRequestHistory(user.uid);
+            } else {
+                currentUser = null;
+                await loadFarmers();
+                historyElement.innerHTML = '<div class="empty-message">Please <a href="login.html" style="color:#166534; font-weight:700;">login</a> to see your request history.</div>';
+            }
+        });
+    </script>
+
+    <script src="js/darkmode.js"></script>
+    <script src="js/google-translate.js"></script>
+</body>
+</html>

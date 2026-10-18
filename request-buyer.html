@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubora | Connect with Buyers</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4, #fff7ed);
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #166534;
+        }
+
+        .logo span { color: #f97316; }
+        .site-logo { width: 48px; height: 48px; object-fit: contain; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover { color: #16a34a; }
+
+        .dark-mode-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid #dbe5dd;
+            background: white;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .hero {
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+
+        .hero small {
+            color: #16a34a;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(32px, 5vw, 46px);
+            margin: 12px 0;
+            color: #10251a;
+        }
+
+        .hero h1 span { color: #16a34a; }
+        .hero p { color: #64748b; font-size: 16px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .filter-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .filter-panel input, .filter-panel select {
+            flex: 1;
+            min-width: 180px;
+            padding: 12px 16px;
+            border: 1px solid #dbe5dd;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .filter-panel input:focus, .filter-panel select:focus {
+            border-color: #16a34a;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            color: #10251a;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            margin-bottom: 50px;
+        }
+
+        .buyer-card, .history-card {
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: 0.3s ease;
+            position: relative;
+        }
+
+        .buyer-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.1);
+        }
+
+        .buyer-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: #dcfce7;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .buyer-card h3 {
+            font-size: 20px;
+            color: #10251a;
+            margin-bottom: 6px;
+        }
+
+        .location {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 18px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .info-row:last-child { margin-bottom: 0; }
+        .info-row span { color: #64748b; }
+        .info-row strong { color: #166534; }
+        .info-row strong.price { color: #ea580c; }
+
+        .btn-send {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #166534;
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-send:hover { background: #14532d; }
+
+        .history-section {
+            border-top: 2px dashed #dbe5dd;
+            padding-top: 40px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: capitalize;
+            margin-bottom: 12px;
+        }
+
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-accepted { background: #dcfce7; color: #166534; }
+        .status-rejected { background: #fee2e2; color: #991b1b; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px;
+            padding: 28px;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .modal-header h2 { font-size: 22px; color: #166534; }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #64748b;
+            cursor: pointer;
+        }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 14px; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dbe5dd;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-group textarea { min-height: 85px; resize: vertical; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: #166534;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover { background: #14532d; }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .empty-box {
+            text-align: center;
+            padding: 35px;
+            color: #64748b;
+            background: white;
+            border-radius: 14px;
+            grid-column: 1 / -1;
+        }
+
+        body.dark-mode { background: #0f172a; color: #f8fafc; }
+        body.dark-mode .navbar,
+        body.dark-mode .filter-panel,
+        body.dark-mode .buyer-card,
+        body.dark-mode .history-card,
+        body.dark-mode .modal-content,
+        body.dark-mode .empty-box { background: #1e293b; color: #f8fafc; }
+        body.dark-mode .hero h1, body.dark-mode .section-header h2, body.dark-mode .buyer-card h3 { color: #f8fafc; }
+        body.dark-mode .info-box { background: #273549; }
+        body.dark-mode .info-row span, body.dark-mode .location { color: #94a3b8; }
+        body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
+            background: #273549; color: white; border-color: #475569;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo notranslate" translate="no">
+            <img src="img/Ruboralogo.png" alt="Rubora Logo" class="site-logo">
+            Rub<span>ora</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="farmer-profile.html">Farmer Profile</a>
+            <a href="#history">My Requests</a>
+            <button id="darkModeToggle" class="dark-mode-btn" type="button">
+                <i class="bi bi-moon-stars-fill"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <small>CONNECT WITH REGISTERED BUYERS</small>
+        <h1>Send Requests To <span>Buyers</span></h1>
+        <p>Browse buyers, send your supply requirements, and track request statuses.</p>
+    </div>
+
+    <div class="container">
+
+        <div class="filter-panel">
+            <input type="text" id="buyerSearch" placeholder="🔍 Search company or district...">
+            <select id="typeFilter">
+                <option value="">All Rubber Types</option>
+                <option value="Latex">Latex</option>
+                <option value="RSS">RSS</option>
+                <option value="Crepe Rubber">Crepe Rubber</option>
+                <option value="Sheet Rubber">Sheet Rubber</option>
+            </select>
+        </div>
+
+        <div class="section-header">
+            <h2>Available Buyers</h2>
+            <span id="buyerCount" style="color:#64748b;">Loading buyers...</span>
+        </div>
+
+        <div class="listing-grid" id="buyersGrid">
+            <div class="empty-box">Loading buyers from Firebase...</div>
+        </div>
+
+        <!-- History Section -->
+        <div class="history-section" id="history">
+            <div class="section-header">
+                <h2>My Sent Requests (History)</h2>
+                <span id="historyCount" style="color:#64748b;">Loading history...</span>
+            </div>
+
+            <div class="listing-grid" id="historyGrid">
+                <div class="empty-box">Checking your requests history...</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal" id="sendRequestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Send Request to Buyer</h2>
+                <button class="close-btn" id="closeModalBtn" type="button">&times;</button>
+            </div>
+
+            <p style="margin-bottom: 16px; color: #64748b;">
+                Company: <strong id="modalBuyerName" style="color: #166534;"></strong>
+            </p>
+
+            <form id="requestForm">
+                <div class="form-group">
+                    <label for="reqRubberType">Rubber Type *</label>
+                    <select id="reqRubberType" required>
+                        <option value="Latex">Latex</option>
+                        <option value="RSS">RSS</option>
+                        <option value="Crepe Rubber">Crepe Rubber</option>
+                        <option value="Sheet Rubber">Sheet Rubber</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reqQuantity">Available Quantity (kg) *</label>
+                    <input type="number" id="reqQuantity" placeholder="e.g. 500" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reqPrice">Offered Price (Rs/kg) *</label>
+                    <input type="number" id="reqPrice" placeholder="e.g. 850" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reqMessage">Message (Optional)</label>
+                    <textarea id="reqMessage" placeholder="Add additional details about quality or delivery..."></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">
+                    <i class="bi bi-send-fill"></i> Send Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db } from "./js/firebase-config.js";
+        import {
+            collection,
+            getDocs,
+            addDoc,
+            doc,
+            getDoc,
+            query,
+            where,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+        import {
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+        let currentUser = null;
+        let farmerData = {};
+        let allBuyers = [];
+        let selectedBuyer = null;
+
+        const buyersGrid = document.getElementById("buyersGrid");
+        const historyGrid = document.getElementById("historyGrid");
+        const modal = document.getElementById("sendRequestModal");
+        const requestForm = document.getElementById("requestForm");
+        const submitBtn = document.getElementById("submitBtn");
+
+        window.openBuyerRequestModal = function(buyerId, buyerName, defaultType, defaultPrice) {
+            if (!currentUser) {
+                alert("Please log in to send requests.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            selectedBuyer = { id: buyerId, name: buyerName };
+            document.getElementById("modalBuyerName").textContent = buyerName;
+            
+            if (defaultType) document.getElementById("reqRubberType").value = defaultType;
+            if (defaultPrice) document.getElementById("reqPrice").value = defaultPrice;
+
+            document.getElementById("reqQuantity").value = "";
+            document.getElementById("reqMessage").value = "";
+
+            modal.style.display = "flex";
+        };
+
+        document.getElementById("closeModalBtn").onclick = () => { modal.style.display = "none"; };
+        modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+
+        async function loadBuyers() {
+            try {
+                const snapshot = await getDocs(collection(db, "users"));
+                allBuyers = [];
+
+                snapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    if (data.userType === "buyer") {
+                        allBuyers.push({ id: docSnap.id, ...data });
+                    }
+                });
+
+                renderBuyers(allBuyers);
+            } catch (err) {
+                console.error("Error loading buyers:", err);
+                buyersGrid.innerHTML = `<div class="empty-box">Failed to load buyers: ${err.message}</div>`;
+            }
+        }
+
+        function renderBuyers(buyers) {
+            buyersGrid.innerHTML = "";
+            document.getElementById("buyerCount").textContent = `${buyers.length} Buyers Found`;
+
+            if (buyers.length === 0) {
+                buyersGrid.innerHTML = '<div class="empty-box">No buyers found matching your criteria.</div>';
+                return;
+            }
+
+            buyers.forEach(buyer => {
+                const name = buyer.companyName || buyer.name || "Company Buyer";
+                const district = buyer.district || "Sri Lanka";
+                const type = buyer.rubberType || "Latex";
+                const price = buyer.price || 0;
+                const qty = buyer.quantity || 0;
+
+                const card = document.createElement("div");
+                card.className = "buyer-card";
+                card.innerHTML = `
+                    <div class="buyer-icon"><i class="bi bi-building"></i></div>
+                    <h3>${name}</h3>
+                    <p class="location"><i class="bi bi-geo-alt"></i> ${district}</p>
+                    <div class="info-box">
+                        <div class="info-row">
+                            <span>Preferred Type:</span>
+                            <strong>${type}</strong>
+                        </div>
+                        <div class="info-row">
+                            <span>Demand:</span>
+                            <strong>${qty} kg</strong>
+                        </div>
+                        <div class="info-row">
+                            <span>Buying Price:</span>
+                            <strong class="price">Rs. ${price}/kg</strong>
+                        </div>
+                    </div>
+                    <button class="btn-send" onclick="openBuyerRequestModal('${buyer.id}', '${name}', '${type}', '${price}')">
+                        <i class="bi bi-send"></i> Send Request
+                    </button>
+                `;
+                buyersGrid.appendChild(card);
+            });
+        }
+
+        function applyFilter() {
+            const queryText = document.getElementById("buyerSearch").value.toLowerCase();
+            const typeFilter = document.getElementById("typeFilter").value;
+
+            const filtered = allBuyers.filter(b => {
+                const nameMatch = (b.companyName || b.name || "").toLowerCase().includes(queryText);
+                const locMatch = (b.district || "").toLowerCase().includes(queryText);
+                const typeMatch = !typeFilter || (b.rubberType === typeFilter);
+
+                return (nameMatch || locMatch) && typeMatch;
+            });
+
+            renderBuyers(filtered);
+        }
+
+        document.getElementById("buyerSearch").addEventListener("input", applyFilter);
+        document.getElementById("typeFilter").addEventListener("change", applyFilter);
+
+        // Save Request
+        requestForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            if (!currentUser || !selectedBuyer) return;
+
+            const rubberType = document.getElementById("reqRubberType").value;
+            const quantity = Number(document.getElementById("reqQuantity").value);
+            const offeredPrice = Number(document.getElementById("reqPrice").value);
+            const message = document.getElementById("reqMessage").value.trim();
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Sending...";
+
+            try {
+                await addDoc(collection(db, "requests"), {
+                    type: "farmer_to_buyer",
+                    senderRole: "farmer",
+                    farmerId: currentUser.uid,
+                    farmerName: farmerData.name || farmerData.fullName || currentUser.email.split("@")[0],
+                    farmerEmail: currentUser.email || "",
+                    buyerId: selectedBuyer.id,
+                    buyerName: selectedBuyer.name,
+                    rubberType: rubberType,
+                    quantity: quantity,
+                    offeredPrice: offeredPrice,
+                    message: message,
+                    status: "pending",
+                    createdAt: serverTimestamp()
+                });
+
+                alert("✅ Request sent to " + selectedBuyer.name + " successfully!");
+                modal.style.display = "none";
+                requestForm.reset();
+
+                await loadMySentRequests();
+            } catch (err) {
+                console.error("Save error:", err);
+                alert("Failed to send request: " + err.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="bi bi-send-fill"></i> Send Request';
+            }
+        });
+
+        // Load History
+        async function loadMySentRequests() {
+            if (!currentUser) return;
+
+            historyGrid.innerHTML = '<div class="empty-box">Loading your requests history...</div>';
+
+            try {
+                const q = query(
+                    collection(db, "requests"),
+                    where("farmerId", "==", currentUser.uid),
+                    where("type", "==", "farmer_to_buyer")
+                );
+
+                const snapshot = await getDocs(q);
+                document.getElementById("historyCount").textContent = `${snapshot.size} Requests Sent`;
+
+                if (snapshot.empty) {
+                    historyGrid.innerHTML = '<div class="empty-box">You haven\'t sent any requests to buyers yet.</div>';
+                    return;
+                }
+
+                const list = [];
+                snapshot.forEach(docSnap => list.push({ id: docSnap.id, ...docSnap.data() }));
+
+                list.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+
+                historyGrid.innerHTML = "";
+                list.forEach(item => {
+                    const statusClass = item.status === "accepted" ? "status-accepted" : 
+                                        item.status === "rejected" ? "status-rejected" : "status-pending";
+
+                    const dateStr = item.createdAt?.toDate ? item.createdAt.toDate().toLocaleDateString() : "Just now";
+
+                    const card = document.createElement("div");
+                    card.className = "history-card";
+                    card.innerHTML = `
+                        <span class="status-badge ${statusClass}">${item.status || "pending"}</span>
+                        <h3>To: ${item.buyerName || "Company Buyer"}</h3>
+                        <p class="location"><i class="bi bi-calendar3"></i> Sent: ${dateStr}</p>
+                        <div class="info-box">
+                            <div class="info-row">
+                                <span>Rubber Type:</span>
+                                <strong>${item.rubberType || "N/A"}</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Quantity:</span>
+                                <strong>${item.quantity} kg</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Offered Price:</span>
+                                <strong class="price">Rs. ${item.offeredPrice}/kg</strong>
+                            </div>
+                        </div>
+                        ${item.message ? `<p style="font-size:13px; color:#64748b; margin-top:8px;"><strong>Note:</strong> \${item.message}</p>` : ''}
+                    `;
+                    historyGrid.appendChild(card);
+                });
+
+            } catch (err) {
+                console.error("History fetch error:", err);
+                historyGrid.innerHTML = `<div class="empty-box">Could not load history: ${err.message}</div>`;
+            }
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    farmerData = userDoc.data();
+                }
+                await loadBuyers();
+                await loadMySentRequests();
+            } else {
+                currentUser = null;
+                await loadBuyers();
+                document.getElementById("historyGrid").innerHTML = `
+                    <div class="empty-box">
+                        Please <a href="login.html" style="color:#166534; font-weight:700;">login</a> to view your request history.
+                    </div>
+                `;
+            }
+        });
+    </script>
+
+    <script src="js/darkmode.js"></script>
+    <script src="js/google-translate.js"></script>
+</body>
+</html>

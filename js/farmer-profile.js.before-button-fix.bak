@@ -1,0 +1,593 @@
+
+import { auth, db } from "./firebase-config.js";
+
+import {
+    doc,
+    getDoc,
+    setDoc,
+    collection,
+    query,
+    where,
+    getDocs,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+// ==================================================
+// ELEMENTS
+// ==================================================
+
+const editBtn = document.getElementById("editBtn");
+const saveBtn = document.getElementById("saveBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+const actionArea = document.getElementById("actionArea");
+const toast = document.getElementById("toast");
+
+const photoUpload = document.getElementById("photoUpload");
+const profileImage = document.getElementById("profileImage");
+const defaultAvatar = document.getElementById("defaultAvatar");
+
+const editableFields = document.querySelectorAll(
+    "#fullName, #email, #phone, #district, #address, " +
+    "#rubberType, #quality, #stock, #price, #status, #about"
+);
+
+let currentFarmer = null;
+let profileData = {};
+let originalValues = {};
+let originalPhoto = "";
+let selectedPhoto = "";
+
+if (actionArea) actionArea.style.display = "none";
+if (photoUpload) photoUpload.disabled = true;
+
+
+// ==================================================
+// HELPER FUNCTIONS
+// ==================================================
+
+function setText(id, value) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+}
+
+function setValue(id, value) {
+    const element = document.getElementById(id);
+    if (element) element.value = value ?? "";
+}
+
+function updateAvailability(status, stock) {
+    const element = document.getElementById("displayAvailability");
+    if (!element) return;
+
+    if (status === "Out of Stock" || Number(stock) === 0) {
+        element.textContent = "● Out of Stock";
+        element.classList.add("out-of-stock");
+    } else {
+        element.textContent = "● Available for Selling";
+        element.classList.remove("out-of-stock");
+    }
+}
+
+
+// ==================================================
+// LOAD FARMER PROFILE
+// ==================================================
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    currentFarmer = user;
+
+    try {
+        const userRef = doc(db, "users", user.uid);
+        const snapshot = await getDoc(userRef);
+
+        if (!snapshot.exists()) {
+            alert("Farmer profile not found in Firebase.");
+            return;
+        }
+
+        profileData = snapshot.data();
+
+        setText("displayName", profileData.name || "Farmer");
+        setValue("fullName", profileData.name || "");
+        setValue("email", profileData.email || user.email || "");
+        setValue("phone", profileData.contact || "");
+        setValue("district", profileData.district || "");
+        setValue("address", profileData.address || "");
+
+        setText(
+            "displayLocation",
+            (profileData.district || "Sri Lanka") + ", Sri Lanka"
+        );
+
+        setValue("rubberType", profileData.rubberType || "Latex");
+        setText("summaryType", profileData.rubberType || "Latex");
+
+        setValue("quality", profileData.quality || "Grade A");
+
+        setValue("stock", profileData.stock ?? 0);
+        setText("summaryStock", (profileData.stock ?? 0) + " kg");
+
+        setValue("price", profileData.price ?? 0);
+        setText("summaryPrice", "Rs. " + (profileData.price ?? 0) + "/kg");
+
+        setValue("status", profileData.status || "Available");
+        setValue("about", profileData.about || "");
+
+        updateAvailability(profileData.status, profileData.stock);
+
+        if (profileData.profilePhoto) {
+            profileImage.src = profileData.profilePhoto;
+            profileImage.style.display = "block";
+            defaultAvatar.style.display = "none";
+            originalPhoto = profileData.profilePhoto;
+        } else {
+            profileImage.style.display = "none";
+            defaultAvatar.style.display = "flex";
+            originalPhoto = "";
+        }
+
+        await loadIncomingRequests(user.uid, profileData);
+
+    } catch (error) {
+        console.error("Profile loading error:", error);
+        alert("Could not load profile: " + error.message);
+    }
+});
+
+
+// ==================================================
+// EDIT PROFILE
+// ==================================================
+
+if (editBtn) {
+    editBtn.addEventListener("click", () => {
+        editableFields.forEach(field => {
+            originalValues[field.id] = field.value;
+            field.disabled = false;
+        });
+
+        originalPhoto =
+            profileImage.style.display !== "none"
+                ? profileImage.src
+                : "";
+
+        selectedPhoto = "";
+
+        if (photoUpload) photoUpload.disabled = false;
+        if (actionArea) actionArea.style.display = "flex";
+
+        editBtn.style.display = "none";
+    });
+}
+
+
+// ==================================================
+// COMPRESS PHOTO
+// ==================================================
+
+function compressImage(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = event => {
+            const image = new Image();
+
+            image.onload = () => {
+                const maxSize = 300;
+                let width = image.width;
+                let height = image.height;
+
+                if (width > height && width > maxSize) {
+                    height *= maxSize / width;
+                    width = maxSize;
+                } else if (height >= width && height > maxSize) {
+                    width *= maxSize / height;
+                    height = maxSize;
+                }
+
+                const canvas = document.createElement("canvas");
+                canvas.width = Math.round(width);
+                canvas.height = Math.round(height);
+
+                canvas.getContext("2d").drawImage(
+                    image, 0, 0, canvas.width, canvas.height
+                );
+
+                resolve(canvas.toDataURL("image/jpeg", 0.5));
+            };
+
+            image.onerror = () => reject(new Error("Could not load image."));
+            image.src = event.target.result;
+        };
+
+        reader.onerror = () => reject(new Error("Could not read image."));
+        reader.readAsDataURL(file);
+    });
+}
+
+
+// ==================================================
+// CHANGE PROFILE PHOTO
+// ==================================================
+
+if (photoUpload) {
+    photoUpload.addEventListener("change", async () => {
+        const file = photoUpload.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+            alert("Please select an image file.");
+            photoUpload.value = "";
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert("Please select an image smaller than 5MB.");
+            photoUpload.value = "";
+            return;
+        }
+
+        try {
+            const compressed = await compressImage(file);
+
+            if (compressed.length > 700000) {
+                alert("Please select a smaller image.");
+                photoUpload.value = "";
+                return;
+            }
+
+            selectedPhoto = compressed;
+            profileImage.src = compressed;
+            profileImage.style.display = "block";
+            defaultAvatar.style.display = "none";
+
+        } catch (error) {
+            console.error(error);
+            alert("Unable to process photo.");
+        }
+    });
+}
+
+
+// ==================================================
+// CANCEL EDIT
+// ==================================================
+
+if (cancelBtn) {
+    cancelBtn.addEventListener("click", () => {
+        editableFields.forEach(field => {
+            if (Object.hasOwn(originalValues, field.id)) {
+                field.value = originalValues[field.id];
+            }
+            field.disabled = true;
+        });
+
+        if (originalPhoto) {
+            profileImage.src = originalPhoto;
+            profileImage.style.display = "block";
+            defaultAvatar.style.display = "none";
+        } else {
+            profileImage.src = "";
+            profileImage.style.display = "none";
+            defaultAvatar.style.display = "flex";
+        }
+
+        selectedPhoto = "";
+
+        if (photoUpload) {
+            photoUpload.value = "";
+            photoUpload.disabled = true;
+        }
+
+        if (actionArea) actionArea.style.display = "none";
+        if (editBtn) editBtn.style.display = "block";
+    });
+}
+
+
+// ==================================================
+// SAVE PROFILE
+// ==================================================
+
+if (saveBtn) {
+    saveBtn.addEventListener("click", async () => {
+        const user = auth.currentUser;
+        if (!user) {
+            alert("Please log in first.");
+            return;
+        }
+
+        const fullName = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const district = document.getElementById("district").value;
+        const address = document.getElementById("address").value.trim();
+        const rubberType = document.getElementById("rubberType").value;
+        const quality = document.getElementById("quality").value;
+        const stock = document.getElementById("stock").value;
+        const price = document.getElementById("price").value;
+        const status = document.getElementById("status").value;
+        const about = document.getElementById("about").value.trim();
+
+        if (!fullName || !email) {
+            alert("Please enter your name and email.");
+            return;
+        }
+
+        if (stock === "" || !Number.isFinite(Number(stock)) || Number(stock) < 0) {
+            alert("Enter a valid stock quantity.");
+            return;
+        }
+
+        if (price === "" || !Number.isFinite(Number(price)) || Number(price) < 0) {
+            alert("Enter a valid selling price.");
+            return;
+        }
+
+        saveBtn.disabled = true;
+
+        try {
+            const updateData = {
+                name: fullName,
+                email,
+                contact: phone,
+                district,
+                address,
+                rubberType,
+                quality,
+                stock: Number(stock),
+                price: Number(price),
+                status,
+                about
+            };
+
+            if (selectedPhoto) {
+                updateData.profilePhoto = selectedPhoto;
+            }
+
+            await setDoc(
+                doc(db, "users", user.uid),
+                updateData,
+                { merge: true }
+            );
+
+            profileData = { ...profileData, ...updateData };
+
+            setText("displayName", fullName);
+            setText("displayLocation", district + ", Sri Lanka");
+            setText("summaryType", rubberType);
+            setText("summaryStock", Number(stock) + " kg");
+            setText("summaryPrice", "Rs. " + Number(price) + "/kg");
+
+            updateAvailability(status, Number(stock));
+
+            if (selectedPhoto) originalPhoto = selectedPhoto;
+            selectedPhoto = "";
+
+            editableFields.forEach(field => field.disabled = true);
+
+            if (photoUpload) {
+                photoUpload.value = "";
+                photoUpload.disabled = true;
+            }
+
+            if (actionArea) actionArea.style.display = "none";
+            if (editBtn) editBtn.style.display = "block";
+
+            if (toast) {
+                toast.textContent = "✓ Profile updated successfully!";
+                toast.classList.add("show");
+
+                setTimeout(() => toast.classList.remove("show"), 3000);
+            }
+
+        } catch (error) {
+            console.error("Profile save error:", error);
+            alert("Could not save profile: " + error.message);
+        } finally {
+            saveBtn.disabled = false;
+        }
+    });
+}
+
+
+// ==================================================
+// CREATE INCOMING REQUESTS SECTION
+// ==================================================
+
+function createRequestsSection() {
+    let section = document.getElementById("incomingRequests");
+
+    if (section) return section;
+
+    section = document.createElement("section");
+    section.id = "incomingRequests";
+
+    section.style.cssText = `
+        max-width:1100px;
+        margin:30px auto;
+        padding:24px;
+        background:#ffffff;
+        color:#222222;
+        border-radius:16px;
+        box-shadow:0 4px 18px rgba(0,0,0,0.08);
+    `;
+
+    section.innerHTML = `
+        <h2>Incoming Buyer Requests</h2>
+        <p>Requests sent by buyers will appear here.</p>
+        <div id="incomingRequestsList">Loading requests...</div>
+    `;
+
+    document.querySelector(".profile-page").appendChild(section);
+    return section;
+}
+
+
+// ==================================================
+// LOAD REQUESTS
+// ==================================================
+
+async function loadIncomingRequests(farmerUid, farmerProfile) {
+    createRequestsSection();
+
+    const list = document.getElementById("incomingRequestsList");
+    list.textContent = "Loading requests...";
+
+    try {
+        const requestsRef = collection(db, "requests");
+        const found = new Map();
+
+        // Requests addressed to the farmer's Firebase UID
+        const uidResults = await getDocs(
+            query(requestsRef, where("farmerId", "==", farmerUid))
+        );
+
+        uidResults.forEach(item => found.set(item.id, item));
+
+        // Support older custom IDs if they are saved in the farmer profile.
+        const oldIds = [
+            farmerProfile.farmerId,
+            farmerProfile.profileId
+        ].filter(id => typeof id === "string" && id.trim());
+
+        for (const oldId of oldIds) {
+            const oldResults = await getDocs(
+                query(requestsRef, where("farmerId", "==", oldId))
+            );
+
+            oldResults.forEach(item => found.set(item.id, item));
+        }
+
+        const requests = [...found.values()]
+            .map(item => ({ id: item.id, ...item.data() }))
+            .filter(item => item.type !== "farmer_offer")
+            .sort((a, b) =>
+                (b.createdAt?.toMillis?.() || 0) -
+                (a.createdAt?.toMillis?.() || 0)
+            );
+
+        if (!requests.length) {
+            list.textContent =
+                "No requests found for this farmer. Check that the request's farmerId matches your farmer ID.";
+            return;
+        }
+
+        list.replaceChildren();
+
+        requests.forEach(request => {
+            const card = document.createElement("div");
+
+            card.style.cssText = `
+                border:1px solid #dddddd;
+                border-radius:12px;
+                padding:18px;
+                margin:15px 0;
+                background:#fbfdfb;
+            `;
+
+            const heading = document.createElement("h3");
+            heading.textContent = "Buyer Request";
+
+            const buyer = document.createElement("p");
+            buyer.textContent = "Buyer: " + (request.buyerEmail || "Not provided");
+
+            const quantity = document.createElement("p");
+            quantity.textContent =
+                "Required quantity: " + (Number(request.quantity) || 0) + " kg";
+
+            const price = document.createElement("p");
+            price.textContent =
+                "Offered price: Rs. " + (Number(request.offeredPrice) || 0) + "/kg";
+
+            const message = document.createElement("p");
+            message.textContent = "Message: " + (request.message || "No message");
+
+            const status = document.createElement("p");
+            status.style.fontWeight = "bold";
+
+            const currentStatus = (request.status || "pending").toLowerCase();
+            status.textContent = "Status: " + currentStatus;
+            status.style.color =
+                currentStatus === "accepted" ? "#198754" :
+                currentStatus === "rejected" ? "#dc3545" : "#b7791f";
+
+            card.append(heading, buyer, quantity, price, message, status);
+
+            if (currentStatus === "pending") {
+                const accept = document.createElement("button");
+                accept.textContent = "Accept";
+                accept.style.cssText =
+                    "background:#198754;color:white;padding:10px 18px;" +
+                    "border:0;border-radius:6px;margin-right:10px;cursor:pointer;";
+
+                const reject = document.createElement("button");
+                reject.textContent = "Reject";
+                reject.style.cssText =
+                    "background:#dc3545;color:white;padding:10px 18px;" +
+                    "border:0;border-radius:6px;cursor:pointer;";
+
+                accept.addEventListener("click", () =>
+                    changeRequestStatus(request.id, "accepted", accept, reject)
+                );
+
+                reject.addEventListener("click", () =>
+                    changeRequestStatus(request.id, "rejected", accept, reject)
+                );
+
+                card.append(accept, reject);
+            }
+
+            list.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("Incoming requests error:", error);
+        list.textContent =
+            "Could not load requests. Check Firebase Firestore rules and browser console.";
+    }
+}
+
+
+// ==================================================
+// ACCEPT / REJECT
+// ==================================================
+
+async function changeRequestStatus(requestId, newStatus, acceptButton, rejectButton) {
+    if (!confirm("Are you sure you want to " + newStatus + " this request?")) {
+        return;
+    }
+
+    acceptButton.disabled = true;
+    rejectButton.disabled = true;
+
+    try {
+        await updateDoc(doc(db, "requests", requestId), {
+            status: newStatus
+        });
+
+        alert("Request " + newStatus + " successfully.");
+
+        if (currentFarmer) {
+            await loadIncomingRequests(currentFarmer.uid, profileData);
+        }
+
+    } catch (error) {
+        console.error("Request status update error:", error);
+
+        alert("Could not update request. Check Firestore rules: " + error.message);
+
+        acceptButton.disabled = false;
+        rejectButton.disabled = false;
+    }
+}
