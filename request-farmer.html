@@ -450,9 +450,14 @@
 
                 snapshot.forEach(docSnap => {
                     const data = docSnap.data();
-                    if (data.userType === "farmer") {
-                        farmers.push({ id: docSnap.id, ...data });
-                    }
+                   
+if (data.userType === "farmer") {
+    farmers.push({
+        ...data,
+        id: data.uid || docSnap.id
+    });
+}
+
                 });
 
                 document.getElementById("farmerCount").textContent = `${farmers.length} Farmers Available`;
