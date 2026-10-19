@@ -1,5 +1,16 @@
-﻿import { auth, db } from "./firebase-config.js";
-import { doc, getDoc, setDoc, collection, query, where, getDocs, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { auth, db } from "./firebase-config.js";
+import {
+    doc,
+    getDoc,
+    setDoc,
+    collection,
+    query,
+    where,
+    getDocs,
+    updateDoc,
+    serverTimestamp,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 const editBtn = document.getElementById("editBtn");
@@ -406,25 +417,95 @@ async function loadMySentRequests(farmerUid) {
     }
 }
 
+
 async function updateRequestStatus(requestId, newStatus, acceptBtn, rejectBtn) {
     acceptBtn.disabled = true;
-    rejectButton.disabled = true;
+    rejectBtn.disabled = true;
 
     try {
-        await updateDoc(doc(db, "requests", requestId), { status: newStatus, updatedAt: serverTimestamp() });
-        showToast(newStatus === "accepted" ? "Buyer request accepted successfully!" : "Buyer request rejected.");
-        if (currentFarmer) await loadIncomingRequests(currentFarmer.uid);
+        await updateDoc(doc(db, "requests", requestId), {
+            status: newStatus,
+            updatedAt: serverTimestamp()
+        });
+
+        showToast(
+            newStatus === "accepted"
+                ? "Buyer request accepted successfully!"
+                : "Buyer request rejected."
+        );
+
+        if (currentFarmer) {
+            await loadIncomingRequests(currentFarmer.uid);
+        }
     } catch (error) {
         console.error("Update error:", error);
-        showToast("Could not update request.", true);
+        showToast("Could not update request: " + error.message, true);
+
         acceptBtn.disabled = false;
         rejectBtn.disabled = false;
     }
 }
 
+
+
+let stopRequestListener = null;
+
 onAuthStateChanged(auth, async user => {
-    if (!user) { window.location.href = "login.html"; return; }
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
     currentFarmer = user;
+
+    // Load the existing request lists
     await loadIncomingRequests(user.uid);
     await loadMySentRequests(user.uid);
+
+    // Stop the previous listener if authentication changes
+    if (stopRequestListener) {
+        stopRequestListener();
+    }
+
+    // Listen only to requests addressed to this farmer
+    const farmerRequestsQuery = query(
+        collection(db, "requests"),
+        where("farmerId", "==", user.uid),
+        where("type", "==", "buyer_to_farmer")
+    );
+
+    let firstSnapshot = true;
+
+    stopRequestListener = onSnapshot(
+        farmerRequestsQuery,
+        snapshot => {
+            // Do not show notifications for old requests on initial load
+            if (firstSnapshot) {
+                firstSnapshot = false;
+                return;
+            }
+
+            // Refresh the incoming request list
+            loadIncomingRequests(user.uid);
+
+            // Notify the farmer about newly created requests
+            snapshot.docChanges().forEach(change => {
+                if (change.type === "added") {
+                    const request = change.doc.data();
+
+                    showToast(
+                        "New request from " +
+                        (request.buyerName || "a buyer") +
+                        "!"
+                    );
+                }
+            });
+        },
+        error => {
+            console.error(
+                "Request notification error:",
+                error
+            );
+        }
+    );
 });
